@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] First simple GUI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909181920.00110.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000075.html">
+   <LINK REL="Next"  HREF="000077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] First simple GUI</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909181920.00110.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] First simple GUI">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Fri Sep 18 19:19:59 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000075.html">[Sigschege-devel] First simple GUI
+</A></li>
+        <LI>Next message: <A HREF="000077.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Ingo,
+
+I found the time to have a first glance at your code. Generally I agree with that approach,
+with the following exceptions:
+
+* no tabs please!
+
+* classes like &quot;EventLow/High&quot; are too specialized and go in the wrong direction. Sigschege
+will have a generic concept of states/transitions and define visualization mappings for those. 
+Visualization mappings define how a state is displayed (with/without text label, lines on top,
+at the bottom or in the middle, colour, etc) and can be per-signal.
+
+* the drawing of events, and actually the whole signal, should be done by the TimWave class.
+
+As for the &quot;YaVec&quot; topic: In theory we could just implement &quot;export_svg&quot; hierarchy next to the &quot;paint&quot;
+functions. It wouldn't be a big problem, with one exception: code duplication. It doesn't matter
+as long as the paint function simply is something like a simple drawLine or drawText, but if the paint
+function does a lot of calculations we have to duplicate it. Have a look at TimSignal::paintRange in
+the old implementation. Maybe it is possible to have a generic function and implement the actual
+drawing in a callback function.
+
+Hmmm.. maybe passing  a special object that delegates the painting might be a good idea?
+
+I guess we have to think more about it...
+
+
+Cheers,
+Ulf
+
+Am Tuesday 15 September 2009 23:15:01 schrieb Development discussions:
+&gt;<i> 
+</I>&gt;<i> Am Sunday 13 September 2009 13:51:46 schrieb Development discussions:
+</I>&gt;<i> &gt; Hi guys
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I was think a lot to find a good way for our Sigschege GUI. Like Ulf said in a 
+</I>&gt;<i> &gt; previous post, we have two ways to implement the signal drawing. 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 1.We draw everything by our self into a widget.
+</I>&gt;<i> &gt; 2.We use QGraphicsView and QGraphicsScene and implement a  GarphicsItem for 
+</I>&gt;<i> &gt; every element that we have.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; After some experiments I think we should go for option 2. The first way would 
+</I>&gt;<i> &gt; be good for a waveform view. In our case it would be a nightmare because we 
+</I>&gt;<i> &gt; have to calculate every mouse click  by our self. The same is true for 
+</I>&gt;<i> &gt; selection and so on.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The second way would be much simpler. Qt handles all the calculations (mouse 
+</I>&gt;<i> &gt; position) coordinate system conversions etc..
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If no one has any objectives, I would like to check in my experimental &#8220;simple 
+</I>&gt;<i> &gt; GUI&#8221;. It uses the second way, but need a lot of work.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Cheers
+</I>&gt;<i> &gt; Ingo
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>&gt;<i> 
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000075.html">[Sigschege-devel] First simple GUI
+</A></li>
+	<LI>Next message: <A HREF="000077.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

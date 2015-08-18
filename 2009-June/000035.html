@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] New target for Sigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200906302140.38786.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000034.html">
+   <LINK REL="Next"  HREF="000032.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] New target for Sigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200906302140.38786.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] New target for Sigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Tue Jun 30 21:40:38 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000034.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+        <LI>Next message: <A HREF="000032.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#35">[ date ]</a>
+              <a href="thread.html#35">[ thread ]</a>
+              <a href="subject.html#35">[ subject ]</a>
+              <a href="author.html#35">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi,
+
+&gt;<i> &gt;
+</I>&gt;<i> &gt; 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from
+</I>&gt;<i> &gt; *incorrectly* displaying the timing diagram, but it's started. :P
+</I>&gt;<i> 
+</I>&gt;<i> Actually, for me it does nothing. No timing diagram :-( Only a empty message 
+</I>&gt;<i> box pops up...
+</I>
+Did you create simple.ssg? It should have roughly 2300 bytes.
+But yes, the message box is empty. :P
+
+&gt;<i> 
+</I>&gt;<i> Agreed. That's why I sad, we could make all language bindings with Swig. I 
+</I>&gt;<i> don't know if it make sense to have language bindings at all, but if we want 
+</I>&gt;<i> them, we could use Swig to generate wrappers.
+</I>&gt;<i> 
+</I>
+
+Ah, you will be the SWIG stuff maintainer then. :P
+&gt;<i> &gt;
+</I>&gt;<i> &gt; 6. As for the toolkit, current code is wxWidgets, but I'd also be fine with
+</I>&gt;<i> &gt; qt4. The problem is that all the toolkits bring their own stuff, like
+</I>&gt;<i> &gt; string class (even unicode ones), and the question is how to handle that.
+</I>&gt;<i> &gt; (from what point on making it dependent from toolkit? convert to/from
+</I>&gt;<i> &gt; string? or wstring?)
+</I>&gt;<i> 
+</I>&gt;<i> This is actually true for all third party libraries. I think we should try to 
+</I>&gt;<i> keep the number of dependencies low. And if we add a dependency, we should try 
+</I>&gt;<i> to minimize the impact. 
+</I>
+So basically, we will use string/wstring mainly in sigschege/Yavec and convert to the library
+string only where needed. 
+
+&gt;<i> I mean, we should try to keep everything separated as much as possible. We 
+</I>&gt;<i> added already some dependencies like Python, YaVec and XML load/save. If we 
+</I>&gt;<i> keep adding them to all classes, maintenance will become a nightmare. 
+</I>&gt;<i> 
+</I>
+Of course, the XML library is required for Sigschege, as loading/saving is an elementary feature.
+In the same way wxWidgets or Qt will be required for the GUI sigschege.
+If we continue to maintain a python-sigschege, that must run independent  of wx/Qt.
+
+I already thought about starting a &quot;sigschege reloaded&quot; completely in python, to get a working application faster.
+But that gives new problems, forexample no freetype interface is available for Python, etc...
+
+cu
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000034.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+	<LI>Next message: <A HREF="000032.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#35">[ date ]</a>
+              <a href="thread.html#35">[ thread ]</a>
+              <a href="subject.html#35">[ subject ]</a>
+              <a href="author.html#35">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

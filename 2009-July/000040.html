@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] New target for Sigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3CF21FFD44-A8BA-434E-A470-667512D46873%40bytehunter.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000045.html">
+   <LINK REL="Next"  HREF="000042.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] New target for Sigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3CF21FFD44-A8BA-434E-A470-667512D46873%40bytehunter.de%3E"
+       TITLE="[Sigschege-devel] New target for Sigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Thu Jul  2 22:02:59 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000045.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+        <LI>Next message: <A HREF="000042.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#40">[ date ]</a>
+              <a href="thread.html#40">[ thread ]</a>
+              <a href="subject.html#40">[ subject ]</a>
+              <a href="author.html#40">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> So basically, we will use string/wstring mainly in sigschege/Yavec  
+</I>&gt;&gt;&gt;<i> and
+</I>&gt;&gt;&gt;<i> convert to the library string only where needed.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I would say yes!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What do you think Alex?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>
+Maybe yes, things are changing :) To be honest, I had a similar  
+problem, which I fixed with some wrapper to keep the Qt way. Nowaday,  
+I use Qt all over because I think Qt is a very good &quot;framework&quot; at all  
+(but not comparable with Cocoa which is MUCH better - I think! But  
+runs only on Mac)
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> I already thought about starting a &quot;sigschege reloaded&quot; completely in
+</I>&gt;&gt;<i> python, to get a working application faster. But that gives new  
+</I>&gt;&gt;<i> problems,
+</I>&gt;&gt;<i> forexample no freetype interface is available for Python, etc...
+</I>&gt;<i>
+</I>&gt;<i> Then lets start with some brain storming ...
+</I>&gt;<i>
+</I>&gt;<i> Which features should we have in 1.0?
+</I>&gt;<i>
+</I>I wouldn't do this all in python! For a scripting interface in an  
+application I would rater use QScript or LUA. QScript is some kind of  
+JavaScript and very easy to use and to integrate. On the other hand,  
+LUA is also easy, powerful but simple. BUT in someway complicated to  
+use with C++ but not impossible.
+I used LUA as an stand-alone interpreter and wrote extensions/ 
+libraries (in native C) for it to interface with some hardware  
+components.
+QScipt will be my favorite if the Qt framework will be used!
+
+BR
+Alex 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000045.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+	<LI>Next message: <A HREF="000042.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#40">[ date ]</a>
+              <a href="thread.html#40">[ thread ]</a>
+              <a href="subject.html#40">[ subject ]</a>
+              <a href="author.html#40">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

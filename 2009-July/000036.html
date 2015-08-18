@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] New target for Sigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200907012102.50534.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000037.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] New target for Sigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200907012102.50534.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] New target for Sigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Wed Jul  1 13:02:50 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000037.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 1 Jul 2009 05:40:38 am Development discussions wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except
+</I>&gt;<i> &gt; &gt; from *incorrectly* displaying the timing diagram, but it's started. :P
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Actually, for me it does nothing. No timing diagram :-( Only a empty
+</I>&gt;<i> &gt; message box pops up...
+</I>&gt;<i>
+</I>&gt;<i> Did you create simple.ssg? It should have roughly 2300 bytes.
+</I>&gt;<i> But yes, the message box is empty. :P
+</I>
+Yep, I did! But no timing diagram. I would say, this is incorrectly :P
+
+&gt;<i>
+</I>&gt;<i> &gt; Agreed. That's why I sad, we could make all language bindings with Swig.
+</I>&gt;<i> &gt; I don't know if it make sense to have language bindings at all, but if we
+</I>&gt;<i> &gt; want them, we could use Swig to generate wrappers.
+</I>&gt;<i>
+</I>&gt;<i> Ah, you will be the SWIG stuff maintainer then. :P
+</I>
+If we are in need of language binding, I can do that. But only if we need 
+them..... 
+
+&gt;<i>
+</I>&gt;<i> &gt; &gt; 6. As for the toolkit, current code is wxWidgets, but I'd also be fine
+</I>&gt;<i> &gt; &gt; with qt4. The problem is that all the toolkits bring their own stuff,
+</I>&gt;<i> &gt; &gt; like string class (even unicode ones), and the question is how to
+</I>&gt;<i> &gt; &gt; handle that. (from what point on making it dependent from toolkit?
+</I>&gt;<i> &gt; &gt; convert to/from string? or wstring?)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This is actually true for all third party libraries. I think we should
+</I>&gt;<i> &gt; try to keep the number of dependencies low. And if we add a dependency,
+</I>&gt;<i> &gt; we should try to minimize the impact.
+</I>&gt;<i>
+</I>&gt;<i> So basically, we will use string/wstring mainly in sigschege/Yavec and
+</I>&gt;<i> convert to the library string only where needed.
+</I>
+I would say yes!
+
+What do you think Alex? 
+
+&gt;<i> &gt; I mean, we should try to keep everything separated as much as possible.
+</I>&gt;<i> &gt; We added already some dependencies like Python, YaVec and XML load/save.
+</I>&gt;<i> &gt; If we keep adding them to all classes, maintenance will become a
+</I>&gt;<i> &gt; nightmare.
+</I>&gt;<i>
+</I>&gt;<i> Of course, the XML library is required for Sigschege, as loading/saving is
+</I>&gt;<i> an elementary feature. In the same way wxWidgets or Qt will be required for
+</I>&gt;<i> the GUI sigschege. If we continue to maintain a python-sigschege, that must
+</I>&gt;<i> run independent  of wx/Qt.
+</I>&gt;<i>
+</I>&gt;<i> I already thought about starting a &quot;sigschege reloaded&quot; completely in
+</I>&gt;<i> python, to get a working application faster. But that gives new problems,
+</I>&gt;<i> forexample no freetype interface is available for Python, etc...
+</I>
+Then lets start with some brain storming ...
+
+Which features should we have in 1.0?
+
+&gt;<i> cu
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000037.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

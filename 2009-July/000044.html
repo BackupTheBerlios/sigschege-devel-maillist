@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] New target for Sigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200907052113.30226.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000042.html">
+   <LINK REL="Next"  HREF="000043.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] New target for Sigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200907052113.30226.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] New target for Sigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Sun Jul  5 13:13:30 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000042.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+        <LI>Next message: <A HREF="000043.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#44">[ date ]</a>
+              <a href="thread.html#44">[ thread ]</a>
+              <a href="subject.html#44">[ subject ]</a>
+              <a href="author.html#44">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 4 Jul 2009 07:35:57 pm Development discussions wrote:
+&gt;<i> Hi guys,
+</I>&gt;<i>
+</I>&gt;<i> Am Thursday 02 July 2009 22:02:59 schrieb Development discussions:
+</I>&gt;<i> &gt; I wouldn't do this all in python! For a scripting interface in an
+</I>&gt;<i> &gt; application I would rater use QScript or LUA. QScript is some kind of
+</I>&gt;<i> &gt; JavaScript and very easy to use and to integrate. On the other hand,
+</I>&gt;<i> &gt; LUA is also easy, powerful but simple. BUT in someway complicated to
+</I>&gt;<i> &gt; use with C++ but not impossible.
+</I>&gt;<i> &gt; I used LUA as an stand-alone interpreter and wrote extensions/
+</I>&gt;<i> &gt; libraries (in native C) for it to interface with some hardware
+</I>&gt;<i> &gt; components.
+</I>&gt;<i> &gt; QScipt will be my favorite if the Qt framework will be used!
+</I>&gt;<i>
+</I>&gt;<i> Actually the Python-Interface was not meant as a scripting interface inside
+</I>&gt;<i> the GUI, but as a separate UI. (You know, like a GUI, but without the &quot;G&quot;
+</I>&gt;<i> part :P). The original plans had 2 binaries: A Python binary as first one
+</I>&gt;<i> (which already exists and is even somewhat usable) and a GUI binary as
+</I>&gt;<i> secondary step.
+</I>&gt;<i>
+</I>&gt;<i> Now that the focus is shifted the Python binary either will be omitted or
+</I>&gt;<i> be shifted to a lower priority. the question is, if we want to have a
+</I>&gt;<i> scripting interface in the GUI. I wouldn't mind having one, but I also
+</I>&gt;<i> wouldn't put a high priority on it. (If at all, I would only start
+</I>&gt;<i> implementing it after 1.0.)
+</I>
+Yep, not for 1.0. And later we can decide which (may be even more) languages 
+we want.
+
+&gt;<i>
+</I>&gt;<i> From the  old plan I have compiled a draft for a new schedule. Please give
+</I>&gt;<i> me feedback and more suggestions. Maybe we should put it in the Wiki?
+</I>&gt;<i>
+</I>&gt;<i> And before we have more discussions without results: Qt is decided.
+</I>
+OK!
+
+&gt;<i>
+</I>&gt;<i> cya,
+</I>&gt;<i> Ulf
+</I>&gt;<i>
+</I>&gt;<i> hey emacs, it's -*- outline -*-
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> * 0.1
+</I>&gt;<i>
+</I>&gt;<i> - configure &amp; compile flow running
+</I>&gt;<i> - build &amp; release flow running (actually, this will be a test for it
+</I>&gt;<i> - Qt element in Yavec finished
+</I>&gt;<i> - basic Qt GUI working with existing features
+</I>&gt;<i> - Lists (Lists of Text Labels, Signals, Time Scales and other Lists) *
+</I>&gt;<i> - Text Labels *
+</I>&gt;<i> - Time Scales *
+</I>&gt;<i> - Signals  *
+</I>&gt;<i> - Loading &amp; Saving *
+</I>&gt;<i> - Exporting *
+</I>&gt;<i>
+</I>&gt;<i> The elements marked with &quot;*&quot; already exist and only need Qt support.
+</I>&gt;<i>
+</I>&gt;<i> * 0.2
+</I>&gt;<i>
+</I>&gt;<i> - GUI enhancements
+</I>&gt;<i> - overlay support
+</I>&gt;<i> - markers
+</I>&gt;<i> - pointers (point from sig1/event1 to sig2/event3)
+</I>&gt;<i> - comment boxes
+</I>&gt;<i> - signal visualization scheme (SVS, make visualization of states
+</I>&gt;<i> configurable for signals) - colour support (SVS)
+</I>&gt;<i> - line Styles support (SVS)
+</I>&gt;<i>
+</I>&gt;<i> * 0.3
+</I>&gt;<i>
+</I>&gt;<i> - GUI usability improvements
+</I>&gt;<i>
+</I>&gt;<i> * 0.4
+</I>&gt;<i>
+</I>&gt;<i> - scripting interface (if decided)
+</I>&gt;<i> - splits
+</I>&gt;<i> - GUI usability improvements
+</I>&gt;<i>
+</I>&gt;<i> * 0.5
+</I>&gt;<i>
+</I>&gt;<i> - possible enhancements, eg, special &quot;clock&quot; signal
+</I>&gt;<i>
+</I>&gt;<i> * 0.6
+</I>&gt;<i>
+</I>&gt;<i> * 0.7
+</I>&gt;<i>
+</I>&gt;<i> - file format stable
+</I>&gt;<i>
+</I>&gt;<i> * 0.8
+</I>&gt;<i>
+</I>&gt;<i> bug fixes
+</I>&gt;<i>
+</I>&gt;<i> * 0.9
+</I>&gt;<i>
+</I>&gt;<i> all features in, release candidate
+</I>&gt;<i>
+</I>&gt;<i> * 1.0 !!!!!!
+</I>&gt;<i>
+</I>&gt;<i> stable version
+</I>&gt;<i>
+</I>
+This is actually not a feature list. This is more a complete release plan. I 
+think, we should define our target first.
+
+Cheers
+Ingo
+&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000042.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+	<LI>Next message: <A HREF="000043.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#44">[ date ]</a>
+              <a href="thread.html#44">[ thread ]</a>
+              <a href="subject.html#44">[ subject ]</a>
+              <a href="author.html#44">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

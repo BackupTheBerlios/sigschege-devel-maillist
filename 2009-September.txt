@@ -1,0 +1,923 @@
+From sigschege-devel at lists.berlios.de  Sun Sep 13 13:51:46 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 13 Sep 2009 21:51:46 +1000
+Subject: [Sigschege-devel] First simple GUI
+Message-ID: <200909132151.46456.ingo.hinrichs@web.de>
+
+Hi guys
+
+I was think a lot to find a good way for our Sigschege GUI. Like Ulf said in a 
+previous post, we have two ways to implement the signal drawing. 
+
+1.We draw everything by our self into a widget.
+2.We use QGraphicsView and QGraphicsScene and implement a  GarphicsItem for 
+every element that we have.
+
+After some experiments I think we should go for option 2. The first way would 
+be good for a waveform view. In our case it would be a nightmare because we 
+have to calculate every mouse click  by our self. The same is true for 
+selection and so on.
+
+The second way would be much simpler. Qt handles all the calculations (mouse 
+position) coordinate system conversions etc..
+
+If no one has any objectives, I would like to check in my experimental ?simple 
+GUI?. It uses the second way, but need a lot of work.
+
+Cheers
+Ingo
+
+
+From sigschege-devel at lists.berlios.de  Tue Sep 15 23:15:01 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 15 Sep 2009 23:15:01 +0200
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909132151.46456.ingo.hinrichs@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+Message-ID: <200909152315.01949.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+just go ahead and commit your code, We can still revert it. :P
+
+Do you already have a plan how to do the handling of mapping the diagram
+hierarchy both onto the graphics view and into a file?
+Should YaVec still handle this or be replaced by something else?
+Should the native graphics format be fig or svn(tiny)?
+Maybe some "save" functionality can be embedded into the GraphicsItems? ^^
+
+I didn't find much time recently, so no progress on my side yet. :(
+Especially since my desktop (you know, that one which we built) broke
+down recently and I still wasn't able to get it running again reliably. :'(
+
+Cheers,
+Ulf
+
+PS: I would like to proceed by doing a GraphicsView/GraphicsScene tutorial...
+I assume there is none out there? I even had problems finding any good Qt tutorials.
+
+Am Sunday 13 September 2009 13:51:46 schrieb Development discussions:
+> Hi guys
+> 
+> I was think a lot to find a good way for our Sigschege GUI. Like Ulf said in a 
+> previous post, we have two ways to implement the signal drawing. 
+> 
+> 1.We draw everything by our self into a widget.
+> 2.We use QGraphicsView and QGraphicsScene and implement a  GarphicsItem for 
+> every element that we have.
+> 
+> After some experiments I think we should go for option 2. The first way would 
+> be good for a waveform view. In our case it would be a nightmare because we 
+> have to calculate every mouse click  by our self. The same is true for 
+> selection and so on.
+> 
+> The second way would be much simpler. Qt handles all the calculations (mouse 
+> position) coordinate system conversions etc..
+> 
+> If no one has any objectives, I would like to check in my experimental ?simple 
+> GUI?. It uses the second way, but need a lot of work.
+> 
+> Cheers
+> Ingo
+
+
+From sigschege-devel at lists.berlios.de  Fri Sep 18 19:19:59 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Fri, 18 Sep 2009 19:19:59 +0200
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909152315.01949.ulf.klaperski@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909152315.01949.ulf.klaperski@web.de>
+Message-ID: <200909181920.00110.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+I found the time to have a first glance at your code. Generally I agree with that approach,
+with the following exceptions:
+
+* no tabs please!
+
+* classes like "EventLow/High" are too specialized and go in the wrong direction. Sigschege
+will have a generic concept of states/transitions and define visualization mappings for those. 
+Visualization mappings define how a state is displayed (with/without text label, lines on top,
+at the bottom or in the middle, colour, etc) and can be per-signal.
+
+* the drawing of events, and actually the whole signal, should be done by the TimWave class.
+
+As for the "YaVec" topic: In theory we could just implement "export_svg" hierarchy next to the "paint"
+functions. It wouldn't be a big problem, with one exception: code duplication. It doesn't matter
+as long as the paint function simply is something like a simple drawLine or drawText, but if the paint
+function does a lot of calculations we have to duplicate it. Have a look at TimSignal::paintRange in
+the old implementation. Maybe it is possible to have a generic function and implement the actual
+drawing in a callback function.
+
+Hmmm.. maybe passing  a special object that delegates the painting might be a good idea?
+
+I guess we have to think more about it...
+
+
+Cheers,
+Ulf
+
+Am Tuesday 15 September 2009 23:15:01 schrieb Development discussions:
+> 
+> Am Sunday 13 September 2009 13:51:46 schrieb Development discussions:
+> > Hi guys
+> > 
+> > I was think a lot to find a good way for our Sigschege GUI. Like Ulf said in a 
+> > previous post, we have two ways to implement the signal drawing. 
+> > 
+> > 1.We draw everything by our self into a widget.
+> > 2.We use QGraphicsView and QGraphicsScene and implement a  GarphicsItem for 
+> > every element that we have.
+> > 
+> > After some experiments I think we should go for option 2. The first way would 
+> > be good for a waveform view. In our case it would be a nightmare because we 
+> > have to calculate every mouse click  by our self. The same is true for 
+> > selection and so on.
+> > 
+> > The second way would be much simpler. Qt handles all the calculations (mouse 
+> > position) coordinate system conversions etc..
+> > 
+> > If no one has any objectives, I would like to check in my experimental ?simple 
+> > GUI?. It uses the second way, but need a lot of work.
+> > 
+> > Cheers
+> > Ingo
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+> 
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Sep 20 11:48:50 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 20 Sep 2009 19:48:50 +1000
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909152315.01949.ulf.klaperski@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909152315.01949.ulf.klaperski@web.de>
+Message-ID: <200909201948.51041.ingo.hinrichs@web.de>
+
+Hi Ulf,
+
+>Hi Ingo,
+>
+>I found the time to have a first glance at your code. Generally I agree with 
+>that approach,
+>with the following exceptions:
+>
+>* no tabs please!
+
+No problem, my editor was miss configured. I fixed it and updated the files.
+
+>
+>* classes like "EventLow/High" are too specialized and go in the wrong 
+>direction. Sigschege
+>will have a generic concept of states/transitions and define visualization 
+>mappings for those. 
+>Visualization mappings define how a state is displayed (with/without text 
+>label, lines on top,
+>at the bottom or in the middle, colour, etc) and can be per-signal.
+>
+
+Actually, TimEventLow and TimEventHigh are only responsible for drawing. All 
+event data like, time, text etc, are stored in TimEvent. So, if you want, 
+TimEvent is a generic event and TimEventLow/High are the ?visualization 
+mappings?. If I understand you correct, you want only one highly configurable 
+class that does the drawings.
+
+I don't know if this is a good idea (I need to think a little bit more about 
+that) but I think it can be easily implemented by sub-classing TimEventType 
+and use this new class instead of TimEventLow/High. Maybe we should think 
+about a manager to handle all different visualization mappings. 
+
+If you have ideas, please write them down.....
+
+>* the drawing of events, and actually the whole signal, should be done by the 
+>TimWave class.
+
+Do you really think that this is a good idea. I know, it would work, but then 
+we have to implement everything on our own. I mean, every time when the user 
+clicks, we have to figure out which event was meant. And as soon as other 
+elements, like Arrows, depend on a event, we have to calculate the position 
+very often.
+
+Why not simply implement events as graphic items. In such a case, Qt figures 
+out which event was meant by a click. Handling ?Event relation arrows? would 
+be easier too. They could ask the event for their position (without difficult 
+calculations).
+
+I thinks it would be better to make a event a graphic item. It will simplify 
+the implementation.
+
+I would like to know, why do you want that TimWave draws the whole signal. 
+What are the benefits?
+
+Cheers
+Ingo
+
+>As for the "YaVec" topic: In theory we could just implement "export_svg" 
+>hierarchy next to the "paint"
+>functions. It wouldn't be a big problem, with one exception: code 
+>duplication. It doesn't matter
+>as long as the paint function simply is something like a simple drawLine or 
+>drawText, but if the paint
+>function does a lot of calculations we have to duplicate it. Have a look at 
+>TimSignal::paintRange in
+>the old implementation. Maybe it is possible to have a generic function and 
+>implement the actual
+>drawing in a callback function.
+>
+>Hmmm.. maybe passing  a special object that delegates the painting might be a 
+>good idea?
+>
+>I guess we have to think more about it...
+
+
+Cheers,
+Ulf
+
+Am Tuesday 15 September 2009 23:15:01 schrieb Development discussions:
+> 
+> Am Sunday 13 September 2009 13:51:46 schrieb Development discussions:
+> > Hi guys
+> > 
+> > I was think a lot to find a good way for our Sigschege GUI. Like Ulf said 
+in a 
+> > previous post, we have two ways to implement the signal drawing. 
+> > 
+> > 1.We draw everything by our self into a widget.
+> > 2.We use QGraphicsView and QGraphicsScene and implement a  GarphicsItem 
+for 
+> > every element that we have.
+> > 
+> > After some experiments I think we should go for option 2. The first way 
+would 
+> > be good for a waveform view. In our case it would be a nightmare because 
+we 
+> > have to calculate every mouse click  by our self. The same is true for 
+> > selection and so on.
+> > 
+> > The second way would be much simpler. Qt handles all the calculations 
+(mouse 
+> > position) coordinate system conversions etc..
+> > 
+> > If no one has any objectives, I would like to check in my experimental 
+?simple 
+> > GUI?. It uses the second way, but need a lot of work.
+> > 
+> > Cheers
+> > Ingo
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+> 
+
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Sep 20 13:49:56 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 20 Sep 2009 13:49:56 +0200
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909201948.51041.ingo.hinrichs@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909152315.01949.ulf.klaperski@web.de>
+	<200909201948.51041.ingo.hinrichs@web.de>
+Message-ID: <200909201349.56349.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+Am Sunday 20 September 2009 11:48:50 schrieb Development discussions:
+
+> 
+> Actually, TimEventLow and TimEventHigh are only responsible for drawing. All 
+> event data like, time, text etc, are stored in TimEvent. So, if you want, 
+> TimEvent is a generic event and TimEventLow/High are the ?visualization 
+> mappings?. If I understand you correct, you want only one highly configurable 
+> class that does the drawings.
+> 
+> I don't know if this is a good idea (I need to think a little bit more about 
+> that) but I think it can be easily implemented by sub-classing TimEventType 
+> and use this new class instead of TimEventLow/High. Maybe we should think 
+> about a manager to handle all different visualization mappings. 
+> 
+> If you have ideas, please write them down.....
+
+Sure. :)
+
+The principle is as follows:
+* Each state is defined as a string, nothing else.
+* A visualization scheme defines what the state (not the event actually) looks like and is attached to a signal
+  This includes lines (top, middle, bottom, several of them), text (eg. display the state), colours
+* at least 2 standard visualization schemes exist:
+  - "logic": 1/0 are displayed as top/bottom lines, X/U as both lines, Z as middle line, no text is displayed
+  - "bus": all states are displayed with top/bottom line, text is always displayed
+* user defined visualization schemes are possible, not now, but later
+
+For the events, in the easiest implementation they just connect the lines, which could also be "from bottom
+line to middle AND bottom line". Maybe later they will be extended for more fancy stuff, like colour transition,
+jitter, etc... and right now we also need slopes.
+
+I just checked the code and saw that you draw not only the event, but also the state itself (if I interpreted
+it correctly). I assume it's the signal state before the event. In an extreme case there might even be
+no event at all, but we could solve that by mirroring the t=-infinity event (which we need anyway for the start value)
+to a t=+infinity event (actually we just mirror the last event to +infinity).
+
+
+> I thinks it would be better to make a event a graphic item. It will simplify 
+> the implementation.
+> 
+> I would like to know, why do you want that TimWave draws the whole signal. 
+> What are the benefits?
+> 
+
+Because I love my existing code. :P
+Well actually it doesn't really matter where we do the actual calculations, as long as the Event knows the starting conditions 
+(end time and state of previous event).
+But the Low/High classes are not flexible enough even to handle all possible state transitions,
+and don't bring enough benefit to pour them into classes of their own, so there should be only one Event, which
+is clever enough to handle all possible transitions.
+
+If you agree with this I could proceed by implementing a visualization scheme class and then rework the Event class).
+
+Cheers,
+Ulf
+
+PS: Huh? I just wanted to send the mail and Kmail told me: 
+"The message you have composed seems to refer to an attached file but you have not attached anything.
+Do you want to attach a file to your message?"
+
+????
+
+
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Sep 21 12:21:28 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 21 Sep 2009 20:21:28 +1000
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909201349.56349.ulf.klaperski@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909201948.51041.ingo.hinrichs@web.de>
+	<200909201349.56349.ulf.klaperski@web.de>
+Message-ID: <200909212021.28796.ingo.hinrichs@web.de>
+
+On Sun, 20 Sep 2009 09:49:56 pm Development discussions wrote:
+> Hi Ingo,
+>
+> Am Sunday 20 September 2009 11:48:50 schrieb Development discussions:
+> > Actually, TimEventLow and TimEventHigh are only responsible for drawing.
+> > All event data like, time, text etc, are stored in TimEvent. So, if you
+> > want, TimEvent is a generic event and TimEventLow/High are the
+> > ?visualization mappings?. If I understand you correct, you want only one
+> > highly configurable class that does the drawings.
+> >
+> > I don't know if this is a good idea (I need to think a little bit more
+> > about that) but I think it can be easily implemented by sub-classing
+> > TimEventType and use this new class instead of TimEventLow/High. Maybe we
+> > should think about a manager to handle all different visualization
+> > mappings.
+> >
+> > If you have ideas, please write them down.....
+>
+> Sure. :)
+>
+> The principle is as follows:
+> * Each state is defined as a string, nothing else.
+> * A visualization scheme defines what the state (not the event actually)
+> looks like and is attached to a signal This includes lines (top, middle,
+> bottom, several of them), text (eg. display the state), colours * at least
+> 2 standard visualization schemes exist:
+>   - "logic": 1/0 are displayed as top/bottom lines, X/U as both lines, Z as
+> middle line, no text is displayed - "bus": all states are displayed with
+> top/bottom line, text is always displayed * user defined visualization
+> schemes are possible, not now, but later
+
+I think I understand. If the string is ?1? then it will be shown as a 
+high signal and if the string is ?0? if will be shown as a low signal, 
+right?
+
+What should we do if I want green and red high signals at the same time? 
+And both should show the text ?1? (to make it harder :-). I know its 
+future use, but think about it. Using only strings to define a state 
+will limit us a lot. In the end we need more information about a state.
+
+> For the events, in the easiest implementation they just connect the lines,
+> which could also be "from bottom line to middle AND bottom line". Maybe
+> later they will be extended for more fancy stuff, like colour transition,
+> jitter, etc... and right now we also need slopes.
+>
+> I just checked the code and saw that you draw not only the event, but also
+> the state itself (if I interpreted it correctly). I assume it's the signal
+> state before the event. In an extreme case there might even be no event at
+> all, but we could solve that by mirroring the t=-infinity event (which we
+> need anyway for the start value) to a t=+infinity event (actually we just
+> mirror the last event to +infinity).
+
+
+Almost right :-)
+
+An event starts at the event time, eg. 10ns and ends at the next event 
+or never (it will end at the end of the timing diagram). It will draw 
+the state transition and the following state which is defined in the event.
+
+Another important point is that TimWave has 1 or more events. So, there 
+is at least one event. This event can have the type NULL or Empty which 
+does not draw anything but occupies space (up the next event or the end 
+of the timing diagram). Note that this event type is not implemented yet.
+
+All events are stored in a double linked list that can be manipulated by 
+the event themselves. They can remove themselves from the list or insert 
+a new event. This simplifies the implementation user interactions.
+
+> > I thinks it would be better to make a event a graphic item. It will
+> > simplify the implementation.
+> >
+> > I would like to know, why do you want that TimWave draws the whole
+> > signal. What are the benefits?
+>
+> Because I love my existing code. :P
+> Well actually it doesn't really matter where we do the actual calculations,
+> as long as the Event knows the starting conditions (end time and state of
+> previous event).
+> But the Low/High classes are not flexible enough even to handle all
+> possible state transitions, and don't bring enough benefit to pour them
+> into classes of their own, so there should be only one Event, which is
+> clever enough to handle all possible transitions.
+
+First of all, the current TimEventHigh/Low classes are very simple 
+implementation. The current implementation is the absolute minimum that 
+we need to support simple high and low states. As I sad before, we have 
+a lot to do :-)
+
+But let me explain my idea a little bit further.
+
+Now would be good time to fetch a new coffee or tee.
+
+Done? Ok, let?s start?
+
+? TimWave has 1...n TimEvents
+
+? TimEvents are stored in a double linked list
+
+? Each TimEvent is responsible from the event (time) to the next event 
+or end of timing diagram
+
+? Each TimEvent has the same information.
+
+o Pointer to some timing diagram wide information
+
+o Pointer to a TimEventType object
+
+o Event time
+
+o String (not yet)
+
+o Slope (not yet)
+
+o Etc. (not yet)
+
+? TimEvent will not draw anything, it will only store information
+
+? Subclasses of TimEventType will be responsible for the screen 
+representation (drawing) and everything else that is state related
+
+? TimEventLow is a subclass of TimEventType and only responsible to draw 
+low signals (state transitions and state)
+
+? TimEventHigh is a subclass of TimEventType and only responsible to 
+draw high signals (state transitions and state)
+
+? TimEventType (and subclasses) and TimEvent are using the state design 
+pattern. This means that TimEvent will change its behaviour by changing 
+the TimEventType pointer. For example: To change a high event to a low 
+event the TimEventType pointer must be changed from TimEventHigh to 
+TimEventLow.
+
+? We can use the Flyweight pattern to collect all subclasses of 
+TimEventType in one manager. (not implemented yet)
+This would allow us to have different types or different configurations 
+of high signals.
+
+? Using these patterns will give us a lot of freedom. We can add new 
+states without a lot of rework. It will separate the implementation of 
+different states. This will be much easier to implement, to change, to 
+test and to debug.
+
+> If you agree with this I could proceed by implementing a visualization
+> scheme class and then rework the Event class).
+
+I think we are not so far away from each other. In the end we try to 
+achieve the same thing, but we are using different designs.
+
+Please think carefully about the design options because it will 
+influence Sigschege a lot. I?m pretty sure that the ?string state? and 
+visualization scheme will work, but I fear that it will limit our 
+freedom in the future.
+
+My design idea would give us much more freedom. These design patterns 
+are used a lot in many applications and frameworks, and I think we 
+should do the same.
+
+Cheers
+
+Ingo
+
+
+> Cheers,
+> Ulf
+>
+> PS: Huh? I just wanted to send the mail and Kmail told me:
+> "The message you have composed seems to refer to an attached file but you
+> have not attached anything. Do you want to attach a file to your message?"
+>
+> ????
+>
+>
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Sep 21 14:47:09 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 21 Sep 2009 14:47:09 +0200
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909212021.28796.ingo.hinrichs@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909201349.56349.ulf.klaperski@web.de>
+	<200909212021.28796.ingo.hinrichs@web.de>
+Message-ID: <200909211447.10101.ulf.klaperski@web.de>
+
+Hi Ingo,
+
+still reading your mail...
+
+One quick question: can you recommend some excellent books that I should have read,
+like maybe about Qt programming, C++ or design patterns?
+
+Thanks,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Tue Sep 22 12:06:15 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 22 Sep 2009 20:06:15 +1000
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909211447.10101.ulf.klaperski@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909212021.28796.ingo.hinrichs@web.de>
+	<200909211447.10101.ulf.klaperski@web.de>
+Message-ID: <200909222006.16002.ingo.hinrichs@web.de>
+
+Hi Ulf,
+
+I don't know any good book about Qt. I am using the API documentation and Qt 
+Assistant (as examples).
+
+For design pattern, have a look at ?Design Patterns ? Elements of Reusable 
+Object-Oriented Software?. Written by ?the gang of four? - Erich Gamma, 
+Richard Helm, Ralph Johnson and John Vlissides.
+
+Cheers
+
+Ingo
+
+On Mon, 21 Sep 2009 10:47:09 pm Development discussions wrote:
+> Hi Ingo,
+>
+> still reading your mail...
+>
+> One quick question: can you recommend some excellent books that I should
+> have read, like maybe about Qt programming, C++ or design patterns?
+>
+> Thanks,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Tue Sep 22 16:27:04 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 22 Sep 2009 16:27:04 +0200
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909212021.28796.ingo.hinrichs@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909201349.56349.ulf.klaperski@web.de>
+	<200909212021.28796.ingo.hinrichs@web.de>
+Message-ID: <200909221627.04855.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+Am Monday 21 September 2009 12:21:28 schrieb Development discussions:
+
+> 
+> I think I understand. If the string is ?1? then it will be shown as a 
+> high signal and if the string is ?0? if will be shown as a low signal, 
+> right?
+
+If you use the builtin "logic" visualization, yes.
+If you use the builtin "bus" visualization, no. In that case both would be displayed
+as "X" (bottom and top line) with the text "1" and "0" displayed.
+If you use a custom visualization, it might look like...whatever.
+
+> What should we do if I want green and red high signals at the same time? 
+> And both should show the text ?1? (to make it harder :-). I know its 
+> future use, but think about it. Using only strings to define a state 
+> will limit us a lot. In the end we need more information about a state.
+
+First of all, for Sigschege there is no "high" and "low" signals at all, just some
+states which are represented with a line at the top or at the bottom (admittedly
+not a rare case.
+
+Basically states are nothing else then the "TimEvent" Objects, they could easily be enhanced
+later to carry additional information.
+If something like different colors with the same printed value should ever be needed, 
+it would be easy to add something like "properties", eg "1:red" and "1:green".
+
+
+> An event starts at the event time, eg. 10ns and ends at the next event 
+> or never (it will end at the end of the timing diagram). It will draw 
+> the state transition and the following state which is defined in the event.
+> 
+> Another important point is that TimWave has 1 or more events. So, there 
+> is at least one event. This event can have the type NULL or Empty which 
+> does not draw anything but occupies space (up the next event or the end 
+> of the timing diagram). Note that this event type is not implemented yet.
+
+OK. But to make it simpler: If the pointer to next is NULL, the end time of the state
+is automatically regarded as +infinity, if the pointer to prev is NULL, the start
+time is -infinity (i.e. it's the start state). There might be a NULL visualization though
+in case for certain time slots nothing should be drawn.
+
+> First of all, the current TimEventHigh/Low classes are very simple 
+> implementation. The current implementation is the absolute minimum that 
+> we need to support simple high and low states. As I sad before, we have 
+> a lot to do :-)
+> 
+> But let me explain my idea a little bit further.
+> 
+> Now would be good time to fetch a new coffee or tee.
+> 
+> Done? Ok, let?s start?
+> 
+> ? TimWave has 1...n TimEvents
+> 
+> ? TimEvents are stored in a double linked list
+> 
+> ? Each TimEvent is responsible from the event (time) to the next event 
+> or end of timing diagram
+> 
+> ? Each TimEvent has the same information.
+> 
+> o Pointer to some timing diagram wide information
+> 
+> o Pointer to a TimEventType object
+> 
+> o Event time
+> 
+> o String (not yet)
+> 
+> o Slope (not yet)
+> 
+> o Etc. (not yet)
+> 
+> ? TimEvent will not draw anything, it will only store information
+> 
+> ? Subclasses of TimEventType will be responsible for the screen 
+> representation (drawing) and everything else that is state related
+> 
+> ? TimEventLow is a subclass of TimEventType and only responsible to draw 
+> low signals (state transitions and state)
+> 
+> ? TimEventHigh is a subclass of TimEventType and only responsible to 
+> draw high signals (state transitions and state)
+> 
+> ? TimEventType (and subclasses) and TimEvent are using the state design 
+> pattern. This means that TimEvent will change its behaviour by changing 
+> the TimEventType pointer. For example: To change a high event to a low 
+> event the TimEventType pointer must be changed from TimEventHigh to 
+> TimEventLow.
+> 
+
+OK, I understand what you want and I think it should work, but might have some pitfalls. 
+
+o You basically merged State and Event into one class  (that's ok for me).
+o with this concept you would need at least the following EventType classes:
+- Low (line at the bottom)
+- High (line at the top)
+- Middle (line in the middle)
+- X (lines at top and bottom)
+- as less rare occurrence states with bottom/middle, top/middle lines
+- as a special case multi-level lines, eg. for displaying a voltage from 0 to 5 in 500 mV steps, which requires 11 possible lines :)
+
+> 
+> Please think carefully about the design options because it will 
+> influence Sigschege a lot. I?m pretty sure that the ?string state? and 
+> visualization scheme will work, but I fear that it will limit our 
+> freedom in the future.
+> 
+> My design idea would give us much more freedom. These design patterns 
+> are used a lot in many applications and frameworks, and I think we 
+> should do the same.
+
+I don't have a complete understanding of these patterns yet, but isn't it a bit of overhead to exchange a complete
+object, instead of just setting one variable from "draw it at the top" to "draw it in the middle"?
+
+Cheers,
+Ulf
+
+
+
+From sigschege-devel at lists.berlios.de  Wed Sep 23 13:33:31 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 23 Sep 2009 21:33:31 +1000
+Subject: [Sigschege-devel] First simple GUI
+In-Reply-To: <200909221627.04855.ulf.klaperski@web.de>
+References: <200909132151.46456.ingo.hinrichs@web.de>
+	<200909212021.28796.ingo.hinrichs@web.de>
+	<200909221627.04855.ulf.klaperski@web.de>
+Message-ID: <200909232133.32220.ingo.hinrichs@web.de>
+
+Hi Ulf,
+
+On Wed, 23 Sep 2009 12:27:04 am Development discussions wrote:
+> Hi Ingo,
+>
+> Am Monday 21 September 2009 12:21:28 schrieb Development discussions:
+> > I think I understand. If the string is ?1? then it will be shown as a
+> > high signal and if the string is ?0? if will be shown as a low signal,
+> > right?
+>
+> If you use the builtin "logic" visualization, yes.
+> If you use the builtin "bus" visualization, no. In that case both would be
+> displayed as "X" (bottom and top line) with the text "1" and "0" displayed.
+> If you use a custom visualization, it might look like...whatever.
+>
+> > What should we do if I want green and red high signals at the same time?
+> > And both should show the text ?1? (to make it harder :-). I know its
+> > future use, but think about it. Using only strings to define a state
+> > will limit us a lot. In the end we need more information about a state.
+>
+> First of all, for Sigschege there is no "high" and "low" signals at all,
+> just some states which are represented with a line at the top or at the
+> bottom (admittedly not a rare case.
+>
+> Basically states are nothing else then the "TimEvent" Objects, they could
+> easily be enhanced later to carry additional information.
+> If something like different colors with the same printed value should ever
+> be needed, it would be easy to add something like "properties", eg "1:red"
+> and "1:green".
+
+I know the the generic state design would work and I sure that we can 
+change/add anything later. But, I think we should limit the feature list in 
+the beginning, so that we can have something useful very soon. If we do it too 
+flexible it will take us a long time....
+
+> > An event starts at the event time, eg. 10ns and ends at the next event
+> > or never (it will end at the end of the timing diagram). It will draw
+> > the state transition and the following state which is defined in the
+> > event.
+> >
+> > Another important point is that TimWave has 1 or more events. So, there
+> > is at least one event. This event can have the type NULL or Empty which
+> > does not draw anything but occupies space (up the next event or the end
+> > of the timing diagram). Note that this event type is not implemented yet.
+>
+> OK. But to make it simpler: If the pointer to next is NULL, the end time of
+> the state is automatically regarded as +infinity, if the pointer to prev is
+> NULL, the start time is -infinity (i.e. it's the start state). There might
+> be a NULL visualization though in case for certain time slots nothing
+> should be drawn.
+
+At the moment I'm limiting -inf and +inf to the start and end time of the 
+TimingDiagram. It simplifies the calculations :-)
+
+> > First of all, the current TimEventHigh/Low classes are very simple
+> > implementation. The current implementation is the absolute minimum that
+> > we need to support simple high and low states. As I sad before, we have
+> > a lot to do :-)
+> >
+> > But let me explain my idea a little bit further.
+> >
+> > Now would be good time to fetch a new coffee or tee.
+> >
+> > Done? Ok, let?s start?
+> >
+> > ? TimWave has 1...n TimEvents
+> >
+> > ? TimEvents are stored in a double linked list
+> >
+> > ? Each TimEvent is responsible from the event (time) to the next event
+> > or end of timing diagram
+> >
+> > ? Each TimEvent has the same information.
+> >
+> > o Pointer to some timing diagram wide information
+> >
+> > o Pointer to a TimEventType object
+> >
+> > o Event time
+> >
+> > o String (not yet)
+> >
+> > o Slope (not yet)
+> >
+> > o Etc. (not yet)
+> >
+> > ? TimEvent will not draw anything, it will only store information
+> >
+> > ? Subclasses of TimEventType will be responsible for the screen
+> > representation (drawing) and everything else that is state related
+> >
+> > ? TimEventLow is a subclass of TimEventType and only responsible to draw
+> > low signals (state transitions and state)
+> >
+> > ? TimEventHigh is a subclass of TimEventType and only responsible to
+> > draw high signals (state transitions and state)
+> >
+> > ? TimEventType (and subclasses) and TimEvent are using the state design
+> > pattern. This means that TimEvent will change its behaviour by changing
+> > the TimEventType pointer. For example: To change a high event to a low
+> > event the TimEventType pointer must be changed from TimEventHigh to
+> > TimEventLow.
+>
+> OK, I understand what you want and I think it should work, but might have
+> some pitfalls.
+>
+> o You basically merged State and Event into one class  (that's ok for me).
+> o with this concept you would need at least the following EventType
+> classes: - Low (line at the bottom)
+> - High (line at the top)
+> - Middle (line in the middle)
+> - X (lines at top and bottom)
+> - as less rare occurrence states with bottom/middle, top/middle lines
+
+Yep that is exactly right! But, we don't need to design them all at once. As 
+soon as we have the infrastructure for TimEventLow/High it is a mater of 
+adding additional classes. Maybe we can add a plug-in interface to make it 
+extensible. Then the user can design it's own one :-)
+
+In the end we have to implement the function anyway. Be it in one huge paint 
+function or many small classes.
+
+> - as a special case multi-level lines, eg. for displaying a voltage from 0
+> to 5 in 500 mV steps, which requires 11 possible lines :)
+
+Hmmm, voltage steps! I think we should not use TimWave for this. Analog 
+signals should have it's own class, but if we want to use TimWave with event, 
+we could design a TimEventMultiLevel class that does exactly what you want.
+
+> > Please think carefully about the design options because it will
+> > influence Sigschege a lot. I?m pretty sure that the ?string state? and
+> > visualization scheme will work, but I fear that it will limit our
+> > freedom in the future.
+> >
+> > My design idea would give us much more freedom. These design patterns
+> > are used a lot in many applications and frameworks, and I think we
+> > should do the same.
+>
+> I don't have a complete understanding of these patterns yet, but isn't it a
+> bit of overhead to exchange a complete object, instead of just setting one
+> variable from "draw it at the top" to "draw it in the middle"?
+
+At the moment, the overhead is the destruction of one class and the creation 
+of another class (it's a simple implementation). If we use the Flyweight 
+design pattern as well, it would become a simple pointer change since we can 
+reuse objects. So the overhead would be the same as setting one variable from 
+"draw it at the top" to "draw it in the middle". 
+
+The benefit would be that we separate the implementation. Otherwise we need a 
+huge switch or if  statements. A plug-in interface would be very difficult in 
+this case.
+
+
+> Cheers,
+> Ulf
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+Cheers,
+Ingo
+
+
+

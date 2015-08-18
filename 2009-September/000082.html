@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] First simple GUI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909221627.04855.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000081.html">
+   <LINK REL="Next"  HREF="000083.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] First simple GUI</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909221627.04855.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] First simple GUI">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Tue Sep 22 16:27:04 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000081.html">[Sigschege-devel] First simple GUI
+</A></li>
+        <LI>Next message: <A HREF="000083.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Ingo,
+
+Am Monday 21 September 2009 12:21:28 schrieb Development discussions:
+
+&gt;<i> 
+</I>&gt;<i> I think I understand. If the string is &#8216;1&#8217; then it will be shown as a 
+</I>&gt;<i> high signal and if the string is &#8216;0&#8217; if will be shown as a low signal, 
+</I>&gt;<i> right?
+</I>
+If you use the builtin &quot;logic&quot; visualization, yes.
+If you use the builtin &quot;bus&quot; visualization, no. In that case both would be displayed
+as &quot;X&quot; (bottom and top line) with the text &quot;1&quot; and &quot;0&quot; displayed.
+If you use a custom visualization, it might look like...whatever.
+
+&gt;<i> What should we do if I want green and red high signals at the same time? 
+</I>&gt;<i> And both should show the text &#8216;1&#8217; (to make it harder :-). I know its 
+</I>&gt;<i> future use, but think about it. Using only strings to define a state 
+</I>&gt;<i> will limit us a lot. In the end we need more information about a state.
+</I>
+First of all, for Sigschege there is no &quot;high&quot; and &quot;low&quot; signals at all, just some
+states which are represented with a line at the top or at the bottom (admittedly
+not a rare case.
+
+Basically states are nothing else then the &quot;TimEvent&quot; Objects, they could easily be enhanced
+later to carry additional information.
+If something like different colors with the same printed value should ever be needed, 
+it would be easy to add something like &quot;properties&quot;, eg &quot;1:red&quot; and &quot;1:green&quot;.
+
+
+&gt;<i> An event starts at the event time, eg. 10ns and ends at the next event 
+</I>&gt;<i> or never (it will end at the end of the timing diagram). It will draw 
+</I>&gt;<i> the state transition and the following state which is defined in the event.
+</I>&gt;<i> 
+</I>&gt;<i> Another important point is that TimWave has 1 or more events. So, there 
+</I>&gt;<i> is at least one event. This event can have the type NULL or Empty which 
+</I>&gt;<i> does not draw anything but occupies space (up the next event or the end 
+</I>&gt;<i> of the timing diagram). Note that this event type is not implemented yet.
+</I>
+OK. But to make it simpler: If the pointer to next is NULL, the end time of the state
+is automatically regarded as +infinity, if the pointer to prev is NULL, the start
+time is -infinity (i.e. it's the start state). There might be a NULL visualization though
+in case for certain time slots nothing should be drawn.
+
+&gt;<i> First of all, the current TimEventHigh/Low classes are very simple 
+</I>&gt;<i> implementation. The current implementation is the absolute minimum that 
+</I>&gt;<i> we need to support simple high and low states. As I sad before, we have 
+</I>&gt;<i> a lot to do :-)
+</I>&gt;<i> 
+</I>&gt;<i> But let me explain my idea a little bit further.
+</I>&gt;<i> 
+</I>&gt;<i> Now would be good time to fetch a new coffee or tee.
+</I>&gt;<i> 
+</I>&gt;<i> Done? Ok, let&#8217;s start&#8230;
+</I>&gt;<i> 
+</I>&gt;<i> &#183; TimWave has 1...n TimEvents
+</I>&gt;<i> 
+</I>&gt;<i> &#183; TimEvents are stored in a double linked list
+</I>&gt;<i> 
+</I>&gt;<i> &#183; Each TimEvent is responsible from the event (time) to the next event 
+</I>&gt;<i> or end of timing diagram
+</I>&gt;<i> 
+</I>&gt;<i> &#183; Each TimEvent has the same information.
+</I>&gt;<i> 
+</I>&gt;<i> o Pointer to some timing diagram wide information
+</I>&gt;<i> 
+</I>&gt;<i> o Pointer to a TimEventType object
+</I>&gt;<i> 
+</I>&gt;<i> o Event time
+</I>&gt;<i> 
+</I>&gt;<i> o String (not yet)
+</I>&gt;<i> 
+</I>&gt;<i> o Slope (not yet)
+</I>&gt;<i> 
+</I>&gt;<i> o Etc. (not yet)
+</I>&gt;<i> 
+</I>&gt;<i> &#183; TimEvent will not draw anything, it will only store information
+</I>&gt;<i> 
+</I>&gt;<i> &#183; Subclasses of TimEventType will be responsible for the screen 
+</I>&gt;<i> representation (drawing) and everything else that is state related
+</I>&gt;<i> 
+</I>&gt;<i> &#183; TimEventLow is a subclass of TimEventType and only responsible to draw 
+</I>&gt;<i> low signals (state transitions and state)
+</I>&gt;<i> 
+</I>&gt;<i> &#183; TimEventHigh is a subclass of TimEventType and only responsible to 
+</I>&gt;<i> draw high signals (state transitions and state)
+</I>&gt;<i> 
+</I>&gt;<i> &#183; TimEventType (and subclasses) and TimEvent are using the state design 
+</I>&gt;<i> pattern. This means that TimEvent will change its behaviour by changing 
+</I>&gt;<i> the TimEventType pointer. For example: To change a high event to a low 
+</I>&gt;<i> event the TimEventType pointer must be changed from TimEventHigh to 
+</I>&gt;<i> TimEventLow.
+</I>&gt;<i> 
+</I>
+OK, I understand what you want and I think it should work, but might have some pitfalls. 
+
+o You basically merged State and Event into one class  (that's ok for me).
+o with this concept you would need at least the following EventType classes:
+- Low (line at the bottom)
+- High (line at the top)
+- Middle (line in the middle)
+- X (lines at top and bottom)
+- as less rare occurrence states with bottom/middle, top/middle lines
+- as a special case multi-level lines, eg. for displaying a voltage from 0 to 5 in 500 mV steps, which requires 11 possible lines :)
+
+&gt;<i> 
+</I>&gt;<i> Please think carefully about the design options because it will 
+</I>&gt;<i> influence Sigschege a lot. I&#8217;m pretty sure that the &#8220;string state&#8221; and 
+</I>&gt;<i> visualization scheme will work, but I fear that it will limit our 
+</I>&gt;<i> freedom in the future.
+</I>&gt;<i> 
+</I>&gt;<i> My design idea would give us much more freedom. These design patterns 
+</I>&gt;<i> are used a lot in many applications and frameworks, and I think we 
+</I>&gt;<i> should do the same.
+</I>
+I don't have a complete understanding of these patterns yet, but isn't it a bit of overhead to exchange a complete
+object, instead of just setting one variable from &quot;draw it at the top&quot; to &quot;draw it in the middle&quot;?
+
+Cheers,
+Ulf
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000081.html">[Sigschege-devel] First simple GUI
+</A></li>
+	<LI>Next message: <A HREF="000083.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

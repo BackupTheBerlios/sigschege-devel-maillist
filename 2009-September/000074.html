@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] First simple GUI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909132151.46456.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000075.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] First simple GUI</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909132151.46456.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] First simple GUI">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Sun Sep 13 13:51:46 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000075.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#74">[ date ]</a>
+              <a href="thread.html#74">[ thread ]</a>
+              <a href="subject.html#74">[ subject ]</a>
+              <a href="author.html#74">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi guys
+
+I was think a lot to find a good way for our Sigschege GUI. Like Ulf said in a 
+previous post, we have two ways to implement the signal drawing. 
+
+1.We draw everything by our self into a widget.
+2.We use QGraphicsView and QGraphicsScene and implement a  GarphicsItem for 
+every element that we have.
+
+After some experiments I think we should go for option 2. The first way would 
+be good for a waveform view. In our case it would be a nightmare because we 
+have to calculate every mouse click  by our self. The same is true for 
+selection and so on.
+
+The second way would be much simpler. Qt handles all the calculations (mouse 
+position) coordinate system conversions etc..
+
+If no one has any objectives, I would like to check in my experimental &#8220;simple 
+GUI&#8221;. It uses the second way, but need a lot of work.
+
+Cheers
+Ingo
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000075.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#74">[ date ]</a>
+              <a href="thread.html#74">[ thread ]</a>
+              <a href="subject.html#74">[ subject ]</a>
+              <a href="author.html#74">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] segfault
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20segfault&In-Reply-To=%3C201001052021.14712.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] segfault</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20segfault&In-Reply-To=%3C201001052021.14712.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] segfault">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Tue Jan  5 10:21:14 CET 2010</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#105">[ date ]</a>
+              <a href="thread.html#105">[ thread ]</a>
+              <a href="subject.html#105">[ subject ]</a>
+              <a href="author.html#105">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Ulf
+
+Happy New Year!!
+
+I found the problem! I forgot to remove a delete from TimEvents destructor. As 
+soon as the first signal was deleted, TimEventLow was deleted as well. This was 
+bad because the TimEventTypes are now shared between all signals. As the new 
+signal tried to draw itself, it tried to access the deleted TimEventLow.
+
+Good finding!
+
+Cheers
+Ingo
+
+On Wed, 23 Dec 2009 08:53:01 am Development discussions wrote:
+&gt;<i> Hi Ingo,
+</I>&gt;<i>
+</I>&gt;<i> I'm seeing a segmentation fault which can be reproduced easily:
+</I>&gt;<i>
+</I>&gt;<i> ./sigschege
+</I>&gt;<i> addTLI 0xa01d898 @-1     // me presses big green &quot;+&quot;
+</I>&gt;<i> rmTLI 0xa01d898          // me presses Undo
+</I>&gt;<i> addTLI 0x9ed40a0 @-1     // me presses big green &quot;+&quot;
+</I>&gt;<i> TimCmdAddListItem: delete 0xa01d898
+</I>&gt;<i> Segmentation fault
+</I>&gt;<i>
+</I>&gt;<i> It seems that adding a new signal to the diagram after an undo deletes the
+</I>&gt;<i> previous add-command from the undo stack and this causes the crash.
+</I>&gt;<i>
+</I>&gt;<i> Removing &quot;delete m_item&quot; from the TimCmdAddListItem destructor fixes the
+</I>&gt;<i> segfault, but actually I don't understand why. The documentation for
+</I>&gt;<i> QGraphicsScene::removeItem explicitly says &quot;The ownership of item is passed
+</I>&gt;<i> on to the caller (i.e., QGraphicsScene will no longer delete item when
+</I>&gt;<i> destroyed).&quot;
+</I>&gt;<i>
+</I>&gt;<i> I looked at an example from Qt (/usr/lib/qt4/examples/tools/undoframework),
+</I>&gt;<i> and indeed they do not delete the item when the add-command is
+</I>&gt;<i> deconstructed. I think there isn't even a destructor.
+</I>&gt;<i>
+</I>&gt;<i> From my understanding the way you have implemented is correct, but their
+</I>&gt;<i> way works.
+</I>&gt;<i>
+</I>&gt;<i> Any ideas?
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Ulf
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ______________________________________________________
+</I>&gt;<i> GRATIS f&#252;r alle WEB.DE-Nutzer: Die maxdome Movie-FLAT!
+</I>&gt;<i> Jetzt freischalten unter <A HREF="http://movieflat.web.de">http://movieflat.web.de</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#105">[ date ]</a>
+              <a href="thread.html#105">[ thread ]</a>
+              <a href="subject.html#105">[ subject ]</a>
+              <a href="author.html#105">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

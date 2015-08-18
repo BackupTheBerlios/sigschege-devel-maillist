@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] GUI start
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20GUI%20start&In-Reply-To=%3C200907222056.39042.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000060.html">
+   <LINK REL="Next"  HREF="000061.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] GUI start</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20GUI%20start&In-Reply-To=%3C200907222056.39042.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] GUI start">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Wed Jul 22 12:56:38 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000060.html">[Sigschege-devel] GUI start
+</A></li>
+        <LI>Next message: <A HREF="000061.html">[Sigschege-devel] GUI start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I think this is a taste question. I would say, we should keep QT away from 
+everything that can be useful without QT. I mean, YaVec is a vector library 
+and we need QT only for the GUI. There is no need to use it within.
+
+The Sigschege GUI is clear. Of course, we will use everything that QT offers 
+:<i>-)
+</I>
+The Sigschege library.... Hmmm, I don't know. Maybe it would be better to 
+stick with STL and maybe Boost (if we need it). 
+
+Cheers
+Ingo
+
+On Wed, 22 Jul 2009 12:06:30 am Development discussions wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> after porting the basic functionality of Yavec to Qt (try Qtexample) I want
+</I>&gt;<i> to proceed and start a basic Sigschege GUI framework.
+</I>&gt;<i>
+</I>&gt;<i> We could either write the source code manually or alternatively use
+</I>&gt;<i> QtDesigner to create a *.ui file which gets translated into C++-code.
+</I>&gt;<i>
+</I>&gt;<i> I would prefer the manual approach, as this gives us more control of the
+</I>&gt;<i> sources, and especially gives us more understanding while writing the code.
+</I>&gt;<i> What are your preferences regarding this?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Speaking of Qt, after getting a bit more knowledge about it I consider if
+</I>&gt;<i> we should build Sigschege AND YaVec completely on Qt. Qt is not only a GUI
+</I>&gt;<i> framework, but also provides essential functionalities, like containers
+</I>&gt;<i> similar to those in the STL, but while the STL sucks the Qt equivalents
+</I>&gt;<i> seem to be much programmer-friendlier. Deciding to do so would eliminate
+</I>&gt;<i> STL usage from Sigschege/YaVec and also usage of string in favor of
+</I>&gt;<i> QString. This would probably also reduce the number of required
+</I>&gt;<i> conversions.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> cu,
+</I>&gt;<i> Ulf
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000060.html">[Sigschege-devel] GUI start
+</A></li>
+	<LI>Next message: <A HREF="000061.html">[Sigschege-devel] GUI start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

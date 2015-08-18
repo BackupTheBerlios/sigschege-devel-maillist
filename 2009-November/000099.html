@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] design decisions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20design%20decisions&In-Reply-To=%3C200911152259.33533.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000098.html">
+   <LINK REL="Next"  HREF="000100.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] design decisions</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20design%20decisions&In-Reply-To=%3C200911152259.33533.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] design decisions">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Sun Nov 15 22:59:33 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000098.html">[Sigschege-devel] design decisions
+</A></li>
+        <LI>Next message: <A HREF="000100.html">[Sigschege-devel] design decisions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#99">[ date ]</a>
+              <a href="thread.html#99">[ thread ]</a>
+              <a href="subject.html#99">[ subject ]</a>
+              <a href="author.html#99">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ingo,
+
+and more... :)
+
+I guess we need a common base class for all elements of a timing diagram, or even sort of a class hierarchy.
+
+That means, at least Signal, Timescale, etc must be derived from a common class, or, in other words, all elements
+that are contained in the QGraphicsLinearLayout. 
+
+I am just implementing the SSGWriter now, and i would need that for clean polymorphism. Otherwise I have to use
+RTTI (which is not really recommended). And I even didn't get it working yet:
+
+In a timing diagram with 3 signals and 1 timescaleI get 4 times the &quot;else&quot; branch in this example:
+
+  for (index = 0; index &lt; m_layout-&gt;count(); ++index) {
+    if (typeid(m_layout-&gt;itemAt(index))==typeid(TimSignal*)) {
+      writeStartElement(&quot;signal&quot;);
+      writeEndElement();
+    } else {
+      cout &lt;&lt; &quot;TYPEID: &quot; &lt;&lt; typeid(m_layout-&gt;itemAt(index)).name() &lt;&lt; endl;
+    }
+  }
+
+and it prints &quot;TYPEID: P19QGraphicsLayoutItem&quot;. I would have expected it to return the true type, Signal or TimeScale.  :/
+
+It would be cleaner anyway with a common base class and a virtual function &quot;writeXML()&quot;. ;)
+
+cu,
+Ulf
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000098.html">[Sigschege-devel] design decisions
+</A></li>
+	<LI>Next message: <A HREF="000100.html">[Sigschege-devel] design decisions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#99">[ date ]</a>
+              <a href="thread.html#99">[ thread ]</a>
+              <a href="subject.html#99">[ subject ]</a>
+              <a href="author.html#99">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

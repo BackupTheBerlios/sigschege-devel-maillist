@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] libsigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20libsigschege&In-Reply-To=%3C200907221410.27462.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000059.html">
+   <LINK REL="Next"  HREF="000066.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] libsigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20libsigschege&In-Reply-To=%3C200907221410.27462.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] libsigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Wed Jul 22 14:10:27 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000059.html">[Sigschege-devel] libsigschege
+</A></li>
+        <LI>Next message: <A HREF="000066.html">[Sigschege-devel] libsigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#62">[ date ]</a>
+              <a href="thread.html#62">[ thread ]</a>
+              <a href="subject.html#62">[ subject ]</a>
+              <a href="author.html#62">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ingo,
+
+generally we can leave it that way, but: YaVec is not GUI independent as it's supposed to
+be integrated into a GUI. Therefore it brings its own GUI layer, which can be available
+for different toolkits. All GUI views are derived from the FigView class. So far I had
+a wxWidgets front end (FigVwx), since a few days there's also a Qt front end (FigVqt).
+
+We can try to keep it flexible for future enhancement (Python &amp; QuakeC interfaces...),
+but I'm convinced that we won't switch to another GUI toolkit.
+
+Cheers,
+Ulf
+
+Am Wednesday 22 July 2009 12:56:59 schrieb Development discussions:
+&gt;<i> Hi Ulf,
+</I>&gt;<i> 
+</I>&gt;<i> I thought that we will start over and don't use any old GUI/Python stuff. 
+</I>&gt;<i> 
+</I>&gt;<i> The plan was to keep all GUI stuff in sigschege and all the stuff that does not 
+</I>&gt;<i> depend on a GUI in libsigschege. I think that is more or less all the &#8220;old 
+</I>&gt;<i> Sigschege&#8221; without GUI/Python stuff. When we keep it separated, we can easily 
+</I>&gt;<i> switch to another GUI toolkit (if we want or have to), add language bindings 
+</I>&gt;<i> and so on...
+</I>&gt;<i> 
+</I>&gt;<i> So:
+</I>&gt;<i>  /sigschege = Sigschege GUI
+</I>&gt;<i>  /libsigschege = Sigschege library (GUI independent)
+</I>&gt;<i>  /YaVec = YaVec library (GUI independent)
+</I>&gt;<i> 
+</I>&gt;<i> If you want to start with the GUI, assign the task to you :-) 
+</I>&gt;<i> 
+</I>&gt;<i> Cheers 
+</I>&gt;<i> Ingo
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000059.html">[Sigschege-devel] libsigschege
+</A></li>
+	<LI>Next message: <A HREF="000066.html">[Sigschege-devel] libsigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#62">[ date ]</a>
+              <a href="thread.html#62">[ thread ]</a>
+              <a href="subject.html#62">[ subject ]</a>
+              <a href="author.html#62">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

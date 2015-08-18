@@ -1,0 +1,357 @@
+From ingo.hinrichs at web.de  Mon Aug  2 15:03:47 2004
+From: ingo.hinrichs at web.de (Ingo Hinrichs)
+Date: Mon, 2 Aug 2004 15:03:47 +0200
+Subject: [Sigschege-devel] Re: Sigschege-devel -- confirmation of subscription -- request 998502
+In-Reply-To: <20040802125404.28789.66280.Mailman@bat.berlios.de>
+References: <20040802125404.28789.66280.Mailman@bat.berlios.de>
+Message-ID: <200408021503.47988.ingo.hinrichs@web.de>
+
+Am Monday 02 August 2004 14:54 schrieb sigschege-devel-request at berlios.de:
+> Sigschege-devel -- confirmation of subscription -- request 998502
+>
+> We have received a request from 217.88.243.5 for subscription of your
+> email address, <ingo.hinrichs at web.de>, to the
+> sigschege-devel at lists.berlios.de mailing list.  To confirm the
+> request, please send a message to
+> sigschege-devel-request at lists.berlios.de, and either:
+>
+> - maintain the subject line as is (the reply's additional "Re:" is
+> ok),
+>
+> - or include the following line - and only the following line - in the
+> message body:
+>
+> confirm 998502
+>
+> (Simply sending a 'reply' to this message should work from most email
+> interfaces, since that usually leaves the subject line in the right
+> form.)
+>
+> If you do not wish to subscribe to this list, please simply disregard
+> this message.  Send questions to
+> sigschege-devel-admin at lists.berlios.de.
+
+
+From ingo.hinrichs at web.de  Mon Aug  2 15:03:56 2004
+From: ingo.hinrichs at web.de (Ingo Hinrichs)
+Date: Mon, 2 Aug 2004 15:03:56 +0200
+Subject: [Sigschege-devel] Re: Sigschege-devel -- confirmation of subscription -- request 574724
+In-Reply-To: <20040802125358.28772.17964.Mailman@bat.berlios.de>
+References: <20040802125358.28772.17964.Mailman@bat.berlios.de>
+Message-ID: <200408021503.56317.ingo.hinrichs@web.de>
+
+Am Monday 02 August 2004 14:53 schrieb sigschege-devel-request at berlios.de:
+> Sigschege-devel -- confirmation of subscription -- request 574724
+>
+> We have received a request from 217.88.243.5 for subscription of your
+> email address, <ingo.hinrichs at web.de>, to the
+> sigschege-devel at lists.berlios.de mailing list.  To confirm the
+> request, please send a message to
+> sigschege-devel-request at lists.berlios.de, and either:
+>
+> - maintain the subject line as is (the reply's additional "Re:" is
+> ok),
+>
+> - or include the following line - and only the following line - in the
+> message body:
+>
+> confirm 574724
+>
+> (Simply sending a 'reply' to this message should work from most email
+> interfaces, since that usually leaves the subject line in the right
+> form.)
+>
+> If you do not wish to subscribe to this list, please simply disregard
+> this message.  Send questions to
+> sigschege-devel-admin at lists.berlios.de.
+
+
+From ulf.klaperski at web.de  Mon Aug  2 22:40:46 2004
+From: ulf.klaperski at web.de (Ulf Klaperski)
+Date: Mon, 2 Aug 2004 22:40:46 +0200
+Subject: [Sigschege-devel] Welcome
+Message-ID: <20040802204046.GA1929@localhost>
+
+Welcome to the Sigschege development mailing list!
+
+Let's hope we have much fun with this project!
+
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From ingo.hinrichs at web.de  Tue Aug  3 01:18:38 2004
+From: ingo.hinrichs at web.de (Ingo Hinrichs)
+Date: Tue, 3 Aug 2004 01:18:38 +0200
+Subject: [Sigschege-devel] new build system
+Message-ID: <200408030118.38579.ingo.hinrichs@web.de>
+
+Hi All,
+
+I setup the build system based on automake/autoconf (not completed yet).
+But, if someone want to compile try:
+
+aclocal
+automake --add-missing
+autoconf
+./configure
+make
+make install
+
+If you have trouble with the libtool try 'libtoolize' before calling automake.
+
+ \Ingo
+
+
+From ulf.klaperski at web.de  Tue Aug  3 23:27:38 2004
+From: ulf.klaperski at web.de (Ulf Klaperski)
+Date: Tue, 3 Aug 2004 23:27:38 +0200
+Subject: [Sigschege-devel] new build system
+In-Reply-To: <200408030118.38579.ingo.hinrichs@web.de>
+References: <200408030118.38579.ingo.hinrichs@web.de>
+Message-ID: <20040803212738.GA9144@localhost>
+
+Thanks, Ingo!
+
+I only have replaced AC_CONFIG_HEADER with AM_CONFIG_HEADER, my
+automake choked on the first one and the doc says AM_ is preferred when
+using automake.
+
+After this (and of course updating automake/autoconf...) it worked.
+
+Ulf
+
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From ulf.klaperski at web.de  Tue Aug  3 23:53:13 2004
+From: ulf.klaperski at web.de (Ulf Klaperski)
+Date: Tue, 3 Aug 2004 23:53:13 +0200
+Subject: [Sigschege-devel] text size
+Message-ID: <20040803215313.GA9594@localhost>
+
+Hi,
+
+FYI, some info from Brian Smith, the xfig/transfig developer: 
+
+=========
+
+>2. If I export a file to eps, I see that it does a "scalefont 180". But
+>the right value should be 200, as it is 12*1200/72.
+>For previous discussions please see also:
+>http://www.freetype.org/pipermail/freetype/2004-July/007226.html
+
+This was done for historical reasons, but xfig 3.2.5-alpha (actually fig2dev
+3.2.5-alpha) uses the true font sizes now.
+You can get both xfig and fig2dev from ftp://epb.lbl.gov/xfig/alpha
+
+==========
+
+Basically this means, the text size fix must be switched on for
+transfig <= 3.2.4, off for newer versions.
+
+
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Aug 14 14:37:14 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 14 Aug 2004 14:37:14 +0200
+Subject: [Sigschege-devel] Debugging
+Message-ID: <20040814123714.GA1627@localhost>
+
+Hi,
+
+here are some hints to get you faster into the debug flow...
+
+Don't forget to switch off optimization:
+CXX=-g ./configure
+
+To start gdb:
+libtool --mode=execute gdb Example
+
+After too much time investigating the issue I found the problem why
+the library symbols won't work: they aren't simply loaded yet...
+
+To do so, simply set a breakpoint on main and run the program.
+Afterwards the EasyVec symbols are at your service!
+
+
+One final note:
+
+For the completion to work properly, you must quote class members in
+gdb with a single quote ': 
+b 'EasyVecElmText::up<TAB>
+
+
+Cheers,
+Ulf
+
+
+
+
+
+From sigschege-devel-admin at lists.berlios.de  Mon Aug 16 12:05:41 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Mon, 16 Aug 2004 12:05:41 +0200
+Subject: [Sigschege-devel] Debugging
+In-Reply-To: <20040814123714.GA1627@localhost>
+References: <20040814123714.GA1627@localhost>
+Message-ID: <20040816100541.GB2613@localhost>
+
+On Sat, Aug 14, 2004 at 02:37:14PM +0200, sigschege-devel-admin at berlios.de wrote:
+> 
+> Don't forget to switch off optimization:
+> CXX=-g ./configure
+> 
+
+Should be "CXXFLAGS=-g ./configure" of course.
+              ^^^^^
+
+8-(
+Ulf
+
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Aug 21 14:26:46 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 21 Aug 2004 14:26:46 +0200
+Subject: [Sigschege-devel] EasyVec Usage...
+Message-ID: <20040821122646.GA4672@localhost>
+
+Hi,
+
+to see faster results in the demo programs, you can instead of saving
+the figure with "save" directly export it to postscript:
+
+pic1.export_fig2dev("eps", "test_a_pic1_a.eps");
+
+Of course other formats supported by fig2dev should also work,
+eg. jpeg or pdf. ("fig2dev -L french" prints a list.)
+
+If you have a transfig version before 3.2.5alpha you may need to
+activate the font fix:
+
+EasyVecElmText::fig2dev_fontfix(true);
+
+
+Cheers,
+Ulf
+
+
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Aug 21 15:36:48 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 21 Aug 2004 15:36:48 +0200
+Subject: [Sigschege-devel] Polymorphism...
+Message-ID: <20040821133648.GA1385@localhost>
+
+Hi,
+
+I'm just working on the polymorphism of EasyVec...
+
+What I need is a way to tell the types of EasyVecElm objects.
+
+This will be needed for accessing elements returned by an EasyVec
+figure.
+
+As long as you remember an object with a pointer, there's no problem:
+EasyVecElmText *ctxt = pic1.text();
+
+But the problem pops up, when you for example want to search for a text:
+
+vector<EasyVecElmText *> texts;
+
+texts = pic1.findText("*changed*");
+
+
+It seems that there is no automatic way to get the type of an object
+in C++. Although the compiler itself knows it (thanks to the vptr), it
+won't tell me.
+
+Is there a way to 4do this in C++?
+
+If not I will just add a virtual "type" function that returns the
+element type... 
+
+if (ctxt->type() == Text) {
+  // bla...
+}  
+
+AFAIR the values of an enum are globally visible, so I should use some
+more precise name...
+
+
+???
+Ulf
+
+
+From sigschege-devel-admin at lists.berlios.de  Tue Aug 31 22:16:34 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Tue, 31 Aug 2004 22:16:34 +0200
+Subject: [Sigschege-devel] Polymorphism...
+In-Reply-To: <20040821133648.GA1385@localhost>
+References: <20040821133648.GA1385@localhost>
+Message-ID: <200408312216.34854.ingo.hinrichs@web.de>
+
+Hi, 
+ I think there is no automatic way in C++.
+
+I use a methode like the one your already described...
+
+cheers,
+  Ingo
+
+Am Saturday 21 August 2004 15:36 schrieb sigschege-devel-admin at berlios.de:
+> Hi,
+>
+> I'm just working on the polymorphism of EasyVec...
+>
+> What I need is a way to tell the types of EasyVecElm objects.
+>
+> This will be needed for accessing elements returned by an EasyVec
+> figure.
+>
+> As long as you remember an object with a pointer, there's no problem:
+> EasyVecElmText *ctxt = pic1.text();
+>
+> But the problem pops up, when you for example want to search for a text:
+>
+> vector<EasyVecElmText *> texts;
+>
+> texts = pic1.findText("*changed*");
+>
+>
+> It seems that there is no automatic way to get the type of an object
+> in C++. Although the compiler itself knows it (thanks to the vptr), it
+> won't tell me.
+>
+> Is there a way to 4do this in C++?
+>
+> If not I will just add a virtual "type" function that returns the
+> element type...
+>
+> if (ctxt->type() == Text) {
+>   // bla...
+> }
+>
+> AFAIR the values of an enum are globally visible, so I should use some
+> more precise name...
+>
+>
+> ???
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+

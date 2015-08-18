@@ -1,0 +1,445 @@
+From sigschege-devel at lists.berlios.de  Mon Jun 29 10:16:05 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 29 Jun 2009 18:16:05 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+Message-ID: <200906291816.06098.ingo.hinrichs@web.de>
+
+Hi guys,
+long time no see!
+
+I had some time on my hands, so I took the change and looked again at 
+Sigschege. I also looked around to see if there are some other tools to draw 
+timing. And there are! I found two really interesting commercial onces and at 
+least one open source program. All of them are using a GUI interface.
+
+And thats the point. I think Sigschege needs a GUI too. Actually, I think that 
+we should change out target for Sigschege completely. Python bindings are a 
+good idea, but from a usability point of view, we need a GUI. 
+
+So, what do you thing?
+
+Should be change the target to something more useful. Something like a, 
+Sigschege library with a GUI to use it. We could still develop some language 
+binding using Swig.
+
+By the way, I could not compile Sigschege trunk. Seems that some file are 
+missing!
+
+Cheers
+Ingo
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Jun 29 11:50:32 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 29 Jun 2009 11:50:32 +0200 (CEST)
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200906291816.06098.ingo.hinrichs@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+Message-ID: <51658.217.140.96.21.1246269032.squirrel@webmail.linuxrack.de>
+
+
+Hi folks!
+
+I think, and also from my personal experience, Qt will be a suitable GUI
+tool kit to develop portable GUIs. Also there is a binding for Python
+available called pyQt.
+
+BR
+
+Alex
+
+> Hi guys,
+> long time no see!
+>
+> I had some time on my hands, so I took the change and looked again at
+> Sigschege. I also looked around to see if there are some other tools to
+> draw
+> timing. And there are! I found two really interesting commercial onces and
+> at
+> least one open source program. All of them are using a GUI interface.
+>
+> And thats the point. I think Sigschege needs a GUI too. Actually, I think
+> that
+> we should change out target for Sigschege completely. Python bindings are
+> a
+> good idea, but from a usability point of view, we need a GUI.
+>
+> So, what do you thing?
+>
+> Should be change the target to something more useful. Something like a,
+> Sigschege library with a GUI to use it. We could still develop some
+> language
+> binding using Swig.
+>
+> By the way, I could not compile Sigschege trunk. Seems that some file are
+> missing!
+>
+> Cheers
+> Ingo
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+>
+>
+
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Jun 29 14:23:05 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 29 Jun 2009 22:23:05 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <51658.217.140.96.21.1246269032.squirrel@webmail.linuxrack.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<51658.217.140.96.21.1246269032.squirrel@webmail.linuxrack.de>
+Message-ID: <200906292223.05852.ingo.hinrichs@web.de>
+
+Hi Alex
+
+Since I worked with WX-Widget before and heard a lot of good thinks about QT4, 
+I had these toolkits in mind.
+
+I would give QT a try. It is always good to learn some new stuff. That was one 
+reason why this project exists, right?
+
+I know that Ulf made some some experiments with WX-Widget. If I remember 
+correct it was a simple demo application for YaVec. If we select QT4, we 
+should convert or remove this demo application as well. Otherwise we would 
+have dependencies to two different GUI toolkits. Not good!!
+
+Ulf do you think?
+
+Cheers
+Ingo
+
+On Mon, 29 Jun 2009 07:50:32 pm Development discussions wrote:
+> Hi folks!
+>
+> I think, and also from my personal experience, Qt will be a suitable GUI
+> tool kit to develop portable GUIs. Also there is a binding for Python
+> available called pyQt.
+>
+> BR
+>
+> Alex
+>
+> > Hi guys,
+> > long time no see!
+> >
+> > I had some time on my hands, so I took the change and looked again at
+> > Sigschege. I also looked around to see if there are some other tools to
+> > draw
+> > timing. And there are! I found two really interesting commercial onces
+> > and at
+> > least one open source program. All of them are using a GUI interface.
+> >
+> > And thats the point. I think Sigschege needs a GUI too. Actually, I think
+> > that
+> > we should change out target for Sigschege completely. Python bindings are
+> > a
+> > good idea, but from a usability point of view, we need a GUI.
+> >
+> > So, what do you thing?
+> >
+> > Should be change the target to something more useful. Something like a,
+> > Sigschege library with a GUI to use it. We could still develop some
+> > language
+> > binding using Swig.
+> >
+> > By the way, I could not compile Sigschege trunk. Seems that some file are
+> > missing!
+> >
+> > Cheers
+> > Ingo
+> >
+> > _______________________________________________
+> > Sigschege-devel mailing list
+> > Sigschege-devel at lists.berlios.de
+> > https://lists.berlios.de/mailman/listinfo/sigschege-devel
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Jun 29 23:56:29 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 29 Jun 2009 23:56:29 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200906292223.05852.ingo.hinrichs@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<51658.217.140.96.21.1246269032.squirrel@webmail.linuxrack.de>
+	<200906292223.05852.ingo.hinrichs@web.de>
+Message-ID: <200906292356.29949.ulf.klaperski@web.de>
+
+
+Hey guys,
+
+funny that you show up just now that I decided to finish my carreer as game programmer and continue to develop Sigschege...
+
+Well, at least I made 3 small contributions to Nexuiz. :)
+
+OK, my answers:
+
+1. be careful, SVN is out of date, because I have some uncommitted modifications.
+
+2. Ingo, can you send me the error message please?
+
+3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from *incorrectly* displaying the timing diagram, but it's started. :P
+
+repeat:
+3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from *incorrectly* displaying the timing diagram, but it's started. :P
+
+4. As a preparation for the GUI I started defining a native file format and implemented saving/loading. It is based on XML.
+
+5. As for the GUI, I don't think it should be based on Python. Even maintaining the Python interface sucks, because the object-oriented
+C++ hierarchy has to be mirrored into an object-oriented Python-hierarchy. Just look at the current code. And then realize what's even missing now:
+after loading a timing diagram it must be mirrored into the Python objects....
+
+6. As for the toolkit, current code is wxWidgets, but I'd also be fine with qt4. The problem is that all the toolkits bring their own stuff, like string class 
+(even unicode ones), and the question is how to handle that. (from what point on making it dependent from toolkit? convert to/from string? or wstring?)
+
+
+In July I might have some short work and probably want to use a part of it to work on Sigschege. (Might also be shifted to September)
+
+Cheers,
+Ulf
+
+
+
+From sigschege-devel at lists.berlios.de  Tue Jun 30 00:41:59 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 30 Jun 2009 00:41:59 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200906292223.05852.ingo.hinrichs@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<51658.217.140.96.21.1246269032.squirrel@webmail.linuxrack.de>
+	<200906292223.05852.ingo.hinrichs@web.de>
+Message-ID: <200906300041.59855.ulf.klaperski@web.de>
+
+
+Hi,
+
+committed everything, try:
+
+(after compiling successfully, see also README for compiling)
+
+
+
+ulf at space:~/devel/sigschege/src> ./sigschege ../examples/simple.spy
+ulf at space:~/devel/sigschege/src> ./gsigschege 
+
+File->Open, then select simple.ssg.
+
+
+:)
+
+
+BR,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Tue Jun 30 13:19:21 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 30 Jun 2009 21:19:21 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200906300041.59855.ulf.klaperski@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200906292223.05852.ingo.hinrichs@web.de>
+	<200906300041.59855.ulf.klaperski@web.de>
+Message-ID: <200906302119.21637.ingo.hinrichs@web.de>
+
+Yep!
+
+Now I can compile.
+I had to install this XML library as well.
+But it's now working.
+
+Good work!
+Ingo
+
+On Tue, 30 Jun 2009 08:41:59 am Development discussions wrote:
+> Hi,
+>
+> committed everything, try:
+>
+> (after compiling successfully, see also README for compiling)
+>
+>
+>
+> ulf at space:~/devel/sigschege/src> ./sigschege ../examples/simple.spy
+> ulf at space:~/devel/sigschege/src> ./gsigschege
+>
+> File->Open, then select simple.ssg.
+>
+> :)
+>
+> BR,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Tue Jun 30 14:22:32 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 30 Jun 2009 22:22:32 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200906292356.29949.ulf.klaperski@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200906292223.05852.ingo.hinrichs@web.de>
+	<200906292356.29949.ulf.klaperski@web.de>
+Message-ID: <200906302222.32239.ingo.hinrichs@web.de>
+
+On Tue, 30 Jun 2009 07:56:29 am Development discussions wrote:
+> Hey guys,
+>
+> funny that you show up just now that I decided to finish my carreer as game
+> programmer and continue to develop Sigschege...
+>
+> Well, at least I made 3 small contributions to Nexuiz. :)
+
+Congratulations!
+
+>
+> OK, my answers:
+>
+> 1. be careful, SVN is out of date, because I have some uncommitted
+> modifications.
+
+I saw it. Now it's working again.
+
+>
+> 2. Ingo, can you send me the error message please?
+
+It is now working. I had to install this XML library and to update Sigschege.
+
+>
+> 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from
+> *incorrectly* displaying the timing diagram, but it's started. :P
+
+Actually, for me it does nothing. No timing diagram :-( Only a empty message 
+box pops up...
+
+>
+> repeat:
+> 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from
+> *incorrectly* displaying the timing diagram, but it's started. :P
+>
+repeat:
+Actually, for me it does nothing. No timing diagram :-( Only a empty message 
+box pops up...
+
+> 4. As a preparation for the GUI I started defining a native file format and
+> implemented saving/loading. It is based on XML.
+
+An XML based file format is a good idea. But we have to plan these things 
+carefully (see below).
+
+>
+> 5. As for the GUI, I don't think it should be based on Python. Even
+> maintaining the Python interface sucks, because the object-oriented C++
+> hierarchy has to be mirrored into an object-oriented Python-hierarchy. Just
+> look at the current code. And then realize what's even missing now: after
+> loading a timing diagram it must be mirrored into the Python objects....
+
+Agreed. That's why I sad, we could make all language bindings with Swig. I 
+don't know if it make sense to have language bindings at all, but if we want 
+them, we could use Swig to generate wrappers.
+
+>
+> 6. As for the toolkit, current code is wxWidgets, but I'd also be fine with
+> qt4. The problem is that all the toolkits bring their own stuff, like
+> string class (even unicode ones), and the question is how to handle that.
+> (from what point on making it dependent from toolkit? convert to/from
+> string? or wstring?)
+
+This is actually true for all third party libraries. I think we should try to 
+keep the number of dependencies low. And if we add a dependency, we should try 
+to minimize the impact. 
+
+I mean, we should try to keep everything separated as much as possible. We 
+added already some dependencies like Python, YaVec and XML load/save. If we 
+keep adding them to all classes, maintenance will become a nightmare. 
+
+> In July I might have some short work and probably want to use a part of it
+> to work on Sigschege. (Might also be shifted to September)
+>
+> Cheers,
+> Ulf
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Tue Jun 30 21:40:38 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 30 Jun 2009 21:40:38 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200906302222.32239.ingo.hinrichs@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200906292356.29949.ulf.klaperski@web.de>
+	<200906302222.32239.ingo.hinrichs@web.de>
+Message-ID: <200906302140.38786.ulf.klaperski@web.de>
+
+
+Hi,
+
+> >
+> > 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from
+> > *incorrectly* displaying the timing diagram, but it's started. :P
+> 
+> Actually, for me it does nothing. No timing diagram :-( Only a empty message 
+> box pops up...
+
+Did you create simple.ssg? It should have roughly 2300 bytes.
+But yes, the message box is empty. :P
+
+> 
+> Agreed. That's why I sad, we could make all language bindings with Swig. I 
+> don't know if it make sense to have language bindings at all, but if we want 
+> them, we could use Swig to generate wrappers.
+> 
+
+
+Ah, you will be the SWIG stuff maintainer then. :P
+> >
+> > 6. As for the toolkit, current code is wxWidgets, but I'd also be fine with
+> > qt4. The problem is that all the toolkits bring their own stuff, like
+> > string class (even unicode ones), and the question is how to handle that.
+> > (from what point on making it dependent from toolkit? convert to/from
+> > string? or wstring?)
+> 
+> This is actually true for all third party libraries. I think we should try to 
+> keep the number of dependencies low. And if we add a dependency, we should try 
+> to minimize the impact. 
+
+So basically, we will use string/wstring mainly in sigschege/Yavec and convert to the library
+string only where needed. 
+
+> I mean, we should try to keep everything separated as much as possible. We 
+> added already some dependencies like Python, YaVec and XML load/save. If we 
+> keep adding them to all classes, maintenance will become a nightmare. 
+> 
+
+Of course, the XML library is required for Sigschege, as loading/saving is an elementary feature.
+In the same way wxWidgets or Qt will be required for the GUI sigschege.
+If we continue to maintain a python-sigschege, that must run independent  of wx/Qt.
+
+I already thought about starting a "sigschege reloaded" completely in python, to get a working application faster.
+But that gives new problems, forexample no freetype interface is available for Python, etc...
+
+cu
+
+
+

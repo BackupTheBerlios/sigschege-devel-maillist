@@ -1,0 +1,371 @@
+From sigschege-devel-admin at lists.berlios.de  Wed Dec  1 00:23:57 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Wed, 1 Dec 2004 00:23:57 +0100
+Subject: [Sigschege-devel] Subversion Id expansion
+Message-ID: <20041130232357.GA13117@localhost>
+
+Hi there,
+
+in your ~/.subversion/config, please do the following modifications:
+
+Uncomment:
+
+[miscellany]
+
+enable-auto-props = yes
+
+[auto-props]
+
+Add:
+
+*.h = svn:keywords=Id
+*.cpp = svn:keywords=Id
+*.t = svn:keywords=Id
+Makefile = svn:keywords=Id
+README = svn:keywords=Id
+INSTALL = svn:keywords=Id
+
+
+This allows subversion to automatically configure the "$Id:$" expansion
+whenever a new file is added. Maybe a line "* = svn:keywords=Id" would also be
+good, as long as we don't add binary files...
+
+Ciao,
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Dec  4 00:53:48 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 4 Dec 2004 00:53:48 +0100
+Subject: [Sigschege-devel] EasyVec license
+Message-ID: <20041203235348.GB3119@localhost>
+
+Hi,
+
+does anyone of you mind if I change the EasyVec license to LGPL?
+
+This would allow proprietary programs to use it, should it be usable any time ...
+
+Cheers,
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Dec  4 14:07:12 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 4 Dec 2004 14:07:12 +0100
+Subject: [Sigschege-devel] EasyVec license
+In-Reply-To: <20041203235348.GB3119@localhost>
+References: <20041203235348.GB3119@localhost>
+Message-ID: <200412041407.12875.ingo.hinrichs@web.de>
+
+Am Samstag 04 Dezember 2004 00:53 schrieb sigschege-devel-admin at berlios.de:
+> Hi,
+>
+> does anyone of you mind if I change the EasyVec license to LGPL?
+>
+> This would allow proprietary programs to use it, should it be usable any
+> time ...
+>
+> Cheers,
+> Ulf
+
+I think it's ok, so go ahead!
+
+ Cheers, 
+   Ingo
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Dec  4 14:07:14 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 4 Dec 2004 14:07:14 +0100
+Subject: [Sigschege-devel] Subversion Id expansion
+In-Reply-To: <20041130232357.GA13117@localhost>
+References: <20041130232357.GA13117@localhost>
+Message-ID: <200412041407.14941.ingo.hinrichs@web.de>
+
+Am Mittwoch 01 Dezember 2004 00:23 schrieb sigschege-devel-admin at berlios.de:
+> Hi there,
+>
+> in your ~/.subversion/config, please do the following modifications:
+>
+> Uncomment:
+>
+> [miscellany]
+>
+> enable-auto-props = yes
+>
+> [auto-props]
+>
+> Add:
+>
+> *.h = svn:keywords=Id
+> *.cpp = svn:keywords=Id
+> *.t = svn:keywords=Id
+> Makefile = svn:keywords=Id
+> README = svn:keywords=Id
+> INSTALL = svn:keywords=Id
+>
+>
+> This allows subversion to automatically configure the "$Id:$" expansion
+> whenever a new file is added. Maybe a line "* = svn:keywords=Id" would also
+> be good, as long as we don't add binary files...
+>
+> Ciao,
+> Ulf
+
+Thanks !!
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Dec  4 22:34:05 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 4 Dec 2004 22:34:05 +0100
+Subject: [Sigschege-devel] Time Scale
+Message-ID: <20041204213405.GA7350@localhost>
+
+Hi there,
+
+just to avoid double work: I just started implementing a time scale class.
+
+(And at least it already _tries_ to compile...)
+
+
+Ciao,
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From sigschege-devel-admin at lists.berlios.de  Sun Dec  5 00:53:27 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sun, 5 Dec 2004 00:53:27 +0100
+Subject: [Sigschege-devel] Komm ich jetzt in Fernsehn?
+Message-ID: <20041204235327.GA7619@localhost>
+
+
+Hi there,
+
+just view the attached postscript. :-)
+
+Cheers,
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: test.eps
+Type: application/postscript
+Size: 12229 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/sigschege-devel/attachments/20041205/64b10790/attachment.eps>
+
+From sigschege-devel-admin at lists.berlios.de  Mon Dec  6 21:54:15 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Mon, 6 Dec 2004 21:54:15 +0100
+Subject: [Sigschege-devel] RFC: Sigschege Feature List
+Message-ID: <200412062154.15501.ingo.hinrichs@web.de>
+
+Hi, 
+ I think it's time for a feature list, that can be put on our project page. I 
+started a list for a 1.0 version, but need much more input to finish it. So, 
+give me your feedback and add new features or correct this list. 
+
+But remember, it's for a 1.0 version so keep enough headroom for a 2.0 ;-)
+
+Cheers,
+  Ingo
+
+Feature List for 1.0:
+Diagram:
+ - Lists (Lists of Text Labels, Signals, Time Scales and other Lists)
+ - Text Labels
+ - Time Scales
+ - Signals
+ - Arrow lines
+ - Arrow heads
+ - Comment Boxes
+ - Line Styles support
+ - Color support
+
+Timing:
+ - Events
+ - Event uncertainty
+ - Signal States
+   - '0'
+   - '1'
+   - 'x'
+   - 'u'
+   - 'z'
+   - bus, eg. 0x00
+
+Input:
+ - python interpreter
+
+Output:
+ - fig-file export
+ - transfig support
+
+Future Features:
+ ??
+
+
+From sigschege-devel-admin at lists.berlios.de  Wed Dec 15 22:38:58 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Wed, 15 Dec 2004 22:38:58 +0100
+Subject: [Sigschege-devel] Re: RFC: Sigschege Feature List
+In-Reply-To: <200412062154.15501.ingo.hinrichs@web.de>
+References: <200412062154.15501.ingo.hinrichs@web.de>
+Message-ID: <20041215213858.GA1758@localhost>
+
+Hi there,
+
+I just added my ideas. I also defined the version for which some features are
+scheduled. 
+
+Notation:
+
+??? = What do you mean?
+?.? = Unsure about version
+
+Note that I scheduled GUI support for EasyVec for version 1.0. This has 2
+reasons:
+
+- Since GUI support is an essential part of EasyVec, it should be contained in a
+1.0 version
+- It allows to go into developing GUI support for Sigschege faster
+
+Basically I think we will also have 0.4 - 0.9 versions, which will have more
+features and already be in a quite usable state.
+
+But it's too complicated to anticipate all changes, since there will be a lot of
+"polishing" and adding subfunctionality. 
+
+In my opinion the loading/saving functionality should be implemented until 0.5,
+which should be the first really usable version.
+
+I also added "Python Interface defined", which basically means until then we can
+change the functions, methods, their arguments... afterwards we should become
+conservative, as people won't like an ever changing interface.
+
+
+Ciao,
+Ulf
+
+PS: just thought of an example to make some of my weird thoughts clearer: In 0.2
+the text attached to a pointer (event1->event2) will just be on its right in the
+middle. Later, in 0.4 there will be enhancements, eg. a way to define the
+position manually or an automatic way to find a good place. This would be added
+subfunctionality and probably also a change in the interface, which might break
+old python scripts.
+
+
+On Mon, Dec 06, 2004 at 09:54:15PM +0100, sigschege-devel-admin at berlios.de wrote:
+> Hi, 
+>  I think it's time for a feature list, that can be put on our project page. I 
+> started a list for a 1.0 version, but need much more input to finish it. So, 
+> give me your feedback and add new features or correct this list. 
+> 
+> But remember, it's for a 1.0 version so keep enough headroom for a 2.0 ;-)
+> 
+
+> Feature List for 1.0:
+> Diagram:
+>  - Lists (Lists of Text Labels, Signals, Time Scales and other Lists) 0.1
+>  - Text Labels  0.1
+>  - Time Scales 0.1
+>  - Signals 0.1
+>  - Arrow lines (I assume you mean markers)  0.3
+>  - Arrow heads (I assume you mean pointers) 0.2
+>  - Comment Boxes 0.3
+>  - Line Styles support  0.2
+>  - Color support  0.3
+>
+> Timing:
+>  - Events   0.1
+   - Event slope  0.1
+>  - Event uncertainty    ?Important/Useful?
+>  - Signal States 0.1
+>    - '0'
+>    - '1'
+>    - 'x'
+>    - 'u'
+>    - 'z'
+>    - bus, eg. 0x00 
+     No bus, instead:
+     - generic named data, name can also be 0x0f, supersedes busses 0.1
+   - Copying signals 0.6 (eg. signal2=signal1+delay)
+>
+> Input:
+>  - python interpreter batch 0.1
+   - python interpreter interactive ?.?   (depends on saving/loading facility)
+   - loading timing diagrams (XML, see also saving under output) ?.?
+   - Python Interface defined 0.5
+
+
+>
+> Output:
+>  - fig-file export 0.1
+   - eps export 0.1
+   - png export 0.3
+>  - transfig support ???
+   - saving timing diagrams (XML) ?.?
+>
+> Future Features:
+
+  - GUI  2.0
+
+ EasyVec:
+
+ - polylines: 0.1
+ - boxes: 0.1
+ - text: 0.1
+ - compounds: 1.0
+ - GUI support: 1.0
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From sigschege-devel-admin at lists.berlios.de  Sat Dec 18 01:31:56 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sat, 18 Dec 2004 01:31:56 +0100
+Subject: [Sigschege-devel] EventList <-> Signal
+Message-ID: <20041218003156.GA7245@localhost>
+
+Hi Ingo,
+
+I noticed that TimSignal contains a member of the EventList class.
+
+This means that we have to define all external functions of the EventList as
+pass-through functions in TimSignal. For example, to access my debug function I had
+to declare in TimSignal:
+
+  void debugEvents() { cEventList.debugEvents(); }
+
+With growing functionality this could be quite some code. I would rather suggest
+to derive TimSignal from EventList, going to multiple inheritance.
+
+Do you see any reason not to do this?
+
+Another possibility would be to delete the EventList class and put the
+functionality directly into TimSignal. But a structure that says "a signal is an
+event list. And it is a layout object." sounds quite logical to me.
+
+BTW: I'm still recoding the EventList::paint(). It's more work than I thought,
+and it contains some pitfalls...
+
+
+Ciao,
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+

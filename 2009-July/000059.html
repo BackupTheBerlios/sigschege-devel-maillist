@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] libsigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20libsigschege&In-Reply-To=%3C200907222056.59508.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000057.html">
+   <LINK REL="Next"  HREF="000062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] libsigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20libsigschege&In-Reply-To=%3C200907222056.59508.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] libsigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Wed Jul 22 12:56:59 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000057.html">[Sigschege-devel] libsigschege
+</A></li>
+        <LI>Next message: <A HREF="000062.html">[Sigschege-devel] libsigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#59">[ date ]</a>
+              <a href="thread.html#59">[ thread ]</a>
+              <a href="subject.html#59">[ subject ]</a>
+              <a href="author.html#59">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ulf,
+
+I thought that we will start over and don't use any old GUI/Python stuff. 
+
+The plan was to keep all GUI stuff in sigschege and all the stuff that does not 
+depend on a GUI in libsigschege. I think that is more or less all the &#8220;old 
+Sigschege&#8221; without GUI/Python stuff. When we keep it separated, we can easily 
+switch to another GUI toolkit (if we want or have to), add language bindings 
+and so on...
+
+So:
+ /sigschege = Sigschege GUI
+ /libsigschege = Sigschege library (GUI independent)
+ /YaVec = YaVec library (GUI independent)
+
+If you want to start with the GUI, assign the task to you :-) 
+
+Cheers 
+Ingo
+
+On Wed, 22 Jul 2009 12:19:04 am Development discussions wrote:
+&gt;<i> Hi Ingo,
+</I>&gt;<i>
+</I>&gt;<i> I wanted to start implementing the Sigschege GUI now.
+</I>&gt;<i>
+</I>&gt;<i> I see that you moved all the stuff to libsigschege, except GSigschege.cpp,
+</I>&gt;<i> which got lost. Basically I just wanted to use GSigschege.cpp and replace
+</I>&gt;<i> the wxW stuff with Qt stuff. (and also add GSigschege.h)
+</I>&gt;<i>
+</I>&gt;<i> What was the motivation for this move and what should the purpose of
+</I>&gt;<i> libsigschege be exactly? Should the GUI frontend also be in libsigschege or
+</I>&gt;<i> should it be in some sigschege area?
+</I>&gt;<i>
+</I>&gt;<i> After I commit a very basic GUI implementation we should switch to a
+</I>&gt;<i> &quot;commit-often&quot; strategy, or announce if we plan to make huge changes to
+</I>&gt;<i> reduce the number of conflicts.
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Ulf
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000057.html">[Sigschege-devel] libsigschege
+</A></li>
+	<LI>Next message: <A HREF="000062.html">[Sigschege-devel] libsigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#59">[ date ]</a>
+              <a href="thread.html#59">[ thread ]</a>
+              <a href="subject.html#59">[ subject ]</a>
+              <a href="author.html#59">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

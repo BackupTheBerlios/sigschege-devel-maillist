@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] libsigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20libsigschege&In-Reply-To=%3C200907232355.52715.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000066.html">
+   <LINK REL="Next"  HREF="000069.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] libsigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20libsigschege&In-Reply-To=%3C200907232355.52715.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] libsigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Thu Jul 23 23:55:52 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000066.html">[Sigschege-devel] libsigschege
+</A></li>
+        <LI>Next message: <A HREF="000069.html">[Sigschege-devel] libsigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Ingo,
+
+yes, you got it wrong there. :P
+
+The purpose of YaVec is to handle the graphics stuff and free the application of doing it.
+Basically, the app says &quot;make a polyline&quot;, YaVec will create the correct object hierarchy, 
+draw the lines onto the screen, inform the app that point 1 of the line has been clicked,
+and finally writes out the file into a graphics file.
+
+Of course, as much as possible should be delegated to the toolkit. That was what my recent
+question referred to. I think it would be most elegant to use the GraphicsScene/GraphicsView
+Widgets, but they are incompatible with the current concept of YaVec views.
+Because of this I'm doing the painting myself now, with a simple QPainter.
+And this is one of the reasons why I thought about making it a Qt-only library.
+
+On another note, I'm not sure if the fig format is the right choice, because it's rather a dying format,
+maybe SVGT or something else (?) would be a better choice, but I'm not sure.
+
+Cheers,
+Ulf
+
+
+Am Thursday 23 July 2009 11:26:20 schrieb Development discussions:
+&gt;<i> Hi Ulf,
+</I>&gt;<i> 
+</I>&gt;<i> may be I got something wrong here, but I thought YaVec is a library to export 
+</I>&gt;<i> timing diagrams to Xfig and not to draw stuff in s GUI toolkit. Normally, each 
+</I>&gt;<i> toolkit brings its own drawing library with it. I don't think that we should 
+</I>&gt;<i> use YaVec to draw things inside a GUI toolkit. We should the toolkit itself.
+</I>&gt;<i> 
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000066.html">[Sigschege-devel] libsigschege
+</A></li>
+	<LI>Next message: <A HREF="000069.html">[Sigschege-devel] libsigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

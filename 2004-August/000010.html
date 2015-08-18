@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] Polymorphism...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2004-August/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Polymorphism...&In-Reply-To=%3C200408312216.34854.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000009.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] Polymorphism...</H1>
+    <B>sigschege-devel-admin at lists.berlios.de</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Polymorphism...&In-Reply-To=%3C200408312216.34854.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] Polymorphism...">sigschege-devel-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Aug 31 22:16:34 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000009.html">[Sigschege-devel] Polymorphism...
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi, 
+ I think there is no automatic way in C++.
+
+I use a methode like the one your already described...
+
+cheers,
+  Ingo
+
+Am Saturday 21 August 2004 15:36 schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">sigschege-devel-admin at berlios.de</A>:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I'm just working on the polymorphism of EasyVec...
+</I>&gt;<i>
+</I>&gt;<i> What I need is a way to tell the types of EasyVecElm objects.
+</I>&gt;<i>
+</I>&gt;<i> This will be needed for accessing elements returned by an EasyVec
+</I>&gt;<i> figure.
+</I>&gt;<i>
+</I>&gt;<i> As long as you remember an object with a pointer, there's no problem:
+</I>&gt;<i> EasyVecElmText *ctxt = pic1.text();
+</I>&gt;<i>
+</I>&gt;<i> But the problem pops up, when you for example want to search for a text:
+</I>&gt;<i>
+</I>&gt;<i> vector&lt;EasyVecElmText *&gt; texts;
+</I>&gt;<i>
+</I>&gt;<i> texts = pic1.findText(&quot;*changed*&quot;);
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> It seems that there is no automatic way to get the type of an object
+</I>&gt;<i> in C++. Although the compiler itself knows it (thanks to the vptr), it
+</I>&gt;<i> won't tell me.
+</I>&gt;<i>
+</I>&gt;<i> Is there a way to 4do this in C++?
+</I>&gt;<i>
+</I>&gt;<i> If not I will just add a virtual &quot;type&quot; function that returns the
+</I>&gt;<i> element type...
+</I>&gt;<i>
+</I>&gt;<i> if (ctxt-&gt;type() == Text) {
+</I>&gt;<i>   // bla...
+</I>&gt;<i> }
+</I>&gt;<i>
+</I>&gt;<i> AFAIR the values of an enum are globally visible, so I should use some
+</I>&gt;<i> more precise name...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ???
+</I>&gt;<i> Ulf
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/sigschege-devel">http://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000009.html">[Sigschege-devel] Polymorphism...
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

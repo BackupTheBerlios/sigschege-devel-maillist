@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] New target for Sigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200906302222.32239.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000031.html">
+   <LINK REL="Next"  HREF="000035.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] New target for Sigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200906302222.32239.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] New target for Sigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Tue Jun 30 14:22:32 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000031.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+        <LI>Next message: <A HREF="000035.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 30 Jun 2009 07:56:29 am Development discussions wrote:
+&gt;<i> Hey guys,
+</I>&gt;<i>
+</I>&gt;<i> funny that you show up just now that I decided to finish my carreer as game
+</I>&gt;<i> programmer and continue to develop Sigschege...
+</I>&gt;<i>
+</I>&gt;<i> Well, at least I made 3 small contributions to Nexuiz. :)
+</I>
+Congratulations!
+
+&gt;<i>
+</I>&gt;<i> OK, my answers:
+</I>&gt;<i>
+</I>&gt;<i> 1. be careful, SVN is out of date, because I have some uncommitted
+</I>&gt;<i> modifications.
+</I>
+I saw it. Now it's working again.
+
+&gt;<i>
+</I>&gt;<i> 2. Ingo, can you send me the error message please?
+</I>
+It is now working. I had to install this XML library and to update Sigschege.
+
+&gt;<i>
+</I>&gt;<i> 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from
+</I>&gt;<i> *incorrectly* displaying the timing diagram, but it's started. :P
+</I>
+Actually, for me it does nothing. No timing diagram :-( Only a empty message 
+box pops up...
+
+&gt;<i>
+</I>&gt;<i> repeat:
+</I>&gt;<i> 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from
+</I>&gt;<i> *incorrectly* displaying the timing diagram, but it's started. :P
+</I>&gt;<i>
+</I>repeat:
+Actually, for me it does nothing. No timing diagram :-( Only a empty message 
+box pops up...
+
+&gt;<i> 4. As a preparation for the GUI I started defining a native file format and
+</I>&gt;<i> implemented saving/loading. It is based on XML.
+</I>
+An XML based file format is a good idea. But we have to plan these things 
+carefully (see below).
+
+&gt;<i>
+</I>&gt;<i> 5. As for the GUI, I don't think it should be based on Python. Even
+</I>&gt;<i> maintaining the Python interface sucks, because the object-oriented C++
+</I>&gt;<i> hierarchy has to be mirrored into an object-oriented Python-hierarchy. Just
+</I>&gt;<i> look at the current code. And then realize what's even missing now: after
+</I>&gt;<i> loading a timing diagram it must be mirrored into the Python objects....
+</I>
+Agreed. That's why I sad, we could make all language bindings with Swig. I 
+don't know if it make sense to have language bindings at all, but if we want 
+them, we could use Swig to generate wrappers.
+
+&gt;<i>
+</I>&gt;<i> 6. As for the toolkit, current code is wxWidgets, but I'd also be fine with
+</I>&gt;<i> qt4. The problem is that all the toolkits bring their own stuff, like
+</I>&gt;<i> string class (even unicode ones), and the question is how to handle that.
+</I>&gt;<i> (from what point on making it dependent from toolkit? convert to/from
+</I>&gt;<i> string? or wstring?)
+</I>
+This is actually true for all third party libraries. I think we should try to 
+keep the number of dependencies low. And if we add a dependency, we should try 
+to minimize the impact. 
+
+I mean, we should try to keep everything separated as much as possible. We 
+added already some dependencies like Python, YaVec and XML load/save. If we 
+keep adding them to all classes, maintenance will become a nightmare. 
+
+&gt;<i> In July I might have some short work and probably want to use a part of it
+</I>&gt;<i> to work on Sigschege. (Might also be shifted to September)
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Ulf
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000031.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+	<LI>Next message: <A HREF="000035.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

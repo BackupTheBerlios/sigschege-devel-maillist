@@ -1,0 +1,83 @@
+From sigschege-devel-admin at lists.berlios.de  Sun Sep  5 01:27:41 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sun, 5 Sep 2004 01:27:41 +0200
+Subject: [Sigschege-devel] Events..
+Message-ID: <20040904232741.GA4635@localhost>
+
+Hi Ingo,
+
+I started adapting the Event class to the new scheme we discussed.
+
+Although we discussed not to create an intermediate EventList class, since you
+already had one ;-) I just used it for now. We can decide later if we use it or
+rename it to Signal. 
+
+I changed TimingMain, if yous start it with no argument or an "l" it will run
+your layout test, as before. If you start it with "e" it will run the Event
+class test.
+
+BTW: This new pointer scheme has one disadvantage: If the application which uses
+the class stores the pointer for later use and the event is removed in the
+meantime that will lead to difficult bugs which are difficult to locate...
+EasyVec basically has the same problem. But on the other hand this is very
+efficient... 
+
+
+Cheers,
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From sigschege-devel-admin at lists.berlios.de  Sun Sep 19 23:51:22 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sun, 19 Sep 2004 23:51:22 +0200
+Subject: [Sigschege-devel] signals
+Message-ID: <20040919215122.GC3318@localhost>
+
+Hi,
+
+I just had some vague thoughts about the nature of signals.
+I have put a text below, and appended a picture. 
+
+Maybe you can comment these outlines.
+
+Ciao,
+Ulf
+
+
+
+* Event with a slope
+
+A slope has the effect that the corresponding event has a duration.
+It has three distinct time points: start, middle, end. A reference can be set
+to each of these points or to a percentage. 
+
+If the event itself refers to another event, the delay is counted to the start.
+
+* Uncertainty
+
+An uncertainty also puts a duration on the event. Events which reference an
+event with an uncertainty will inherit this uncertainty. 
+
+* Visuals
+
+Signals can have the following appearance:
+
+- high (line at the top)
+- low (line at the bottom)
+- unknown (line in the middle)
+- random (lines at top and bottom with text in between)
+
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signals.fig
+Type: application/x-xfig
+Size: 2925 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/sigschege-devel/attachments/20040919/86e73423/attachment.fig>
+

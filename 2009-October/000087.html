@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] status
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20status&In-Reply-To=%3C200910291759.34807.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000086.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] status</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20status&In-Reply-To=%3C200910291759.34807.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] status">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Thu Oct 29 07:59:34 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000086.html">[Sigschege-devel] status
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#87">[ date ]</a>
+              <a href="thread.html#87">[ thread ]</a>
+              <a href="subject.html#87">[ subject ]</a>
+              <a href="author.html#87">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 28 Oct 2009 07:21:45 am Development discussions wrote:
+&gt;<i> Hi Ingo,
+</I>&gt;<i>
+</I>&gt;<i> Am Tuesday 27 October 2009 09:36:47 schrieb Development discussions:
+</I>&gt;<i> &gt; Can you create a task and assign it to your self? Add also task that
+</I>&gt;<i> &gt; should be done in future. This way everyone can see which tasks exists
+</I>&gt;<i> &gt; and which is still free :-) Otherwise we have to keep track in emails.
+</I>&gt;<i>
+</I>&gt;<i> Done.
+</I>&gt;<i>
+</I>&gt;<i> &gt; By the way. Is there any specific reason, why you use &#8220;load&#8221; instead of
+</I>&gt;<i> &gt; &#8220;open&#8221;?
+</I>&gt;<i>
+</I>&gt;<i> To make it compatible to Excel. :P
+</I>&gt;<i> No, serious, I will change it.
+</I>&gt;<i>
+</I>&gt;<i> You might have noticed that I have added a preliminary document-is-modified
+</I>&gt;<i> detection. This still has some flaws:
+</I>&gt;<i>
+</I>&gt;<i> - can't handle autosave
+</I>&gt;<i> - can't handle undo/redo
+</I>&gt;<i>
+</I>&gt;<i> Autosave would be easy to handle, but undo won't. There could be several
+</I>&gt;<i> approaches:
+</I>&gt;<i>
+</I>&gt;<i> a: use current solution with autosave support added, screw undo detection
+</I>&gt;<i>
+</I>&gt;<i> b: regard as modified if undo stack is non-empty or a undo-stack-exceeded
+</I>&gt;<i> flag is set This has the disadvantage that it requires the undo stack to be
+</I>&gt;<i> deleted on save.
+</I>&gt;<i>
+</I>&gt;<i> c: create an internal xml file and calculate a checksum
+</I>&gt;<i> Could consume too much cpu time...
+</I>&gt;<i>
+</I>&gt;<i> d: ?
+</I>We call QUndoStack::setClean() every time when we save the document. Then we 
+can use QundoStack::cleanChanged() slot to set the ismodified flag.
+
+Problem solved :-)
+&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i> Ulf
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+I will start to implement addEvent etc. I don't think that this will conflict 
+much with your changed.
+
+Cheers
+Ingo
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000086.html">[Sigschege-devel] status
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#87">[ date ]</a>
+              <a href="thread.html#87">[ thread ]</a>
+              <a href="subject.html#87">[ subject ]</a>
+              <a href="author.html#87">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

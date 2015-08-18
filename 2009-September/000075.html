@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] First simple GUI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909152315.01949.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000074.html">
+   <LINK REL="Next"  HREF="000076.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] First simple GUI</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909152315.01949.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] First simple GUI">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Tue Sep 15 23:15:01 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000074.html">[Sigschege-devel] First simple GUI
+</A></li>
+        <LI>Next message: <A HREF="000076.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#75">[ date ]</a>
+              <a href="thread.html#75">[ thread ]</a>
+              <a href="subject.html#75">[ subject ]</a>
+              <a href="author.html#75">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Ingo,
+
+just go ahead and commit your code, We can still revert it. :P
+
+Do you already have a plan how to do the handling of mapping the diagram
+hierarchy both onto the graphics view and into a file?
+Should YaVec still handle this or be replaced by something else?
+Should the native graphics format be fig or svn(tiny)?
+Maybe some &quot;save&quot; functionality can be embedded into the GraphicsItems? ^^
+
+I didn't find much time recently, so no progress on my side yet. :(
+Especially since my desktop (you know, that one which we built) broke
+down recently and I still wasn't able to get it running again reliably. :'(
+
+Cheers,
+Ulf
+
+PS: I would like to proceed by doing a GraphicsView/GraphicsScene tutorial...
+I assume there is none out there? I even had problems finding any good Qt tutorials.
+
+Am Sunday 13 September 2009 13:51:46 schrieb Development discussions:
+&gt;<i> Hi guys
+</I>&gt;<i> 
+</I>&gt;<i> I was think a lot to find a good way for our Sigschege GUI. Like Ulf said in a 
+</I>&gt;<i> previous post, we have two ways to implement the signal drawing. 
+</I>&gt;<i> 
+</I>&gt;<i> 1.We draw everything by our self into a widget.
+</I>&gt;<i> 2.We use QGraphicsView and QGraphicsScene and implement a  GarphicsItem for 
+</I>&gt;<i> every element that we have.
+</I>&gt;<i> 
+</I>&gt;<i> After some experiments I think we should go for option 2. The first way would 
+</I>&gt;<i> be good for a waveform view. In our case it would be a nightmare because we 
+</I>&gt;<i> have to calculate every mouse click  by our self. The same is true for 
+</I>&gt;<i> selection and so on.
+</I>&gt;<i> 
+</I>&gt;<i> The second way would be much simpler. Qt handles all the calculations (mouse 
+</I>&gt;<i> position) coordinate system conversions etc..
+</I>&gt;<i> 
+</I>&gt;<i> If no one has any objectives, I would like to check in my experimental &#8220;simple 
+</I>&gt;<i> GUI&#8221;. It uses the second way, but need a lot of work.
+</I>&gt;<i> 
+</I>&gt;<i> Cheers
+</I>&gt;<i> Ingo
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000074.html">[Sigschege-devel] First simple GUI
+</A></li>
+	<LI>Next message: <A HREF="000076.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#75">[ date ]</a>
+              <a href="thread.html#75">[ thread ]</a>
+              <a href="subject.html#75">[ subject ]</a>
+              <a href="author.html#75">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,2274 @@
+From sigschege-devel at lists.berlios.de  Wed Jul  1 13:02:50 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 1 Jul 2009 21:02:50 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200906302140.38786.ulf.klaperski@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200906302222.32239.ingo.hinrichs@web.de>
+	<200906302140.38786.ulf.klaperski@web.de>
+Message-ID: <200907012102.50534.ingo.hinrichs@web.de>
+
+On Wed, 1 Jul 2009 05:40:38 am Development discussions wrote:
+> Hi,
+>
+> > > 3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except
+> > > from *incorrectly* displaying the timing diagram, but it's started. :P
+> >
+> > Actually, for me it does nothing. No timing diagram :-( Only a empty
+> > message box pops up...
+>
+> Did you create simple.ssg? It should have roughly 2300 bytes.
+> But yes, the message box is empty. :P
+
+Yep, I did! But no timing diagram. I would say, this is incorrectly :P
+
+>
+> > Agreed. That's why I sad, we could make all language bindings with Swig.
+> > I don't know if it make sense to have language bindings at all, but if we
+> > want them, we could use Swig to generate wrappers.
+>
+> Ah, you will be the SWIG stuff maintainer then. :P
+
+If we are in need of language binding, I can do that. But only if we need 
+them..... 
+
+>
+> > > 6. As for the toolkit, current code is wxWidgets, but I'd also be fine
+> > > with qt4. The problem is that all the toolkits bring their own stuff,
+> > > like string class (even unicode ones), and the question is how to
+> > > handle that. (from what point on making it dependent from toolkit?
+> > > convert to/from string? or wstring?)
+> >
+> > This is actually true for all third party libraries. I think we should
+> > try to keep the number of dependencies low. And if we add a dependency,
+> > we should try to minimize the impact.
+>
+> So basically, we will use string/wstring mainly in sigschege/Yavec and
+> convert to the library string only where needed.
+
+I would say yes!
+
+What do you think Alex? 
+
+> > I mean, we should try to keep everything separated as much as possible.
+> > We added already some dependencies like Python, YaVec and XML load/save.
+> > If we keep adding them to all classes, maintenance will become a
+> > nightmare.
+>
+> Of course, the XML library is required for Sigschege, as loading/saving is
+> an elementary feature. In the same way wxWidgets or Qt will be required for
+> the GUI sigschege. If we continue to maintain a python-sigschege, that must
+> run independent  of wx/Qt.
+>
+> I already thought about starting a "sigschege reloaded" completely in
+> python, to get a working application faster. But that gives new problems,
+> forexample no freetype interface is available for Python, etc...
+
+Then lets start with some brain storming ...
+
+Which features should we have in 1.0?
+
+> cu
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul  1 23:49:55 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 1 Jul 2009 23:49:55 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200907012102.50534.ingo.hinrichs@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200906302140.38786.ulf.klaperski@web.de>
+	<200907012102.50534.ingo.hinrichs@web.de>
+Message-ID: <200907012349.56264.ulf.klaperski@web.de>
+
+
+Hey,
+
+Am Wednesday 01 July 2009 13:02:50 schrieb Development discussions:
+> On Wed, 1 Jul 2009 05:40:38 am Development discussions wrote:
+> > Did you create simple.ssg? It should have roughly 2300 bytes.
+> > But yes, the message box is empty. :P
+> 
+> Yep, I did! But no timing diagram. I would say, this is incorrectly :P
+
+:(
+
+I guess that will need some debugging...
+
+> 
+> If we are in need of language binding, I can do that. But only if we need 
+> them..... 
+
+I assume that means we let the python interface "rest" for now. I agree with that.
+(Let's rather invest the work in what will actually make it a usable application in a 
+reasonable time frame)
+
+> >
+> > So basically, we will use string/wstring mainly in sigschege/Yavec and
+> > convert to the library string only where needed.
+> 
+> I would say yes!
+> 
+> What do you think Alex? 
+> 
+
+Are you joining this time, Alex? ;)
+
+> > I already thought about starting a "sigschege reloaded" completely in
+> > python, to get a working application faster. But that gives new problems,
+> > forexample no freetype interface is available for Python, etc...
+> 
+> Then lets start with some brain storming ...
+> 
+> Which features should we have in 1.0?
+> 
+
+In the coming days when I have more time. :)
+
+I guess the most difficult part will be the graphical user interaction...
+(like: user clicks on a rising edge and pulls it to the left.)
+
+As next step I want to add save/saveas to the GUI. And hopefully fix the bug.
+
+As a starting point: can you please cd to YaVec/src and run ./GUIExample ?
+Does it work for you?
+
+
+Cheers,
+Ulf
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul  2 14:30:32 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 2 Jul 2009 22:30:32 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200907012349.56264.ulf.klaperski@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200907012102.50534.ingo.hinrichs@web.de>
+	<200907012349.56264.ulf.klaperski@web.de>
+Message-ID: <200907022230.32833.ingo.hinrichs@web.de>
+
+On Thu, 2 Jul 2009 07:49:55 am Development discussions wrote:
+> Hey,
+>
+> Am Wednesday 01 July 2009 13:02:50 schrieb Development discussions:
+> > On Wed, 1 Jul 2009 05:40:38 am Development discussions wrote:
+> > > Did you create simple.ssg? It should have roughly 2300 bytes.
+> > > But yes, the message box is empty. :P
+> >
+> > Yep, I did! But no timing diagram. I would say, this is incorrectly :P
+> >
+> :(
+>
+> I guess that will need some debugging...
+>
+> > If we are in need of language binding, I can do that. But only if we need
+> > them.....
+>
+> I assume that means we let the python interface "rest" for now. I agree
+> with that. (Let's rather invest the work in what will actually make it a
+> usable application in a reasonable time frame)
+>
+> > > So basically, we will use string/wstring mainly in sigschege/Yavec and
+> > > convert to the library string only where needed.
+> >
+> > I would say yes!
+> >
+> > What do you think Alex?
+>
+> Are you joining this time, Alex? ;)
+>
+> > > I already thought about starting a "sigschege reloaded" completely in
+> > > python, to get a working application faster. But that gives new
+> > > problems, forexample no freetype interface is available for Python,
+> > > etc...
+> >
+> > Then lets start with some brain storming ...
+> >
+> > Which features should we have in 1.0?
+>
+> In the coming days when I have more time. :)
+>
+> I guess the most difficult part will be the graphical user interaction...
+> (like: user clicks on a rising edge and pulls it to the left.)
+
+With a little bit thinking, we should be able to manage this. I am sure about 
+that :-)
+
+>
+> As next step I want to add save/saveas to the GUI. And hopefully fix the
+> bug.
+
+Which GUI? 
+It would be better to add these function to the new GUI.
+
+I had a look at QT toolkit and it looks much better than WxWidgets. Better 
+documentation, examples, support.... If we want to switch, we should do it as 
+early as possible.
+
+What do you guys think?
+
+> As a starting point: can you please cd to YaVec/src and run ./GUIExample ?
+> Does it work for you?
+
+Yep! This works like a charm. But gsigschege does not work :-(
+
+
+> Cheers,
+> Ulf
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul  2 15:09:28 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 02 Jul 2009 15:09:28 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+Message-ID: <1502120392@web.de>
+
+
+> On Thu, 2 Jul 2009 07:49:55 am Development discussions wrote:
+> > As next step I want to add save/saveas to the GUI. And hopefully fix the
+> > bug.
+> 
+> Which GUI? 
+> It would be better to add these function to the new GUI.
+> 
+> I had a look at QT toolkit and it looks much better than WxWidgets. Better 
+> documentation, examples, support.... If we want to switch, we should do it as 
+> early as possible.
+
+Precisely not "as early as possible", but "right now", to avoid investing work in the wrong direction.
+
+I'm fine with both, so if you prefer Qt we can go with it. I should immediately start with adding
+the corresponding front end to YaVec then.
+
+(actually I'm opposed to using _QT_, because I don't see any point in using _QuickTime_ for Sigschege :P ) 
+
+
+cu
+________________________________________________________________
+Neu: WEB.DE Doppel-FLAT mit Internet-Flatrate + Telefon-Flatrate
+f?r nur 19,99 Euro/mtl.!* http://produkte.web.de/go/02/
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul  2 22:02:59 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 2 Jul 2009 22:02:59 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200907012349.56264.ulf.klaperski@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200906302140.38786.ulf.klaperski@web.de>
+	<200907012102.50534.ingo.hinrichs@web.de>
+	<200907012349.56264.ulf.klaperski@web.de>
+Message-ID: <F21FFD44-A8BA-434E-A470-667512D46873@bytehunter.de>
+
+
+>>>
+>>> So basically, we will use string/wstring mainly in sigschege/Yavec  
+>>> and
+>>> convert to the library string only where needed.
+>>
+>> I would say yes!
+>>
+>> What do you think Alex?
+>>
+>
+
+Maybe yes, things are changing :) To be honest, I had a similar  
+problem, which I fixed with some wrapper to keep the Qt way. Nowaday,  
+I use Qt all over because I think Qt is a very good "framework" at all  
+(but not comparable with Cocoa which is MUCH better - I think! But  
+runs only on Mac)
+
+>>
+>> I already thought about starting a "sigschege reloaded" completely in
+>> python, to get a working application faster. But that gives new  
+>> problems,
+>> forexample no freetype interface is available for Python, etc...
+>
+> Then lets start with some brain storming ...
+>
+> Which features should we have in 1.0?
+>
+I wouldn't do this all in python! For a scripting interface in an  
+application I would rater use QScript or LUA. QScript is some kind of  
+JavaScript and very easy to use and to integrate. On the other hand,  
+LUA is also easy, powerful but simple. BUT in someway complicated to  
+use with C++ but not impossible.
+I used LUA as an stand-alone interpreter and wrote extensions/ 
+libraries (in native C) for it to interface with some hardware  
+components.
+QScipt will be my favorite if the Qt framework will be used!
+
+BR
+Alex 
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul  2 22:10:58 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 2 Jul 2009 22:10:58 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200907022230.32833.ingo.hinrichs@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200907012102.50534.ingo.hinrichs@web.de>
+	<200907012349.56264.ulf.klaperski@web.de>
+	<200907022230.32833.ingo.hinrichs@web.de>
+Message-ID: <31CE2705-0C5D-4BBB-9A99-F90DD25800DF@bytehunter.de>
+
+
+> Which GUI?
+> It would be better to add these function to the new GUI.
+>
+> I had a look at QT toolkit and it looks much better than WxWidgets.  
+> Better
+> documentation, examples, support.... If we want to switch, we should  
+> do it as
+> early as possible.
+>
+> What do you guys think?
+
+Personally I would prefer Qt.
+I've written software based on Qt on Windows in the past. Than, I  
+converted to Mac and it also runs there without modification! QMake  
+does the trick!
+Furthermore, creating new GUI components is simple and I guess we need  
+some for this project :)
+For sure, if Sigschege should be a native library we should think  
+about creating wrappers to Qt and not using Qt in the core components.
+
+Maybe this question is obsolete: Are there already some GUI concepts?
+
+BR
+Alex
+
+
+From sigschege-devel at lists.berlios.de  Sat Jul  4 11:35:57 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sat, 4 Jul 2009 11:35:57 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <F21FFD44-A8BA-434E-A470-667512D46873@bytehunter.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200907012349.56264.ulf.klaperski@web.de>
+	<F21FFD44-A8BA-434E-A470-667512D46873@bytehunter.de>
+Message-ID: <200907041135.57275.ulf.klaperski@web.de>
+
+
+Hi guys,
+
+Am Thursday 02 July 2009 22:02:59 schrieb Development discussions:
+> 
+> I wouldn't do this all in python! For a scripting interface in an  
+> application I would rater use QScript or LUA. QScript is some kind of  
+> JavaScript and very easy to use and to integrate. On the other hand,  
+> LUA is also easy, powerful but simple. BUT in someway complicated to  
+> use with C++ but not impossible.
+> I used LUA as an stand-alone interpreter and wrote extensions/ 
+> libraries (in native C) for it to interface with some hardware  
+> components.
+> QScipt will be my favorite if the Qt framework will be used!
+
+Actually the Python-Interface was not meant as a scripting interface inside the GUI, but as a separate UI.
+(You know, like a GUI, but without the "G" part :P). The original plans had 2 binaries: A Python binary as first one
+(which already exists and is even somewhat usable) and a GUI binary as secondary step.
+
+Now that the focus is shifted the Python binary either will be omitted or be shifted to a lower priority. the
+question is, if we want to have a scripting interface in the GUI. I wouldn't mind having one, but I also wouldn't
+put a high priority on it. (If at all, I would only start implementing it after 1.0.)
+
+From the  old plan I have compiled a draft for a new schedule. Please give me feedback and more suggestions.
+Maybe we should put it in the Wiki?
+
+And before we have more discussions without results: Qt is decided.
+
+cya,
+Ulf 
+
+hey emacs, it's -*- outline -*-
+
+
+* 0.1
+
+- configure & compile flow running
+- build & release flow running (actually, this will be a test for it
+- Qt element in Yavec finished
+- basic Qt GUI working with existing features 
+- Lists (Lists of Text Labels, Signals, Time Scales and other Lists) *
+- Text Labels *
+- Time Scales *
+- Signals  *
+- Loading & Saving *
+- Exporting *
+
+The elements marked with "*" already exist and only need Qt support.
+
+* 0.2
+
+- GUI enhancements
+- overlay support
+- markers
+- pointers (point from sig1/event1 to sig2/event3)
+- comment boxes
+- signal visualization scheme (SVS, make visualization of states configurable for signals)
+- colour support (SVS)
+- line Styles support (SVS)
+
+* 0.3
+
+- GUI usability improvements
+
+* 0.4
+
+- scripting interface (if decided)
+- splits
+- GUI usability improvements
+
+* 0.5
+
+- possible enhancements, eg, special "clock" signal
+
+* 0.6
+
+* 0.7
+
+- file format stable
+
+* 0.8
+
+bug fixes
+
+* 0.9
+
+all features in, release candidate
+
+* 1.0 !!!!!!
+
+stable version
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Jul  5 12:38:46 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 5 Jul 2009 20:38:46 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <F21FFD44-A8BA-434E-A470-667512D46873@bytehunter.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200907012349.56264.ulf.klaperski@web.de>
+	<F21FFD44-A8BA-434E-A470-667512D46873@bytehunter.de>
+Message-ID: <200907052038.46612.ingo.hinrichs@web.de>
+
+On Fri, 3 Jul 2009 06:02:59 am Development discussions wrote:
+> >>> So basically, we will use string/wstring mainly in sigschege/Yavec
+> >>> and
+> >>> convert to the library string only where needed.
+> >>
+> >> I would say yes!
+> >>
+> >> What do you think Alex?
+>
+> Maybe yes, things are changing :) To be honest, I had a similar
+> problem, which I fixed with some wrapper to keep the Qt way. Nowaday,
+> I use Qt all over because I think Qt is a very good "framework" at all
+> (but not comparable with Cocoa which is MUCH better - I think! But
+> runs only on Mac)
+>
+> >> I already thought about starting a "sigschege reloaded" completely in
+> >> python, to get a working application faster. But that gives new
+> >> problems,
+> >> forexample no freetype interface is available for Python, etc...
+> >
+> > Then lets start with some brain storming ...
+> >
+> > Which features should we have in 1.0?
+>
+> I wouldn't do this all in python! For a scripting interface in an
+> application I would rater use QScript or LUA. QScript is some kind of
+> JavaScript and very easy to use and to integrate. On the other hand,
+> LUA is also easy, powerful but simple. BUT in someway complicated to
+> use with C++ but not impossible.
+> I used LUA as an stand-alone interpreter and wrote extensions/
+> libraries (in native C) for it to interface with some hardware
+> components.
+> QScipt will be my favorite if the Qt framework will be used!
+>
+Do you mean QTScript which is part of QT toolkit?  I found QScript as well, 
+but it is  part of a commercial game engine and I could not find the license at 
+all.
+
+So, I would say no to Qscript, but QTScript would be an alternative. I don't 
+know if we need a script language in the beginning but we can decide this 
+later. (After 1.0)
+
+Cheers 
+Ingo
+
+> BR
+> Alex
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Jul  5 13:13:30 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 5 Jul 2009 21:13:30 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200907041135.57275.ulf.klaperski@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<F21FFD44-A8BA-434E-A470-667512D46873@bytehunter.de>
+	<200907041135.57275.ulf.klaperski@web.de>
+Message-ID: <200907052113.30226.ingo.hinrichs@web.de>
+
+On Sat, 4 Jul 2009 07:35:57 pm Development discussions wrote:
+> Hi guys,
+>
+> Am Thursday 02 July 2009 22:02:59 schrieb Development discussions:
+> > I wouldn't do this all in python! For a scripting interface in an
+> > application I would rater use QScript or LUA. QScript is some kind of
+> > JavaScript and very easy to use and to integrate. On the other hand,
+> > LUA is also easy, powerful but simple. BUT in someway complicated to
+> > use with C++ but not impossible.
+> > I used LUA as an stand-alone interpreter and wrote extensions/
+> > libraries (in native C) for it to interface with some hardware
+> > components.
+> > QScipt will be my favorite if the Qt framework will be used!
+>
+> Actually the Python-Interface was not meant as a scripting interface inside
+> the GUI, but as a separate UI. (You know, like a GUI, but without the "G"
+> part :P). The original plans had 2 binaries: A Python binary as first one
+> (which already exists and is even somewhat usable) and a GUI binary as
+> secondary step.
+>
+> Now that the focus is shifted the Python binary either will be omitted or
+> be shifted to a lower priority. the question is, if we want to have a
+> scripting interface in the GUI. I wouldn't mind having one, but I also
+> wouldn't put a high priority on it. (If at all, I would only start
+> implementing it after 1.0.)
+
+Yep, not for 1.0. And later we can decide which (may be even more) languages 
+we want.
+
+>
+> From the  old plan I have compiled a draft for a new schedule. Please give
+> me feedback and more suggestions. Maybe we should put it in the Wiki?
+>
+> And before we have more discussions without results: Qt is decided.
+
+OK!
+
+>
+> cya,
+> Ulf
+>
+> hey emacs, it's -*- outline -*-
+>
+>
+> * 0.1
+>
+> - configure & compile flow running
+> - build & release flow running (actually, this will be a test for it
+> - Qt element in Yavec finished
+> - basic Qt GUI working with existing features
+> - Lists (Lists of Text Labels, Signals, Time Scales and other Lists) *
+> - Text Labels *
+> - Time Scales *
+> - Signals  *
+> - Loading & Saving *
+> - Exporting *
+>
+> The elements marked with "*" already exist and only need Qt support.
+>
+> * 0.2
+>
+> - GUI enhancements
+> - overlay support
+> - markers
+> - pointers (point from sig1/event1 to sig2/event3)
+> - comment boxes
+> - signal visualization scheme (SVS, make visualization of states
+> configurable for signals) - colour support (SVS)
+> - line Styles support (SVS)
+>
+> * 0.3
+>
+> - GUI usability improvements
+>
+> * 0.4
+>
+> - scripting interface (if decided)
+> - splits
+> - GUI usability improvements
+>
+> * 0.5
+>
+> - possible enhancements, eg, special "clock" signal
+>
+> * 0.6
+>
+> * 0.7
+>
+> - file format stable
+>
+> * 0.8
+>
+> bug fixes
+>
+> * 0.9
+>
+> all features in, release candidate
+>
+> * 1.0 !!!!!!
+>
+> stable version
+>
+
+This is actually not a feature list. This is more a complete release plan. I 
+think, we should define our target first.
+
+Cheers
+Ingo
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Jul  5 13:22:57 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 5 Jul 2009 21:22:57 +1000
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <31CE2705-0C5D-4BBB-9A99-F90DD25800DF@bytehunter.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200907022230.32833.ingo.hinrichs@web.de>
+	<31CE2705-0C5D-4BBB-9A99-F90DD25800DF@bytehunter.de>
+Message-ID: <200907052122.58132.ingo.hinrichs@web.de>
+
+On Fri, 3 Jul 2009 06:10:58 am Development discussions wrote:
+> > Which GUI?
+> > It would be better to add these function to the new GUI.
+> >
+> > I had a look at QT toolkit and it looks much better than WxWidgets.
+> > Better
+> > documentation, examples, support.... If we want to switch, we should
+> > do it as
+> > early as possible.
+> >
+> > What do you guys think?
+>
+> Personally I would prefer Qt.
+> I've written software based on Qt on Windows in the past. Than, I
+> converted to Mac and it also runs there without modification! QMake
+> does the trick!
+> Furthermore, creating new GUI components is simple and I guess we need
+> some for this project :)
+> For sure, if Sigschege should be a native library we should think
+> about creating wrappers to Qt and not using Qt in the core components.
+>
+> Maybe this question is obsolete: Are there already some GUI concepts?
+No, I don't think so!
+
+I thought about something like a menu, tool bar, working area and a status bar 
+(from top to bottom).
+The working area contains the timing diagram and on the right side a parameter 
+list. The parameter list shows the parameter of the selected item. For 
+example, a edge would show slope etc.
+
+Cheers
+Ingo
+>
+> BR
+> Alex
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Jul  5 15:25:13 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 5 Jul 2009 15:25:13 +0200
+Subject: [Sigschege-devel] New target for Sigschege
+In-Reply-To: <200907052038.46612.ingo.hinrichs@web.de>
+References: <200906291816.06098.ingo.hinrichs@web.de>
+	<200907012349.56264.ulf.klaperski@web.de>
+	<F21FFD44-A8BA-434E-A470-667512D46873@bytehunter.de>
+	<200907052038.46612.ingo.hinrichs@web.de>
+Message-ID: <1C00BF6B-1EE1-422E-AA6E-E2DAEC3DD9CC@bytehunter.de>
+
+Am 05.07.2009 um 12:38 schrieb Development discussions:
+
+> On Fri, 3 Jul 2009 06:02:59 am Development discussions wrote:
+>>>>> So basically, we will use string/wstring mainly in sigschege/Yavec
+>>>>> and
+>>>>> convert to the library string only where needed.
+>>>>
+>>>> I would say yes!
+>>>>
+>>>> What do you think Alex?
+>>
+>> Maybe yes, things are changing :) To be honest, I had a similar
+>> problem, which I fixed with some wrapper to keep the Qt way. Nowaday,
+>> I use Qt all over because I think Qt is a very good "framework" at  
+>> all
+>> (but not comparable with Cocoa which is MUCH better - I think! But
+>> runs only on Mac)
+>>
+>>>> I already thought about starting a "sigschege reloaded"  
+>>>> completely in
+>>>> python, to get a working application faster. But that gives new
+>>>> problems,
+>>>> forexample no freetype interface is available for Python, etc...
+>>>
+>>> Then lets start with some brain storming ...
+>>>
+>>> Which features should we have in 1.0?
+>>
+>> I wouldn't do this all in python! For a scripting interface in an
+>> application I would rater use QScript or LUA. QScript is some kind of
+>> JavaScript and very easy to use and to integrate. On the other hand,
+>> LUA is also easy, powerful but simple. BUT in someway complicated to
+>> use with C++ but not impossible.
+>> I used LUA as an stand-alone interpreter and wrote extensions/
+>> libraries (in native C) for it to interface with some hardware
+>> components.
+>> QScipt will be my favorite if the Qt framework will be used!
+>>
+> Do you mean QTScript which is part of QT toolkit?  I found QScript  
+> as well,
+> but it is  part of a commercial game engine and I could not find the  
+> license at
+> all.
+
+Sorry, my mistake! QTScript is the correct term...
+http://doc.trolltech.com/4.3/qtscript.html
+
+
+>
+> So, I would say no to Qscript, but QTScript would be an alternative.  
+> I don't
+> know if we need a script language in the beginning but we can decide  
+> this
+> later. (After 1.0)
+>
+
+For sure, scripting can be implemented later.
+
+> Cheers
+> Ingo
+>
+>> BR
+>> Alex
+>> _______________________________________________
+>> Sigschege-devel mailing list
+>> Sigschege-devel at lists.berlios.de
+>> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+>
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Jul  6 13:13:56 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 6 Jul 2009 21:13:56 +1000
+Subject: [Sigschege-devel] Feature list
+Message-ID: <200907062113.57034.ingo.hinrichs@web.de>
+
+Hi guys
+
+I think it is time to start a new thread. I compiled a feature list from Ulfs 
+release plan and added everything that came into my mind. Have a look and post 
+your comments and ideas.
+
+ - GUI
+ - Load/Save
+ - Unlimited Undo/Redo
+ - Lists (Lists of Text Labels, Signals, Time Scales and other Lists) *
+ - Time Scales *
+ - Test Labels *
+ - Signals *
+ - Comment boxes
+ - Markers
+ - Overlay support
+ - Background Grid
+ - Time breaks (aka splits)
+ - Relation arrows (point from sig1/event1 to sig2/event3)
+ - Timing relations
+ - Export filter (YaVec, others)
+ - Export to clipboard
+ - Scripting interface
+ - Automatically signals (clk, logical combination)
+ - Hidden signals (helper signals)
+ - Plug-in interface
+ - Signal Visualization Scheme (SVS), make visualization of states configurable 
+for signals
+  - Colour support
+ - Line style support
+
+The elements marked with "*" already exist and only need Qt support.
+
+Cheers
+ Ingo
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul  8 13:02:12 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 8 Jul 2009 13:02:12 +0200
+Subject: [Sigschege-devel] Feature list
+In-Reply-To: <200907062113.57034.ingo.hinrichs@web.de>
+References: <200907062113.57034.ingo.hinrichs@web.de>
+Message-ID: <200907081302.12536.ulf.klaperski@web.de>
+
+
+Hi,
+
+the features could be grouped a little bit:
+
+Am Monday 06 July 2009 13:13:56 schrieb Development discussions:
+
+>  - GUI
+
+this will be most of the work. Otherwise the basic stuff for a "0.1" version exists already.
+>  - Load/Save
+>  - Unlimited Undo/Redo
+>  - Export filter (YaVec, others)
+
+Since YaVec simply creates a fig File, transfig can be used for exporting, so all formats
+created by transig can be supported (gif, ps, etc). Maybe later I will think about rebasing
+Yavec to SVG, or rather SVGT, but I don't want to invest time on that now
+
+
+>  - Lists (Lists of Text Labels, Signals, Time Scales and other Lists) *
+>  - Time Scales *
+>  - Test Labels *
+>  - Signals *
+
+Lists of other lists are currently not really supported, the layout is rather static now.
+
+>  - Overlay support
+>  - Comment boxes
+>  - Markers
+>  - Relation arrows (point from sig1/event1 to sig2/event3)
+
+Basically, overlay is the generic feature to allow for comment boxes, markers and relation arrows.
+
+>  - Timing relations
+
+What's that?
+
+>  - Background Grid
+>  - Time breaks (aka splits)
+
+ack.
+
+>  - Export to clipboard
+
+I assume you mean copying text? Then also "import from clipboard" should be added.
+
+>  - Scripting interface
+>  - Plug-in interface
+
+Isn't that the same?
+
+>  - Automatically signals (clk, logical combination)
+>  - Hidden signals (helper signals)
+
+ack.
+
+>  - Signal Visualization Scheme (SVS), make visualization of states configurable 
+> for signals
+>   - Colour support
+>  - Line style support
+
+Again, SVS is the platform to implement signals with colours, line styles, etc.
+An SVS will define how to map a value to (a) line positions (b) line styles (c) colours and defines (d) if the value should be displayed.
+The basic standard line styles, which are implicitly supported at the beginning are "logic" (0, 1 and X with lines at bottom, top and both)
+and "bus" (always lines at top and bottom, value displayed).
+
+BR
+Ulf
+
+
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul  8 13:05:22 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 8 Jul 2009 13:05:22 +0200
+Subject: [Sigschege-devel] Flow
+Message-ID: <200907081305.22265.ulf.klaperski@web.de>
+
+
+Hi,
+
+what flow should we use in the future? I didn't look to close at the alternatives.
+
+If I'm correct we have autotools, cmake and qmake available.
+
+So far I didn't look into this issue.
+
+I'm just looking into Qt now and will start doing the Qt frontend for YaVec soon, so I'll
+have to figure out how to get the signal/slot stuff translated. Do you have any
+experience on this? 
+
+cu,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul  9 14:42:55 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 9 Jul 2009 22:42:55 +1000
+Subject: [Sigschege-devel] Flow
+In-Reply-To: <200907081305.22265.ulf.klaperski@web.de>
+References: <200907081305.22265.ulf.klaperski@web.de>
+Message-ID: <200907092242.56200.ingo.hinrichs@web.de>
+
+Autotools are not cross platform and difficult to setup and maintain...
+
+Qmake seems to be cross platform, but specialized to QT. I don't know if it 
+has support for Freetype, Doxygen etc.
+
+Cmake is cross platform and has build in support for many libraries like QT, 
+Freetype, Doxygen and many more.  It will call all necessary programs to build 
+this signal/slot, ui etc. stuff.
+
+I would say cmake is a good choice. 
+
+By the way, YaVec has already experimental cmake support :-)
+
+Cheers
+Ingo
+
+
+On Wed, 8 Jul 2009 09:05:22 pm Development discussions wrote:
+> Hi,
+>
+> what flow should we use in the future? I didn't look to close at the
+> alternatives.
+>
+> If I'm correct we have autotools, cmake and qmake available.
+>
+> So far I didn't look into this issue.
+>
+> I'm just looking into Qt now and will start doing the Qt frontend for YaVec
+> soon, so I'll have to figure out how to get the signal/slot stuff
+> translated. Do you have any experience on this?
+>
+> cu,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul  9 14:52:00 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 9 Jul 2009 22:52:00 +1000
+Subject: [Sigschege-devel] Feature list
+In-Reply-To: <200907081302.12536.ulf.klaperski@web.de>
+References: <200907062113.57034.ingo.hinrichs@web.de>
+	<200907081302.12536.ulf.klaperski@web.de>
+Message-ID: <200907092252.00965.ingo.hinrichs@web.de>
+
+See below.
+
+Cheers
+ Ingo
+
+On Wed, 8 Jul 2009 09:02:12 pm Development discussions wrote:
+> Hi,
+>
+> the features could be grouped a little bit:
+>
+> Am Monday 06 July 2009 13:13:56 schrieb Development discussions:
+> >  - GUI
+>
+> this will be most of the work. Otherwise the basic stuff for a "0.1"
+> version exists already.
+>
+> >  - Load/Save
+> >  - Unlimited Undo/Redo
+> >  - Export filter (YaVec, others)
+>
+> Since YaVec simply creates a fig File, transfig can be used for exporting,
+> so all formats created by transig can be supported (gif, ps, etc). Maybe
+> later I will think about rebasing Yavec to SVG, or rather SVGT, but I don't
+> want to invest time on that now
+>
+> >  - Lists (Lists of Text Labels, Signals, Time Scales and other Lists) *
+> >  - Time Scales *
+> >  - Test Labels *
+> >  - Signals *
+>
+> Lists of other lists are currently not really supported, the layout is
+> rather static now.
+>
+> >  - Overlay support
+> >  - Comment boxes
+> >  - Markers
+> >  - Relation arrows (point from sig1/event1 to sig2/event3)
+>
+> Basically, overlay is the generic feature to allow for comment boxes,
+> markers and relation arrows.
+>
+> >  - Timing relations
+>
+> What's that?
+
+Here is an example:
+
+    -------
+    |     |
+----      ------
+          |
+          |--5ns--|
+                     |
+                     -------
+                     |     |
+----------------------      ------
+
+
+>
+> >  - Background Grid
+> >  - Time breaks (aka splits)
+>
+> ack.
+>
+> >  - Export to clipboard
+>
+> I assume you mean copying text? Then also "import from clipboard" should be
+> added.
+
+No, images!
+
+Use case:
+Create a timing diagram. Copy the timing diagram as image to clipboard and 
+past it into open office.
+
+>
+> >  - Scripting interface
+> >  - Plug-in interface
+>
+> Isn't that the same?
+
+Not really.
+
+Scripting means combining already existing functions to something new. -> 
+Automate something etc.
+
+Plug-ins can add new features/functions like new export and import file 
+formates and so on.
+
+>
+> >  - Automatically signals (clk, logical combination)
+> >  - Hidden signals (helper signals)
+>
+> ack.
+>
+> >  - Signal Visualization Scheme (SVS), make visualization of states
+> > configurable for signals
+> >   - Colour support
+> >  - Line style support
+>
+> Again, SVS is the platform to implement signals with colours, line styles,
+> etc. An SVS will define how to map a value to (a) line positions (b) line
+> styles (c) colours and defines (d) if the value should be displayed. The
+> basic standard line styles, which are implicitly supported at the beginning
+> are "logic" (0, 1 and X with lines at bottom, top and both) and "bus"
+> (always lines at top and bottom, value displayed).
+>
+> BR
+> Ulf
+>
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sat Jul 11 00:35:54 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sat, 11 Jul 2009 00:35:54 +0200
+Subject: [Sigschege-devel] Flow
+In-Reply-To: <200907092242.56200.ingo.hinrichs@web.de>
+References: <200907081305.22265.ulf.klaperski@web.de>
+	<200907092242.56200.ingo.hinrichs@web.de>
+Message-ID: <200907110035.55140.ulf.klaperski@web.de>
+
+
+Hi,
+
+just so that you don't have to search:
+
+To debug add the following to CMakeLists.txt:
+
+SET(CMAKE_BUILD_TYPE "Debug")
+
+I will commit it with this option when I'm finished, as we will need it in the near future.
+
+Generally I would rather have it dynamically, like with environment variable,
+so that we don't have to edit the file each time...
+
+(I just try to add the Qt front-end to YaVec.)
+
+Have fun,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 15 21:41:06 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 15 Jul 2009 21:41:06 +0200
+Subject: [Sigschege-devel] YaVec Architecture
+Message-ID: <200907152141.06697.ulf.klaperski@web.de>
+
+
+Hi,
+
+while adding Qt support to YaVec I wonder how I should handle the conflict of paradigms between them.
+
+The QGraphicsView/Scene classes (which I'm using) supports graphics items (file:///usr/share/qt4/doc/html/qgraphicsitem.html),
+which can be used. And it is intended for deriving new graphic item classes.
+
+Currently the YaVec elements handle the drawing themselves and call basic drawing functions in the FigView class (which will be implemented in the derived
+wxWidgets/Qt classes).
+
+I see the following possibilties:
+
+1: ignore the QGraphicsItem classes und just add the drawing primitives for the Qt interface.
+
+Easy to do, but it also means that we have to implement all the "what is the mouse doing and where"-stuff ourselves.
+On the other hand it could make handling of compounds easier.
+
+2:  use QGraphicsitems
+
+This means, the draw() functions in the Yavec elements will not be used.
+A hash containing all the QGraphicsItems could be added to the QGraphicsScene and connected to the YaVec elements.
+YaVec element can send a changed() to the QGraphicsScene. A pointer to the Yavec element can be used as a key for the hash.
+
+3. completely rewrite YaVec based on Qt.
+
+Out of question, it shoudl run independently.
+
+
+Currently I'm inclined to go for approach (2). 
+
+Example code is at /usr/lib/qt4/examples/graphicsview/diagramscene .
+
+
+PS: a GUI with an empty graphics area already shows up.
+
+cu,
+Ulf 
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul 16 13:19:42 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 16 Jul 2009 21:19:42 +1000
+Subject: [Sigschege-devel] YaVec Architecture
+In-Reply-To: <200907152141.06697.ulf.klaperski@web.de>
+References: <200907152141.06697.ulf.klaperski@web.de>
+Message-ID: <200907162119.42441.ingo.hinrichs@web.de>
+
+Hi Ulf
+
+I don't know if it make sense to add a GUI to YaVec at all, but you did it 
+already for WxWidget.
+
+It should be possible to do the same thing with QT in the same way.
+
+Cheers
+Ingo
+
+On Thu, 16 Jul 2009 05:41:06 am Development discussions wrote:
+> Hi,
+>
+> while adding Qt support to YaVec I wonder how I should handle the conflict
+> of paradigms between them.
+>
+> The QGraphicsView/Scene classes (which I'm using) supports graphics items
+> (file:///usr/share/qt4/doc/html/qgraphicsitem.html), which can be used. And
+> it is intended for deriving new graphic item classes.
+>
+> Currently the YaVec elements handle the drawing themselves and call basic
+> drawing functions in the FigView class (which will be implemented in the
+> derived wxWidgets/Qt classes).
+>
+> I see the following possibilties:
+>
+> 1: ignore the QGraphicsItem classes und just add the drawing primitives for
+> the Qt interface.
+>
+> Easy to do, but it also means that we have to implement all the "what is
+> the mouse doing and where"-stuff ourselves. On the other hand it could make
+> handling of compounds easier.
+>
+> 2:  use QGraphicsitems
+>
+> This means, the draw() functions in the Yavec elements will not be used.
+> A hash containing all the QGraphicsItems could be added to the
+> QGraphicsScene and connected to the YaVec elements. YaVec element can send
+> a changed() to the QGraphicsScene. A pointer to the Yavec element can be
+> used as a key for the hash.
+>
+> 3. completely rewrite YaVec based on Qt.
+>
+> Out of question, it shoudl run independently.
+>
+>
+> Currently I'm inclined to go for approach (2).
+>
+> Example code is at /usr/lib/qt4/examples/graphicsview/diagramscene .
+>
+>
+> PS: a GUI with an empty graphics area already shows up.
+>
+> cu,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Jul 20 00:29:25 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 20 Jul 2009 00:29:25 +0200
+Subject: [Sigschege-devel] YaVec Architecture
+In-Reply-To: <200907162119.42441.ingo.hinrichs@web.de>
+References: <200907152141.06697.ulf.klaperski@web.de>
+	<200907162119.42441.ingo.hinrichs@web.de>
+Message-ID: <200907200029.25388.ulf.klaperski@web.de>
+
+
+Hi,
+
+Am Thursday 16 July 2009 13:19:42 schrieb Development discussions:
+
+> It should be possible to do the same thing with QT in the same way.
+
+Yes, but not using the QGraphicsView/QGraphicsScene environment.
+I'm doing the painting myself now, into a plain QWidget.
+
+I committed first stuff, it's unfinished but should already compile and show some
+stuff after running ./QtExample.
+
+Cheers,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Tue Jul 21 16:06:30 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 21 Jul 2009 16:06:30 +0200
+Subject: [Sigschege-devel] GUI start
+Message-ID: <200907211606.30654.ulf.klaperski@web.de>
+
+
+Hi,
+
+after porting the basic functionality of Yavec to Qt (try Qtexample) I want to proceed and start a basic Sigschege GUI framework.
+
+We could either write the source code manually or alternatively use QtDesigner to create a *.ui file which gets translated into C++-code.
+
+I would prefer the manual approach, as this gives us more control of the sources, and especially gives us more understanding while
+writing the code. What are your preferences regarding this?
+
+
+Speaking of Qt, after getting a bit more knowledge about it I consider if we should build Sigschege AND YaVec completely on Qt.
+Qt is not only a GUI framework, but also provides essential functionalities, like containers similar to those in the STL, but while the 
+STL sucks the Qt equivalents seem to be much programmer-friendlier.
+Deciding to do so would eliminate STL usage from Sigschege/YaVec and also usage of string in favor of QString.
+This would probably also reduce the number of required conversions. 
+
+
+cu,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Tue Jul 21 16:19:04 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 21 Jul 2009 16:19:04 +0200
+Subject: [Sigschege-devel] libsigschege
+Message-ID: <200907211619.04524.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+I wanted to start implementing the Sigschege GUI now.
+
+I see that you moved all the stuff to libsigschege, except GSigschege.cpp, which got lost.
+Basically I just wanted to use GSigschege.cpp and replace the wxW stuff with Qt stuff.
+(and also add GSigschege.h)
+
+What was the motivation for this move and what should the purpose of libsigschege be exactly?
+Should the GUI frontend also be in libsigschege or should it be in some sigschege area?
+
+After I commit a very basic GUI implementation we should switch to a "commit-often" strategy,
+or announce if we plan to make huge changes to reduce the number of conflicts.
+
+Cheers,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 22 12:56:38 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 22 Jul 2009 20:56:38 +1000
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907211606.30654.ulf.klaperski@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+Message-ID: <200907222056.39042.ingo.hinrichs@web.de>
+
+I think this is a taste question. I would say, we should keep QT away from 
+everything that can be useful without QT. I mean, YaVec is a vector library 
+and we need QT only for the GUI. There is no need to use it within.
+
+The Sigschege GUI is clear. Of course, we will use everything that QT offers 
+:-)
+
+The Sigschege library.... Hmmm, I don't know. Maybe it would be better to 
+stick with STL and maybe Boost (if we need it). 
+
+Cheers
+Ingo
+
+On Wed, 22 Jul 2009 12:06:30 am Development discussions wrote:
+> Hi,
+>
+> after porting the basic functionality of Yavec to Qt (try Qtexample) I want
+> to proceed and start a basic Sigschege GUI framework.
+>
+> We could either write the source code manually or alternatively use
+> QtDesigner to create a *.ui file which gets translated into C++-code.
+>
+> I would prefer the manual approach, as this gives us more control of the
+> sources, and especially gives us more understanding while writing the code.
+> What are your preferences regarding this?
+>
+>
+> Speaking of Qt, after getting a bit more knowledge about it I consider if
+> we should build Sigschege AND YaVec completely on Qt. Qt is not only a GUI
+> framework, but also provides essential functionalities, like containers
+> similar to those in the STL, but while the STL sucks the Qt equivalents
+> seem to be much programmer-friendlier. Deciding to do so would eliminate
+> STL usage from Sigschege/YaVec and also usage of string in favor of
+> QString. This would probably also reduce the number of required
+> conversions.
+>
+>
+> cu,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 22 12:56:59 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 22 Jul 2009 20:56:59 +1000
+Subject: [Sigschege-devel] libsigschege
+In-Reply-To: <200907211619.04524.ulf.klaperski@web.de>
+References: <200907211619.04524.ulf.klaperski@web.de>
+Message-ID: <200907222056.59508.ingo.hinrichs@web.de>
+
+Hi Ulf,
+
+I thought that we will start over and don't use any old GUI/Python stuff. 
+
+The plan was to keep all GUI stuff in sigschege and all the stuff that does not 
+depend on a GUI in libsigschege. I think that is more or less all the ?old 
+Sigschege? without GUI/Python stuff. When we keep it separated, we can easily 
+switch to another GUI toolkit (if we want or have to), add language bindings 
+and so on...
+
+So:
+ /sigschege = Sigschege GUI
+ /libsigschege = Sigschege library (GUI independent)
+ /YaVec = YaVec library (GUI independent)
+
+If you want to start with the GUI, assign the task to you :-) 
+
+Cheers 
+Ingo
+
+On Wed, 22 Jul 2009 12:19:04 am Development discussions wrote:
+> Hi Ingo,
+>
+> I wanted to start implementing the Sigschege GUI now.
+>
+> I see that you moved all the stuff to libsigschege, except GSigschege.cpp,
+> which got lost. Basically I just wanted to use GSigschege.cpp and replace
+> the wxW stuff with Qt stuff. (and also add GSigschege.h)
+>
+> What was the motivation for this move and what should the purpose of
+> libsigschege be exactly? Should the GUI frontend also be in libsigschege or
+> should it be in some sigschege area?
+>
+> After I commit a very basic GUI implementation we should switch to a
+> "commit-often" strategy, or announce if we plan to make huge changes to
+> reduce the number of conflicts.
+>
+> Cheers,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 22 12:56:21 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 22 Jul 2009 20:56:21 +1000
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907211606.30654.ulf.klaperski@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+Message-ID: <200907222056.21844.ingo.hinrichs@web.de>
+
+That is a good question. I was searching around and found three different 
+approaches:
+1.Create everything by hand.
+2.Create everything once with QT-Designer and then add the rest by hand.
+3.Create everything QT-Designer.
+
+Since I did not work with QT, I can not say which approach we should use. I 
+found out that everyone used approach 1 or 2. The older version of QT-Designer 
+was not suitable for approach 3. Nowadays, approach 3 seems to be a option.
+
+I would say, first start with approach 3 and if it is not usable or difficult, we 
+can switch to approach 1. 
+
+Alex, what do you thing? Do you have any experiences?
+
+Cheers
+Ingo
+
+On Wed, 22 Jul 2009 12:06:30 am Development discussions wrote:
+> Hi,
+>
+> after porting the basic functionality of Yavec to Qt (try Qtexample) I want
+> to proceed and start a basic Sigschege GUI framework.
+>
+> We could either write the source code manually or alternatively use
+> QtDesigner to create a *.ui file which gets translated into C++-code.
+>
+> I would prefer the manual approach, as this gives us more control of the
+> sources, and especially gives us more understanding while writing the code.
+> What are your preferences regarding this?
+>
+>
+> Speaking of Qt, after getting a bit more knowledge about it I consider if
+> we should build Sigschege AND YaVec completely on Qt. Qt is not only a GUI
+> framework, but also provides essential functionalities, like containers
+> similar to those in the STL, but while the STL sucks the Qt equivalents
+> seem to be much programmer-friendlier. Deciding to do so would eliminate
+> STL usage from Sigschege/YaVec and also usage of string in favor of
+> QString. This would probably also reduce the number of required
+> conversions.
+>
+>
+> cu,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 22 13:59:57 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 22 Jul 2009 13:59:57 +0200
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907222056.39042.ingo.hinrichs@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+	<200907222056.39042.ingo.hinrichs@web.de>
+Message-ID: <200907221359.58181.ulf.klaperski@web.de>
+
+
+The point is that Qt is much more than just a GUI toolkit, it's a complete development framework.
+
+If you can get hold of it Down Under: c't 15/2009 has an excellent article about the virtues of Qt.
+See also: file:///usr/share/qt4/doc/html/tools.html
+
+
+The container classes are much easier to use than STL, the strings have a much superior implementation.
+
+Eg.:
+
+bstring = astring; // this will not make a copy of the string, just link bstring to astring
+bstring[0] = 'D'; // now bstring is copied
+astring = bstring, // links astring to bstring and removes the original string, since it's unused
+
+And Qt even brings a foreach keyword. :P
+
+cu,
+Ulf
+Am Wednesday 22 July 2009 12:56:38 schrieb Development discussions:
+> I think this is a taste question. I would say, we should keep QT away from 
+> everything that can be useful without QT. I mean, YaVec is a vector library 
+> and we need QT only for the GUI. There is no need to use it within.
+> 
+> The Sigschege GUI is clear. Of course, we will use everything that QT offers 
+> :-)
+> 
+> The Sigschege library.... Hmmm, I don't know. Maybe it would be better to 
+> stick with STL and maybe Boost (if we need it). 
+> 
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 22 14:10:27 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 22 Jul 2009 14:10:27 +0200
+Subject: [Sigschege-devel] libsigschege
+In-Reply-To: <200907222056.59508.ingo.hinrichs@web.de>
+References: <200907211619.04524.ulf.klaperski@web.de>
+	<200907222056.59508.ingo.hinrichs@web.de>
+Message-ID: <200907221410.27462.ulf.klaperski@web.de>
+
+Hi Ingo,
+
+generally we can leave it that way, but: YaVec is not GUI independent as it's supposed to
+be integrated into a GUI. Therefore it brings its own GUI layer, which can be available
+for different toolkits. All GUI views are derived from the FigView class. So far I had
+a wxWidgets front end (FigVwx), since a few days there's also a Qt front end (FigVqt).
+
+We can try to keep it flexible for future enhancement (Python & QuakeC interfaces...),
+but I'm convinced that we won't switch to another GUI toolkit.
+
+Cheers,
+Ulf
+
+Am Wednesday 22 July 2009 12:56:59 schrieb Development discussions:
+> Hi Ulf,
+> 
+> I thought that we will start over and don't use any old GUI/Python stuff. 
+> 
+> The plan was to keep all GUI stuff in sigschege and all the stuff that does not 
+> depend on a GUI in libsigschege. I think that is more or less all the ?old 
+> Sigschege? without GUI/Python stuff. When we keep it separated, we can easily 
+> switch to another GUI toolkit (if we want or have to), add language bindings 
+> and so on...
+> 
+> So:
+>  /sigschege = Sigschege GUI
+>  /libsigschege = Sigschege library (GUI independent)
+>  /YaVec = YaVec library (GUI independent)
+> 
+> If you want to start with the GUI, assign the task to you :-) 
+> 
+> Cheers 
+> Ingo
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 22 14:16:21 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 22 Jul 2009 14:16:21 +0200
+Subject: [Sigschege-devel] HELP!
+Message-ID: <200907221416.21965.ulf.klaperski@web.de>
+
+
+Hi,
+
+I'm desperately trying to get ssh access to berlios without a password.
+I'm following the instructions at http://developer.berlios.de/docman/display_doc.php?docid=31&group_id=2
+and it works... until the next day, when my new .ssh/authorized_keys got replaced with the old one again!?!?!
+
+Does anyone of you knwo what's going on?
+
+Cheers,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Wed Jul 22 14:22:47 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 22 Jul 2009 14:22:47 +0200
+Subject: [Sigschege-devel] HELP!
+In-Reply-To: <200907221416.21965.ulf.klaperski@web.de>
+References: <200907221416.21965.ulf.klaperski@web.de>
+Message-ID: <200907221422.47380.ulf.klaperski@web.de>
+
+
+I withdraw my question.
+
+The key is configured in my profile, and obviously .ssh/autorized_keys is overwritten every 6 hours with it....
+
+cu,
+Ulf
+
+Am Wednesday 22 July 2009 14:16:21 schrieb Development discussions:
+> 
+> Hi,
+> 
+> I'm desperately trying to get ssh access to berlios without a password.
+> I'm following the instructions at http://developer.berlios.de/docman/display_doc.php?docid=31&group_id=2
+> and it works... until the next day, when my new .ssh/authorized_keys got replaced with the old one again!?!?!
+> 
+> Does anyone of you knwo what's going on?
+> 
+> Cheers,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+> 
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul 23 11:10:32 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 23 Jul 2009 19:10:32 +1000
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907221359.58181.ulf.klaperski@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+	<200907222056.39042.ingo.hinrichs@web.de>
+	<200907221359.58181.ulf.klaperski@web.de>
+Message-ID: <200907231910.32984.ingo.hinrichs@web.de>
+
+Hi Ulf,
+
+I don't know if they are really easy. STL works fine and is standard. QT uses a 
+different iterator approach (Java style) which has its advantages and 
+disadvantages.
+
+Copy on write (COW) in STL depends on the specific STL implementation. Most 
+implementation do not use COW because it is very difficult to implement it 
+thread safe. For this reason, all QT container/string classes  (that I 
+checked) are not thread safe. So, ?superior?, depends on the use case. If you 
+need to modify a string, it does not matter if you copy it early or late. And 
+if you don't want to change it, pass a pointer or reference arround.
+
+You should have a look at the Technology Report 1 (TR1). The next version of 
+STL will contain a std::for_each and many more good stuff. If you want to use 
+for_each (and much more) now, you can use boost. Boost is a really useful 
+library. Have a look :-)
+
+It seems that Alex and you are a fan of QT. So if you guys want, we can 
+refactor everything to QT.
+
+Cheers
+Ingo
+
+On Wed, 22 Jul 2009 09:59:57 pm Development discussions wrote:
+> The point is that Qt is much more than just a GUI toolkit, it's a complete
+> development framework.
+>
+> If you can get hold of it Down Under: c't 15/2009 has an excellent article
+> about the virtues of Qt. See also:
+> file:///usr/share/qt4/doc/html/tools.html
+>
+>
+> The container classes are much easier to use than STL, the strings have a
+> much superior implementation.
+>
+> Eg.:
+>
+> bstring = astring; // this will not make a copy of the string, just link
+> bstring to astring bstring[0] = 'D'; // now bstring is copied
+> astring = bstring, // links astring to bstring and removes the original
+> string, since it's unused
+>
+> And Qt even brings a foreach keyword. :P
+>
+> cu,
+> Ulf
+>
+> Am Wednesday 22 July 2009 12:56:38 schrieb Development discussions:
+> > I think this is a taste question. I would say, we should keep QT away
+> > from everything that can be useful without QT. I mean, YaVec is a vector
+> > library and we need QT only for the GUI. There is no need to use it
+> > within.
+> >
+> > The Sigschege GUI is clear. Of course, we will use everything that QT
+> > offers
+> >
+> > :-)
+> >
+> > The Sigschege library.... Hmmm, I don't know. Maybe it would be better to
+> > stick with STL and maybe Boost (if we need it).
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul 23 11:26:20 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 23 Jul 2009 19:26:20 +1000
+Subject: [Sigschege-devel] libsigschege
+In-Reply-To: <200907221410.27462.ulf.klaperski@web.de>
+References: <200907211619.04524.ulf.klaperski@web.de>
+	<200907222056.59508.ingo.hinrichs@web.de>
+	<200907221410.27462.ulf.klaperski@web.de>
+Message-ID: <200907231926.21055.ingo.hinrichs@web.de>
+
+Hi Ulf,
+
+may be I got something wrong here, but I thought YaVec is a library to export 
+timing diagrams to Xfig and not to draw stuff in s GUI toolkit. Normally, each 
+toolkit brings its own drawing library with it. I don't think that we should 
+use YaVec to draw things inside a GUI toolkit. We should the toolkit itself.
+
+Cheers
+Ingo
+
+On Wed, 22 Jul 2009 10:10:27 pm Development discussions wrote:
+> Hi Ingo,
+>
+> generally we can leave it that way, but: YaVec is not GUI independent as
+> it's supposed to be integrated into a GUI. Therefore it brings its own GUI
+> layer, which can be available for different toolkits. All GUI views are
+> derived from the FigView class. So far I had a wxWidgets front end
+> (FigVwx), since a few days there's also a Qt front end (FigVqt).
+>
+> We can try to keep it flexible for future enhancement (Python & QuakeC
+> interfaces...), but I'm convinced that we won't switch to another GUI
+> toolkit.
+>
+> Cheers,
+> Ulf
+>
+> Am Wednesday 22 July 2009 12:56:59 schrieb Development discussions:
+> > Hi Ulf,
+> >
+> > I thought that we will start over and don't use any old GUI/Python stuff.
+> >
+> > The plan was to keep all GUI stuff in sigschege and all the stuff that
+> > does not depend on a GUI in libsigschege. I think that is more or less
+> > all the ?old Sigschege? without GUI/Python stuff. When we keep it
+> > separated, we can easily switch to another GUI toolkit (if we want or
+> > have to), add language bindings and so on...
+> >
+> > So:
+> >  /sigschege = Sigschege GUI
+> >  /libsigschege = Sigschege library (GUI independent)
+> >  /YaVec = YaVec library (GUI independent)
+> >
+> > If you want to start with the GUI, assign the task to you :-)
+> >
+> > Cheers
+> > Ingo
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Jul 23 23:55:52 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 23 Jul 2009 23:55:52 +0200
+Subject: [Sigschege-devel] libsigschege
+In-Reply-To: <200907231926.21055.ingo.hinrichs@web.de>
+References: <200907211619.04524.ulf.klaperski@web.de>
+	<200907221410.27462.ulf.klaperski@web.de>
+	<200907231926.21055.ingo.hinrichs@web.de>
+Message-ID: <200907232355.52715.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+yes, you got it wrong there. :P
+
+The purpose of YaVec is to handle the graphics stuff and free the application of doing it.
+Basically, the app says "make a polyline", YaVec will create the correct object hierarchy, 
+draw the lines onto the screen, inform the app that point 1 of the line has been clicked,
+and finally writes out the file into a graphics file.
+
+Of course, as much as possible should be delegated to the toolkit. That was what my recent
+question referred to. I think it would be most elegant to use the GraphicsScene/GraphicsView
+Widgets, but they are incompatible with the current concept of YaVec views.
+Because of this I'm doing the painting myself now, with a simple QPainter.
+And this is one of the reasons why I thought about making it a Qt-only library.
+
+On another note, I'm not sure if the fig format is the right choice, because it's rather a dying format,
+maybe SVGT or something else (?) would be a better choice, but I'm not sure.
+
+Cheers,
+Ulf
+
+
+Am Thursday 23 July 2009 11:26:20 schrieb Development discussions:
+> Hi Ulf,
+> 
+> may be I got something wrong here, but I thought YaVec is a library to export 
+> timing diagrams to Xfig and not to draw stuff in s GUI toolkit. Normally, each 
+> toolkit brings its own drawing library with it. I don't think that we should 
+> use YaVec to draw things inside a GUI toolkit. We should the toolkit itself.
+> 
+
+
+From sigschege-devel at lists.berlios.de  Fri Jul 24 00:17:15 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Fri, 24 Jul 2009 00:17:15 +0200
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907231910.32984.ingo.hinrichs@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+	<200907221359.58181.ulf.klaperski@web.de>
+	<200907231910.32984.ingo.hinrichs@web.de>
+Message-ID: <200907240017.15358.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+well, I made my bad experiences with STL already...
+
+I had hard-to-debug segmentation faults.
+
+I had a hard time trying to implement more advanced iterators (backward, insert) and sometimes failed (without understanding why).
+
+I didn't find any *good* documentation about the STL. (is there somewhere maybe?)
+
+I don't really care if we use STL, Qt or Boost, I just want to have an easy and consistent code
+ (so that we can concentrate on the real problems).
+
+So that we can go on now and rethink the whole object structure of YaVec+Sigschege...
+
+BTW:
+file:///usr/share/qt4/doc/html/qtsvg.html
+
+I didn't look into it, but this might even be similar to YaVec.
+
+Cheers,
+Ulf
+
+Am Thursday 23 July 2009 11:10:32 schrieb Development discussions:
+> Hi Ulf,
+> 
+> I don't know if they are really easy. STL works fine and is standard. QT uses a 
+> different iterator approach (Java style) which has its advantages and 
+> disadvantages.
+> 
+> Copy on write (COW) in STL depends on the specific STL implementation. Most 
+> implementation do not use COW because it is very difficult to implement it 
+> thread safe. For this reason, all QT container/string classes  (that I 
+> checked) are not thread safe. So, ?superior?, depends on the use case. If you 
+> need to modify a string, it does not matter if you copy it early or late. And 
+> if you don't want to change it, pass a pointer or reference arround.
+> 
+> You should have a look at the Technology Report 1 (TR1). The next version of 
+> STL will contain a std::for_each and many more good stuff. If you want to use 
+> for_each (and much more) now, you can use boost. Boost is a really useful 
+> library. Have a look :-)
+> 
+> It seems that Alex and you are a fan of QT. So if you guys want, we can 
+> refactor everything to QT.
+> 
+> Cheers
+> Ingo
+> 
+
+
+From sigschege-devel at lists.berlios.de  Fri Jul 24 11:33:34 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Fri, 24 Jul 2009 19:33:34 +1000
+Subject: [Sigschege-devel] libsigschege
+In-Reply-To: <200907232355.52715.ulf.klaperski@web.de>
+References: <200907211619.04524.ulf.klaperski@web.de>
+	<200907231926.21055.ingo.hinrichs@web.de>
+	<200907232355.52715.ulf.klaperski@web.de>
+Message-ID: <200907241933.34242.ingo.hinrichs@web.de>
+
+Ok, now I got it!
+
+I would prefer to use QT for this. We can use the Model/View classes of QT.
+
+Maybe we can reuse YaVec for exporting the diagram. 
+
+Cheers
+Ingo
+
+
+On Fri, 24 Jul 2009 07:55:52 am Development discussions wrote:
+> Hi Ingo,
+>
+> yes, you got it wrong there. :P
+>
+> The purpose of YaVec is to handle the graphics stuff and free the
+> application of doing it. Basically, the app says "make a polyline", YaVec
+> will create the correct object hierarchy, draw the lines onto the screen,
+> inform the app that point 1 of the line has been clicked, and finally
+> writes out the file into a graphics file.
+>
+> Of course, as much as possible should be delegated to the toolkit. That was
+> what my recent question referred to. I think it would be most elegant to
+> use the GraphicsScene/GraphicsView Widgets, but they are incompatible with
+> the current concept of YaVec views. Because of this I'm doing the painting
+> myself now, with a simple QPainter. And this is one of the reasons why I
+> thought about making it a Qt-only library.
+>
+> On another note, I'm not sure if the fig format is the right choice,
+> because it's rather a dying format, maybe SVGT or something else (?) would
+> be a better choice, but I'm not sure.
+>
+> Cheers,
+> Ulf
+>
+> Am Thursday 23 July 2009 11:26:20 schrieb Development discussions:
+> > Hi Ulf,
+> >
+> > may be I got something wrong here, but I thought YaVec is a library to
+> > export timing diagrams to Xfig and not to draw stuff in s GUI toolkit.
+> > Normally, each toolkit brings its own drawing library with it. I don't
+> > think that we should use YaVec to draw things inside a GUI toolkit. We
+> > should the toolkit itself.
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Fri Jul 24 11:48:05 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Fri, 24 Jul 2009 19:48:05 +1000
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907240017.15358.ulf.klaperski@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+	<200907231910.32984.ingo.hinrichs@web.de>
+	<200907240017.15358.ulf.klaperski@web.de>
+Message-ID: <200907241948.05330.ingo.hinrichs@web.de>
+
+Hi Ulf,
+
+see below:
+
+Cheers
+Ingo
+
+On Fri, 24 Jul 2009 08:17:15 am Development discussions wrote:
+> Hi Ingo,
+>
+> well, I made my bad experiences with STL already...
+>
+> I had hard-to-debug segmentation faults.
+>
+> I had a hard time trying to implement more advanced iterators (backward,
+> insert) and sometimes failed (without understanding why).
+>
+> I didn't find any *good* documentation about the STL. (is there somewhere
+> maybe?)
+>
+> I don't really care if we use STL, Qt or Boost, I just want to have an easy
+> and consistent code (so that we can concentrate on the real problems).
+>
+
+I don't mind if we use QT. I only thought that it would be good to keep the 
+GUI independent part of Sigschege away of QT.
+
+> So that we can go on now and rethink the whole object structure of
+> YaVec+Sigschege...
+>
+
+Have a look to this QT documentation: http://doc.qtsoftware.com/4.5/model-
+view-programming.html
+
+If we use this approach, we can use libsigschege as model and build the reset 
+in QT. What do you think?
+
+> BTW:
+> file:///usr/share/qt4/doc/html/qtsvg.html
+>
+> I didn't look into it, but this might even be similar to YaVec.
+>
+I think this class implements the SVG standard. We can use it to create 
+another export filter. :-)
+
+> Cheers,
+> Ulf
+>
+> Am Thursday 23 July 2009 11:10:32 schrieb Development discussions:
+> > Hi Ulf,
+> >
+> > I don't know if they are really easy. STL works fine and is standard. QT
+> > uses a different iterator approach (Java style) which has its advantages
+> > and disadvantages.
+> >
+> > Copy on write (COW) in STL depends on the specific STL implementation.
+> > Most implementation do not use COW because it is very difficult to
+> > implement it thread safe. For this reason, all QT container/string
+> > classes  (that I checked) are not thread safe. So, ?superior?, depends on
+> > the use case. If you need to modify a string, it does not matter if you
+> > copy it early or late. And if you don't want to change it, pass a pointer
+> > or reference arround.
+> >
+> > You should have a look at the Technology Report 1 (TR1). The next version
+> > of STL will contain a std::for_each and many more good stuff. If you want
+> > to use for_each (and much more) now, you can use boost. Boost is a really
+> > useful library. Have a look :-)
+> >
+> > It seems that Alex and you are a fan of QT. So if you guys want, we can
+> > refactor everything to QT.
+> >
+> > Cheers
+> > Ingo
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sat Jul 25 00:19:36 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sat, 25 Jul 2009 00:19:36 +0200
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907241948.05330.ingo.hinrichs@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+	<200907240017.15358.ulf.klaperski@web.de>
+	<200907241948.05330.ingo.hinrichs@web.de>
+Message-ID: <200907250019.37036.ulf.klaperski@web.de>
+
+
+Hi,
+
+actually I'm really undecided now...
+
+I think before we invest any more time in coding we have to decide how we
+want to build it.
+
+YaVec:
+- use YaVec as I planned
+ (which means we have to do the painting ourselves in YaVec)
+- redo YaVec as Qt-only library and use GraphicsScene/GraphicsView
+  (basically we have to derive new classes from QGraphicsItem)
+- discard YaVec and do the graphics directly
+  (this means: app has to take care of painting on the screen, and writing into a file separately
+* should we stay with fig as internal format or switch to SVG or something else?
+
+C++ usage:
+- should we use Qt completely or only for GUI?
+
+BTW: the argument "maybe we want to switch away from Qt one day" doesn't count.
+First I don't think that we'll switch the toolkit later on. Most likely there will not be non-GUI versions,
+just GUI with scripting and plugins. And if there is a version without GUI, it doesn't really matter if it requires
+the Qt libs to be present. Finally, 80% of all the code will be GUI-related anyway, so the small rest doesn't matter.
+
+On the other hand, the argument that using Qt everywhere allows a clean code base without conversions also 
+isn't completely true. There still will be non-Qt interfaces, like Xerxesc. 
+
+And I guess I have to spend a lot of time reading now...
+
+Cheers,
+Ulf
+
+
+Am Friday 24 July 2009 11:48:05 schrieb Development discussions:
+
+> see below:
+
+
+From sigschege-devel at lists.berlios.de  Sun Jul 26 13:10:51 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 26 Jul 2009 21:10:51 +1000
+Subject: [Sigschege-devel] GUI start
+In-Reply-To: <200907250019.37036.ulf.klaperski@web.de>
+References: <200907211606.30654.ulf.klaperski@web.de>
+	<200907241948.05330.ingo.hinrichs@web.de>
+	<200907250019.37036.ulf.klaperski@web.de>
+Message-ID: <200907262110.51693.ingo.hinrichs@web.de>
+
+On Sat, 25 Jul 2009 08:19:36 am Development discussions wrote:
+> Hi,
+>
+> actually I'm really undecided now...
+>
+> I think before we invest any more time in coding we have to decide how we
+> want to build it.
+>
+> YaVec:
+> - use YaVec as I planned
+>  (which means we have to do the painting ourselves in YaVec)
+> - redo YaVec as Qt-only library and use GraphicsScene/GraphicsView
+>   (basically we have to derive new classes from QGraphicsItem)
+> - discard YaVec and do the graphics directly
+>   (this means: app has to take care of painting on the screen, and writing
+> into a file separately * should we stay with fig as internal format or
+> switch to SVG or something else?
+>
+Actually, I think we should use XML as a Sigschege file format and add many 
+different export filter (png, jpeg, svg, fig etc.). So SVG would be one of many 
+export file formats.
+
+> C++ usage:
+> - should we use Qt completely or only for GUI?
+>
+Completely, see below.
+
+> BTW: the argument "maybe we want to switch away from Qt one day" doesn't
+> count.
+This was only a theoretical possibility :-)
+
+> First I don't think that we'll switch the toolkit later on. Most
+> likely there will not be non-GUI versions, just GUI with scripting and
+> plugins. And if there is a version without GUI, it doesn't really matter if
+> it requires the Qt libs to be present. Finally, 80% of all the code will be
+> GUI-related anyway, so the small rest doesn't matter.
+>
+> On the other hand, the argument that using Qt everywhere allows a clean
+> code base without conversions also isn't completely true. There still will
+> be non-Qt interfaces, like Xerxesc.
+>
+We could replace Xerxesc with QtXML. And you are right! Lets use 100% Qt. We 
+can discuss  all day long and we will never find a solution that will be 100% 
+future prove. So, lets start with 100% Qt and see what will happen :-)
+
+> And I guess I have to spend a lot of time reading now...
+>
+That's what I'm doing since some time now and I fear that we will rewrite a 
+lot of our code. :-( So far, I think that we should use the model/view and 
+GraphicsScene/GraphicsView stuff from Qt and drop the rest that can not be 
+reused. This would give us a clean design.
+
+We could try to reuse YaVec as export filter, but I prefer a clean start.
+
+> Cheers,
+> Ulf
+
+Cheers
+Ingo
+
+>
+> Am Friday 24 July 2009 11:48:05 schrieb Development discussions:
+> > see below:
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Jul 27 23:41:55 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 27 Jul 2009 23:41:55 +0200
+Subject: [Sigschege-devel] libsigschege
+In-Reply-To: <200907241933.34242.ingo.hinrichs@web.de>
+References: <200907211619.04524.ulf.klaperski@web.de>
+	<200907232355.52715.ulf.klaperski@web.de>
+	<200907241933.34242.ingo.hinrichs@web.de>
+Message-ID: <200907272341.55447.ulf.klaperski@web.de>
+
+Hi Ingo,
+
+let me elaborate a bit on YaVec (or rather the purpose and concept of it).
+
+You must clearly distinguish between the application's object hierarchy and the graphics
+elements.
+
+Let's say you have a signal, which contains events. The drawing of the signal is done in the
+signal object, by evaluating the events. This is quite complicated code (have a look at
+TimSignal::paintRange in TimSignal.cpp) and you surely want to implement it only once.
+The drawing itself consists of graphics primitives (lines, text, points, circles...).
+
+So an intermediate representation should be created, which can be displayed, saved, exported.
+Preferably this representation should be some common format, like fig or svg. 
+
+Of course the "View" part of the graphics layer has to do additional stuff, like reporting back to the
+application what has been done to the graphics. ("hey, user clicked on line 47!")
+This is still missing a bit from the concept, as I planned to implement it later. (And maybe this time 
+we should be aware beforehand how we do it  :P )
+And it actually might impose a problem to the concept, because the application has to *remember* what
+line 47 actually means.
+
+But you can't simply write a sigschege-file to svg/png/whatever filter, because the sigschege xml file
+contains just stuff like signal/event which has to be interpreted by TimSignal::paintRange etc.
+
+I wouldn't mind rewriting YaVec as a Qt-only library. The GUI concepts vary too strongly and 
+QGraphicsScene/QGraphicsView should be used. Maybe even the SVN stuff in Qt could be used.
+
+The sad thing: I invested a lot of time making the text in YaVec really compatible with the fonts in
+xfig. With anything new we have to redo that! -.-
+Just have a look at YaVecText.cpp and enjoy. :)
+
+Cheers,
+Ulf
+
+
+Am Friday 24 July 2009 11:33:34 schrieb Development discussions:
+> Ok, now I got it!
+> 
+> I would prefer to use QT for this. We can use the Model/View classes of QT.
+> 
+> Maybe we can reuse YaVec for exporting the diagram. 
+> 
+> Cheers
+> Ingo
+> 
+> 
+> On Fri, 24 Jul 2009 07:55:52 am Development discussions wrote:
+> > Hi Ingo,
+> >
+> > yes, you got it wrong there. :P
+> >
+> > The purpose of YaVec is to handle the graphics stuff and free the
+> > application of doing it. Basically, the app says "make a polyline", YaVec
+> > will create the correct object hierarchy, draw the lines onto the screen,
+> > inform the app that point 1 of the line has been clicked, and finally
+> > writes out the file into a graphics file.
+> >
+> > Of course, as much as possible should be delegated to the toolkit. That was
+> > what my recent question referred to. I think it would be most elegant to
+> > use the GraphicsScene/GraphicsView Widgets, but they are incompatible with
+> > the current concept of YaVec views. Because of this I'm doing the painting
+> > myself now, with a simple QPainter. And this is one of the reasons why I
+> > thought about making it a Qt-only library.
+> >
+> > On another note, I'm not sure if the fig format is the right choice,
+> > because it's rather a dying format, maybe SVGT or something else (?) would
+> > be a better choice, but I'm not sure.
+> >
+> > Cheers,
+> > Ulf
+> >
+> > Am Thursday 23 July 2009 11:26:20 schrieb Development discussions:
+> > > Hi Ulf,
+> > >
+> > > may be I got something wrong here, but I thought YaVec is a library to
+> > > export timing diagrams to Xfig and not to draw stuff in s GUI toolkit.
+> > > Normally, each toolkit brings its own drawing library with it. I don't
+> > > think that we should use YaVec to draw things inside a GUI toolkit. We
+> > > should the toolkit itself.
+> >
+> > _______________________________________________
+> > Sigschege-devel mailing list
+> > Sigschege-devel at lists.berlios.de
+> > https://lists.berlios.de/mailman/listinfo/sigschege-devel
+> 
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+> 
+
+
+

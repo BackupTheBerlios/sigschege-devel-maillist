@@ -1,0 +1,31 @@
+From sigschege-devel at lists.berlios.de  Tue Dec 22 22:53:01 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 22 Dec 2009 22:53:01 +0100
+Subject: [Sigschege-devel] segfault
+Message-ID: <1883795174@web.de>
+
+
+Hi Ingo,
+
+I'm seeing a segmentation fault which can be reproduced easily:
+
+./sigschege
+addTLI 0xa01d898 @-1     // me presses big green "+"
+rmTLI 0xa01d898          // me presses Undo
+addTLI 0x9ed40a0 @-1     // me presses big green "+"
+TimCmdAddListItem: delete 0xa01d898
+Segmentation fault
+
+It seems that adding a new signal to the diagram after an undo deletes the
+previous add-command from the undo stack and this causes the crash.
+
+Removing "delete m_item" from the TimCmdAddListItem destructor fixes the
+segfault, but actually I don't understand why. The documentation for
+QGraphicsScene::removeItem explicitly says "The ownership of item is passed
+on to the caller (i.e., QGraphicsScene will no longer delete item when destroyed)."
+
+I looked at an example from Qt (/usr/lib/qt4/examples/tools/undoframework),
+and indeed they do not delete the item when the add-command is deconstructed.
+I think there isn't even a destructor.
+
+

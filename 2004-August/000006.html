@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] Debugging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2004-August/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Debugging&In-Reply-To=%3C20040814123714.GA1627%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000005.html">
+   <LINK REL="Next"  HREF="000007.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] Debugging</H1>
+    <B>sigschege-devel-admin at lists.berlios.de</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Debugging&In-Reply-To=%3C20040814123714.GA1627%40localhost%3E"
+       TITLE="[Sigschege-devel] Debugging">sigschege-devel-admin at lists.berlios.de
+       </A><BR>
+    <I>Sat Aug 14 14:37:14 CEST 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000005.html">[Sigschege-devel] text size
+</A></li>
+        <LI>Next message: <A HREF="000007.html">[Sigschege-devel] Debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+here are some hints to get you faster into the debug flow...
+
+Don't forget to switch off optimization:
+CXX=-g ./configure
+
+To start gdb:
+libtool --mode=execute gdb Example
+
+After too much time investigating the issue I found the problem why
+the library symbols won't work: they aren't simply loaded yet...
+
+To do so, simply set a breakpoint on main and run the program.
+Afterwards the EasyVec symbols are at your service!
+
+
+One final note:
+
+For the completion to work properly, you must quote class members in
+gdb with a single quote ': 
+b 'EasyVecElmText::up&lt;TAB&gt;
+
+
+Cheers,
+Ulf
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000005.html">[Sigschege-devel] text size
+</A></li>
+	<LI>Next message: <A HREF="000007.html">[Sigschege-devel] Debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

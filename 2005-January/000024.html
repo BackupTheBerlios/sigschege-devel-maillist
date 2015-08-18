@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] Release Flow
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2005-January/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Release%20Flow&In-Reply-To=%3C20050127223959.GA11647%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] Release Flow</H1>
+    <B>sigschege-devel-admin at lists.berlios.de</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Release%20Flow&In-Reply-To=%3C20050127223959.GA11647%40localhost%3E"
+       TITLE="[Sigschege-devel] Release Flow">sigschege-devel-admin at lists.berlios.de
+       </A><BR>
+    <I>Thu Jan 27 23:39:59 CET 2005</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi,
+
+just enjoy our release flow to come...:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">ulf at mordor</A>:~/devel/exp&gt; mk_rel.py sigschege 0.0.3
+Info: Project has automake...creating configure script
+Info: trunk dir is <A HREF="file:///home/ulf/devel/exp/sigschege-repos/trunk">file:///home/ulf/devel/exp/sigschege-repos/trunk</A>
+Info: tags dir is <A HREF="file:///home/ulf/devel/exp/sigschege-repos/tags">file:///home/ulf/devel/exp/sigschege-repos/tags</A>
+Info: existing releases are  ['0.0.0', '0.0.1', '0.0.2']
+CMD: svn cp -m &quot;tagging for release&quot; <A HREF="file:///home/ulf/devel/exp/sigschege-repos/trunk">file:///home/ulf/devel/exp/sigschege-repos/trunk</A> <A HREF="file:///home/ulf/devel/exp/sigschege-repos/tags/release-0.0.3">file:///home/ulf/devel/exp/sigschege-repos/tags/release-0.0.3</A>
+CMD: svn export <A HREF="file:///home/ulf/devel/exp/sigschege-repos/tags/release-0.0.3">file:///home/ulf/devel/exp/sigschege-repos/tags/release-0.0.3</A> sigschege-0.0.3
+<A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">ulf at mordor</A>:~/devel/exp&gt; ll sigschege-0.0.3.tar.gz 
+-rw-r--r--    1 ulf      ulf          391K 2005-01-27 23:32 sigschege-0.0.3.tar.gz
+
+I attach the script. Please don't use it on the real sigschege repository. I
+created a dummy repository with &quot;svnadmin load&quot; and checked it out for playing.
+
+(BTW: The first argument sigschege is the checked out directory.
+
+Problem: It tries to create the configure stuff with &quot;aclocal &amp;&amp; automake
+--add-missing &amp;&amp; autoconf&quot;. But that doesn't do what I really want for a release...
+
+Missing: Test if everything is checked in, releasing from branches, sanity checks
+
+
+Cheers,
+Ulf
+
+-- 
+Jabber-ID: <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">ro_kenn at amessage.de</A>
+-------------- next part --------------
+#! /usr/bin/python
+
+import re
+import commands
+import getopt
+import sys
+import os
+
+def usage(exit_status):
+    print &quot;Usage: mk_rel.py [-n] &lt;svn_dir&gt; &lt;release&gt;&quot;
+    print &quot;       -n = do nothing, just analyze and report&quot;
+    print 'The release must be like &quot;0.1&quot;. The release- prefix for tagging will be added automatically'
+    sys.exit(exit_status)
+
+(opt_l, args) = getopt.getopt(sys.argv[1:], &quot;nh&quot;)
+
+opts={}
+for tpl in opt_l:
+    opts[tpl[0]] = tpl[1]
+
+if len(args)!=2:
+    print &quot;Error: 2 arguments expected&quot;
+    usage(1)
+
+svn_dir = args[0]
+new_release = args[1]
+
+cd_svn = &quot;cd &quot; + svn_dir + &quot;; &quot;
+
+has_automake = os.path.exists(svn_dir+&quot;/Makefile.am&quot;)
+
+if has_automake:
+    print &quot;Info: Project has automake...creating configure script&quot;
+else:
+    print &quot;Info: Project does not have automake.&quot;
+
+
+svn_output = commands.getoutput(cd_svn+&quot;svn info&quot;)
+
+url_re = re.compile(r'URL:\s+([+a-z]+://[a-z/.-]+)')
+svn_lines = svn_output.split(&quot;\n&quot;)
+
+success=0
+for svn_line in svn_lines:
+    url_match = url_re.match(svn_line)
+    if url_match != None:
+	trunk_dir = url_match.group(1)
+	print &quot;Info: trunk dir is &quot; + trunk_dir
+	success=1
+
+if success==0:
+    print &quot;Error: Subversion repository not found&quot;
+    sys.exit(1)
+
+tags_dir = re.sub(r'trunk/?$', &quot;tags&quot;, trunk_dir)
+
+print &quot;Info: tags dir is &quot; + tags_dir
+
+
+svn_output = commands.getoutput(cd_svn+&quot;svn ls &quot; + tags_dir)
+svn_lines = svn_output.split(&quot;\n&quot;)
+release_re = re.compile(r'release-([0-9a-z.]+)/')
+releases=[]
+for svn_line in svn_lines:
+    rel_match = release_re.match(svn_line)
+    if rel_match!=None:
+	releases.append(rel_match.group(1))
+
+print &quot;Info: existing releases are &quot;,
+print releases
+
+if new_release in releases:
+    print &quot;Info: Release &quot; + new_release + &quot; already exists - using existing release&quot;
+else:
+    tag_cmd='svn cp -m &quot;tagging for release&quot; ' + trunk_dir + &quot; &quot; + tags_dir + &quot;/release-&quot; + new_release
+    print &quot;CMD: &quot; + tag_cmd
+    if not &quot;-n&quot; in opts:
+	(exitstatus, outtext) = commands.getstatusoutput(tag_cmd)
+	if exitstatus!=0:
+	    print &quot;Error: Could not tag database, message:&quot; + outtext
+	    exit(1)
+
+export_dir= svn_dir + &quot;-&quot; + new_release
+
+export_cmd=&quot;svn export &quot; + tags_dir + &quot;/release-&quot; + new_release + &quot; &quot; + export_dir
+print &quot;CMD: &quot; + export_cmd
+
+if not &quot;-n&quot; in opts:
+    svn_output = commands.getoutput(export_cmd)
+    if has_automake==1:
+	commands.getoutput(&quot;cd &quot; + export_dir + &quot;; aclocal &amp;&amp; automake --add-missing &amp;&amp; autoconf&quot;)
+    commands.getoutput(&quot;tar czf &quot; + export_dir + &quot;.tar.gz &quot; + export_dir)
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] New target for Sigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200907041135.57275.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000040.html">
+   <LINK REL="Next"  HREF="000044.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] New target for Sigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200907041135.57275.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] New target for Sigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Sat Jul  4 11:35:57 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000040.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+        <LI>Next message: <A HREF="000044.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#42">[ date ]</a>
+              <a href="thread.html#42">[ thread ]</a>
+              <a href="subject.html#42">[ subject ]</a>
+              <a href="author.html#42">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi guys,
+
+Am Thursday 02 July 2009 22:02:59 schrieb Development discussions:
+&gt;<i> 
+</I>&gt;<i> I wouldn't do this all in python! For a scripting interface in an  
+</I>&gt;<i> application I would rater use QScript or LUA. QScript is some kind of  
+</I>&gt;<i> JavaScript and very easy to use and to integrate. On the other hand,  
+</I>&gt;<i> LUA is also easy, powerful but simple. BUT in someway complicated to  
+</I>&gt;<i> use with C++ but not impossible.
+</I>&gt;<i> I used LUA as an stand-alone interpreter and wrote extensions/ 
+</I>&gt;<i> libraries (in native C) for it to interface with some hardware  
+</I>&gt;<i> components.
+</I>&gt;<i> QScipt will be my favorite if the Qt framework will be used!
+</I>
+Actually the Python-Interface was not meant as a scripting interface inside the GUI, but as a separate UI.
+(You know, like a GUI, but without the &quot;G&quot; part :P). The original plans had 2 binaries: A Python binary as first one
+(which already exists and is even somewhat usable) and a GUI binary as secondary step.
+
+Now that the focus is shifted the Python binary either will be omitted or be shifted to a lower priority. the
+question is, if we want to have a scripting interface in the GUI. I wouldn't mind having one, but I also wouldn't
+put a high priority on it. (If at all, I would only start implementing it after 1.0.)
+
+From the  old plan I have compiled a draft for a new schedule. Please give me feedback and more suggestions.
+Maybe we should put it in the Wiki?
+
+And before we have more discussions without results: Qt is decided.
+
+cya,
+Ulf 
+
+hey emacs, it's -*- outline -*-
+
+
+* 0.1
+
+- configure &amp; compile flow running
+- build &amp; release flow running (actually, this will be a test for it
+- Qt element in Yavec finished
+- basic Qt GUI working with existing features 
+- Lists (Lists of Text Labels, Signals, Time Scales and other Lists) *
+- Text Labels *
+- Time Scales *
+- Signals  *
+- Loading &amp; Saving *
+- Exporting *
+
+The elements marked with &quot;*&quot; already exist and only need Qt support.
+
+* 0.2
+
+- GUI enhancements
+- overlay support
+- markers
+- pointers (point from sig1/event1 to sig2/event3)
+- comment boxes
+- signal visualization scheme (SVS, make visualization of states configurable for signals)
+- colour support (SVS)
+- line Styles support (SVS)
+
+* 0.3
+
+- GUI usability improvements
+
+* 0.4
+
+- scripting interface (if decided)
+- splits
+- GUI usability improvements
+
+* 0.5
+
+- possible enhancements, eg, special &quot;clock&quot; signal
+
+* 0.6
+
+* 0.7
+
+- file format stable
+
+* 0.8
+
+bug fixes
+
+* 0.9
+
+all features in, release candidate
+
+* 1.0 !!!!!!
+
+stable version
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000040.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+	<LI>Next message: <A HREF="000044.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#42">[ date ]</a>
+              <a href="thread.html#42">[ thread ]</a>
+              <a href="subject.html#42">[ subject ]</a>
+              <a href="author.html#42">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

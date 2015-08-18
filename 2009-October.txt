@@ -1,0 +1,166 @@
+From sigschege-devel at lists.berlios.de  Sun Oct 25 12:26:24 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 25 Oct 2009 12:26:24 +0100
+Subject: [Sigschege-devel] status
+Message-ID: <200910251226.24757.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+I'm going to add new/load/save/saveAs stuff now, starting with the GUI entries, and moving on to the XML stuff.
+
+So stay out of may way! ;)
+
+Cheers,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Tue Oct 27 09:36:47 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 27 Oct 2009 19:36:47 +1100
+Subject: [Sigschege-devel] status
+In-Reply-To: <200910251226.24757.ulf.klaperski@web.de>
+References: <200910251226.24757.ulf.klaperski@web.de>
+Message-ID: <200910271936.47391.ingo.hinrichs@web.de>
+
+On Sun, 25 Oct 2009 10:26:24 pm Development discussions wrote:
+> Hi Ingo,
+>
+> I'm going to add new/load/save/saveAs stuff now, starting with the GUI
+> entries, and moving on to the XML stuff.
+>
+> So stay out of may way! ;)
+>
+> Cheers,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+Hi Ulf!
+
+It's cool! Go ahead and have some fun :-)
+
+Can you create a task and assign it to your self? Add also task that should be 
+done in future. This way everyone can see which tasks exists and which is 
+still free :-) Otherwise we have to keep track in emails.
+
+By the way. Is there any specific reason, why you use ?load? instead of ?open??
+
+Cheers
+Ingo
+
+
+From sigschege-devel at lists.berlios.de  Tue Oct 27 21:21:45 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 27 Oct 2009 21:21:45 +0100
+Subject: [Sigschege-devel] status
+In-Reply-To: <200910271936.47391.ingo.hinrichs@web.de>
+References: <200910251226.24757.ulf.klaperski@web.de>
+	<200910271936.47391.ingo.hinrichs@web.de>
+Message-ID: <200910272121.46035.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+Am Tuesday 27 October 2009 09:36:47 schrieb Development discussions:
+
+> Can you create a task and assign it to your self? Add also task that should be 
+> done in future. This way everyone can see which tasks exists and which is 
+> still free :-) Otherwise we have to keep track in emails.
+
+Done.
+
+> By the way. Is there any specific reason, why you use ?load? instead of ?open??
+
+To make it compatible to Excel. :P
+No, serious, I will change it.
+
+You might have noticed that I have added a preliminary document-is-modified detection.
+This still has some flaws:
+
+- can't handle autosave
+- can't handle undo/redo
+
+Autosave would be easy to handle, but undo won't. There could be several approaches:
+
+a: use current solution with autosave support added, screw undo detection
+
+b: regard as modified if undo stack is non-empty or a undo-stack-exceeded flag is set 
+This has the disadvantage that it requires the undo stack to be deleted on save.
+
+c: create an internal xml file and calculate a checksum
+Could consume too much cpu time...
+
+d: ?
+
+Cheers
+Ulf 
+
+
+From sigschege-devel at lists.berlios.de  Thu Oct 29 07:59:34 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 29 Oct 2009 17:59:34 +1100
+Subject: [Sigschege-devel] status
+In-Reply-To: <200910272121.46035.ulf.klaperski@web.de>
+References: <200910251226.24757.ulf.klaperski@web.de>
+	<200910271936.47391.ingo.hinrichs@web.de>
+	<200910272121.46035.ulf.klaperski@web.de>
+Message-ID: <200910291759.34807.ingo.hinrichs@web.de>
+
+On Wed, 28 Oct 2009 07:21:45 am Development discussions wrote:
+> Hi Ingo,
+>
+> Am Tuesday 27 October 2009 09:36:47 schrieb Development discussions:
+> > Can you create a task and assign it to your self? Add also task that
+> > should be done in future. This way everyone can see which tasks exists
+> > and which is still free :-) Otherwise we have to keep track in emails.
+>
+> Done.
+>
+> > By the way. Is there any specific reason, why you use ?load? instead of
+> > ?open??
+>
+> To make it compatible to Excel. :P
+> No, serious, I will change it.
+>
+> You might have noticed that I have added a preliminary document-is-modified
+> detection. This still has some flaws:
+>
+> - can't handle autosave
+> - can't handle undo/redo
+>
+> Autosave would be easy to handle, but undo won't. There could be several
+> approaches:
+>
+> a: use current solution with autosave support added, screw undo detection
+>
+> b: regard as modified if undo stack is non-empty or a undo-stack-exceeded
+> flag is set This has the disadvantage that it requires the undo stack to be
+> deleted on save.
+>
+> c: create an internal xml file and calculate a checksum
+> Could consume too much cpu time...
+>
+> d: ?
+We call QUndoStack::setClean() every time when we save the document. Then we 
+can use QundoStack::cleanChanged() slot to set the ismodified flag.
+
+Problem solved :-)
+>
+> Cheers
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+I will start to implement addEvent etc. I don't think that this will conflict 
+much with your changed.
+
+Cheers
+Ingo
+
+
+

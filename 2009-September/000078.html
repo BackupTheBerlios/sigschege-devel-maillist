@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] First simple GUI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909201349.56349.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000077.html">
+   <LINK REL="Next"  HREF="000079.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] First simple GUI</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909201349.56349.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] First simple GUI">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Sun Sep 20 13:49:56 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000077.html">[Sigschege-devel] First simple GUI
+</A></li>
+        <LI>Next message: <A HREF="000079.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Ingo,
+
+Am Sunday 20 September 2009 11:48:50 schrieb Development discussions:
+
+&gt;<i> 
+</I>&gt;<i> Actually, TimEventLow and TimEventHigh are only responsible for drawing. All 
+</I>&gt;<i> event data like, time, text etc, are stored in TimEvent. So, if you want, 
+</I>&gt;<i> TimEvent is a generic event and TimEventLow/High are the &#8220;visualization 
+</I>&gt;<i> mappings&#8221;. If I understand you correct, you want only one highly configurable 
+</I>&gt;<i> class that does the drawings.
+</I>&gt;<i> 
+</I>&gt;<i> I don't know if this is a good idea (I need to think a little bit more about 
+</I>&gt;<i> that) but I think it can be easily implemented by sub-classing TimEventType 
+</I>&gt;<i> and use this new class instead of TimEventLow/High. Maybe we should think 
+</I>&gt;<i> about a manager to handle all different visualization mappings. 
+</I>&gt;<i> 
+</I>&gt;<i> If you have ideas, please write them down.....
+</I>
+Sure. :)
+
+The principle is as follows:
+* Each state is defined as a string, nothing else.
+* A visualization scheme defines what the state (not the event actually) looks like and is attached to a signal
+  This includes lines (top, middle, bottom, several of them), text (eg. display the state), colours
+* at least 2 standard visualization schemes exist:
+  - &quot;logic&quot;: 1/0 are displayed as top/bottom lines, X/U as both lines, Z as middle line, no text is displayed
+  - &quot;bus&quot;: all states are displayed with top/bottom line, text is always displayed
+* user defined visualization schemes are possible, not now, but later
+
+For the events, in the easiest implementation they just connect the lines, which could also be &quot;from bottom
+line to middle AND bottom line&quot;. Maybe later they will be extended for more fancy stuff, like colour transition,
+jitter, etc... and right now we also need slopes.
+
+I just checked the code and saw that you draw not only the event, but also the state itself (if I interpreted
+it correctly). I assume it's the signal state before the event. In an extreme case there might even be
+no event at all, but we could solve that by mirroring the t=-infinity event (which we need anyway for the start value)
+to a t=+infinity event (actually we just mirror the last event to +infinity).
+
+
+&gt;<i> I thinks it would be better to make a event a graphic item. It will simplify 
+</I>&gt;<i> the implementation.
+</I>&gt;<i> 
+</I>&gt;<i> I would like to know, why do you want that TimWave draws the whole signal. 
+</I>&gt;<i> What are the benefits?
+</I>&gt;<i> 
+</I>
+Because I love my existing code. :P
+Well actually it doesn't really matter where we do the actual calculations, as long as the Event knows the starting conditions 
+(end time and state of previous event).
+But the Low/High classes are not flexible enough even to handle all possible state transitions,
+and don't bring enough benefit to pour them into classes of their own, so there should be only one Event, which
+is clever enough to handle all possible transitions.
+
+If you agree with this I could proceed by implementing a visualization scheme class and then rework the Event class).
+
+Cheers,
+Ulf
+
+PS: Huh? I just wanted to send the mail and Kmail told me: 
+&quot;The message you have composed seems to refer to an attached file but you have not attached anything.
+Do you want to attach a file to your message?&quot;
+
+????
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000077.html">[Sigschege-devel] First simple GUI
+</A></li>
+	<LI>Next message: <A HREF="000079.html">[Sigschege-devel] First simple GUI
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#78">[ date ]</a>
+              <a href="thread.html#78">[ thread ]</a>
+              <a href="subject.html#78">[ subject ]</a>
+              <a href="author.html#78">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

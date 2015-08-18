@@ -1,0 +1,67 @@
+From sigschege-devel at lists.berlios.de  Tue Jan  5 10:21:14 2010
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Tue, 5 Jan 2010 20:21:14 +1100
+Subject: [Sigschege-devel] segfault
+In-Reply-To: <1883795174@web.de>
+References: <1883795174@web.de>
+Message-ID: <201001052021.14712.ingo.hinrichs@web.de>
+
+Hello Ulf
+
+Happy New Year!!
+
+I found the problem! I forgot to remove a delete from TimEvents destructor. As 
+soon as the first signal was deleted, TimEventLow was deleted as well. This was 
+bad because the TimEventTypes are now shared between all signals. As the new 
+signal tried to draw itself, it tried to access the deleted TimEventLow.
+
+Good finding!
+
+Cheers
+Ingo
+
+On Wed, 23 Dec 2009 08:53:01 am Development discussions wrote:
+> Hi Ingo,
+>
+> I'm seeing a segmentation fault which can be reproduced easily:
+>
+> ./sigschege
+> addTLI 0xa01d898 @-1     // me presses big green "+"
+> rmTLI 0xa01d898          // me presses Undo
+> addTLI 0x9ed40a0 @-1     // me presses big green "+"
+> TimCmdAddListItem: delete 0xa01d898
+> Segmentation fault
+>
+> It seems that adding a new signal to the diagram after an undo deletes the
+> previous add-command from the undo stack and this causes the crash.
+>
+> Removing "delete m_item" from the TimCmdAddListItem destructor fixes the
+> segfault, but actually I don't understand why. The documentation for
+> QGraphicsScene::removeItem explicitly says "The ownership of item is passed
+> on to the caller (i.e., QGraphicsScene will no longer delete item when
+> destroyed)."
+>
+> I looked at an example from Qt (/usr/lib/qt4/examples/tools/undoframework),
+> and indeed they do not delete the item when the add-command is
+> deconstructed. I think there isn't even a destructor.
+>
+> From my understanding the way you have implemented is correct, but their
+> way works.
+>
+> Any ideas?
+>
+> Cheers,
+> Ulf
+>
+>
+> ______________________________________________________
+> GRATIS f?r alle WEB.DE-Nutzer: Die maxdome Movie-FLAT!
+> Jetzt freischalten unter http://movieflat.web.de
+>
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+

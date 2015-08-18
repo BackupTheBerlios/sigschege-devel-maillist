@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] First simple GUI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909232133.32220.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000082.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] First simple GUI</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20First%20simple%20GUI&In-Reply-To=%3C200909232133.32220.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] First simple GUI">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Wed Sep 23 13:33:31 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000082.html">[Sigschege-devel] First simple GUI
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#83">[ date ]</a>
+              <a href="thread.html#83">[ thread ]</a>
+              <a href="subject.html#83">[ subject ]</a>
+              <a href="author.html#83">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ulf,
+
+On Wed, 23 Sep 2009 12:27:04 am Development discussions wrote:
+&gt;<i> Hi Ingo,
+</I>&gt;<i>
+</I>&gt;<i> Am Monday 21 September 2009 12:21:28 schrieb Development discussions:
+</I>&gt;<i> &gt; I think I understand. If the string is &#8216;1&#8217; then it will be shown as a
+</I>&gt;<i> &gt; high signal and if the string is &#8216;0&#8217; if will be shown as a low signal,
+</I>&gt;<i> &gt; right?
+</I>&gt;<i>
+</I>&gt;<i> If you use the builtin &quot;logic&quot; visualization, yes.
+</I>&gt;<i> If you use the builtin &quot;bus&quot; visualization, no. In that case both would be
+</I>&gt;<i> displayed as &quot;X&quot; (bottom and top line) with the text &quot;1&quot; and &quot;0&quot; displayed.
+</I>&gt;<i> If you use a custom visualization, it might look like...whatever.
+</I>&gt;<i>
+</I>&gt;<i> &gt; What should we do if I want green and red high signals at the same time?
+</I>&gt;<i> &gt; And both should show the text &#8216;1&#8217; (to make it harder :-). I know its
+</I>&gt;<i> &gt; future use, but think about it. Using only strings to define a state
+</I>&gt;<i> &gt; will limit us a lot. In the end we need more information about a state.
+</I>&gt;<i>
+</I>&gt;<i> First of all, for Sigschege there is no &quot;high&quot; and &quot;low&quot; signals at all,
+</I>&gt;<i> just some states which are represented with a line at the top or at the
+</I>&gt;<i> bottom (admittedly not a rare case.
+</I>&gt;<i>
+</I>&gt;<i> Basically states are nothing else then the &quot;TimEvent&quot; Objects, they could
+</I>&gt;<i> easily be enhanced later to carry additional information.
+</I>&gt;<i> If something like different colors with the same printed value should ever
+</I>&gt;<i> be needed, it would be easy to add something like &quot;properties&quot;, eg &quot;1:red&quot;
+</I>&gt;<i> and &quot;1:green&quot;.
+</I>
+I know the the generic state design would work and I sure that we can 
+change/add anything later. But, I think we should limit the feature list in 
+the beginning, so that we can have something useful very soon. If we do it too 
+flexible it will take us a long time....
+
+&gt;<i> &gt; An event starts at the event time, eg. 10ns and ends at the next event
+</I>&gt;<i> &gt; or never (it will end at the end of the timing diagram). It will draw
+</I>&gt;<i> &gt; the state transition and the following state which is defined in the
+</I>&gt;<i> &gt; event.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Another important point is that TimWave has 1 or more events. So, there
+</I>&gt;<i> &gt; is at least one event. This event can have the type NULL or Empty which
+</I>&gt;<i> &gt; does not draw anything but occupies space (up the next event or the end
+</I>&gt;<i> &gt; of the timing diagram). Note that this event type is not implemented yet.
+</I>&gt;<i>
+</I>&gt;<i> OK. But to make it simpler: If the pointer to next is NULL, the end time of
+</I>&gt;<i> the state is automatically regarded as +infinity, if the pointer to prev is
+</I>&gt;<i> NULL, the start time is -infinity (i.e. it's the start state). There might
+</I>&gt;<i> be a NULL visualization though in case for certain time slots nothing
+</I>&gt;<i> should be drawn.
+</I>
+At the moment I'm limiting -inf and +inf to the start and end time of the 
+TimingDiagram. It simplifies the calculations :-)
+
+&gt;<i> &gt; First of all, the current TimEventHigh/Low classes are very simple
+</I>&gt;<i> &gt; implementation. The current implementation is the absolute minimum that
+</I>&gt;<i> &gt; we need to support simple high and low states. As I sad before, we have
+</I>&gt;<i> &gt; a lot to do :-)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; But let me explain my idea a little bit further.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Now would be good time to fetch a new coffee or tee.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Done? Ok, let&#8217;s start&#8230;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; TimWave has 1...n TimEvents
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; TimEvents are stored in a double linked list
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; Each TimEvent is responsible from the event (time) to the next event
+</I>&gt;<i> &gt; or end of timing diagram
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; Each TimEvent has the same information.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; o Pointer to some timing diagram wide information
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; o Pointer to a TimEventType object
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; o Event time
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; o String (not yet)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; o Slope (not yet)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; o Etc. (not yet)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; TimEvent will not draw anything, it will only store information
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; Subclasses of TimEventType will be responsible for the screen
+</I>&gt;<i> &gt; representation (drawing) and everything else that is state related
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; TimEventLow is a subclass of TimEventType and only responsible to draw
+</I>&gt;<i> &gt; low signals (state transitions and state)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; TimEventHigh is a subclass of TimEventType and only responsible to
+</I>&gt;<i> &gt; draw high signals (state transitions and state)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &#183; TimEventType (and subclasses) and TimEvent are using the state design
+</I>&gt;<i> &gt; pattern. This means that TimEvent will change its behaviour by changing
+</I>&gt;<i> &gt; the TimEventType pointer. For example: To change a high event to a low
+</I>&gt;<i> &gt; event the TimEventType pointer must be changed from TimEventHigh to
+</I>&gt;<i> &gt; TimEventLow.
+</I>&gt;<i>
+</I>&gt;<i> OK, I understand what you want and I think it should work, but might have
+</I>&gt;<i> some pitfalls.
+</I>&gt;<i>
+</I>&gt;<i> o You basically merged State and Event into one class  (that's ok for me).
+</I>&gt;<i> o with this concept you would need at least the following EventType
+</I>&gt;<i> classes: - Low (line at the bottom)
+</I>&gt;<i> - High (line at the top)
+</I>&gt;<i> - Middle (line in the middle)
+</I>&gt;<i> - X (lines at top and bottom)
+</I>&gt;<i> - as less rare occurrence states with bottom/middle, top/middle lines
+</I>
+Yep that is exactly right! But, we don't need to design them all at once. As 
+soon as we have the infrastructure for TimEventLow/High it is a mater of 
+adding additional classes. Maybe we can add a plug-in interface to make it 
+extensible. Then the user can design it's own one :-)
+
+In the end we have to implement the function anyway. Be it in one huge paint 
+function or many small classes.
+
+&gt;<i> - as a special case multi-level lines, eg. for displaying a voltage from 0
+</I>&gt;<i> to 5 in 500 mV steps, which requires 11 possible lines :)
+</I>
+Hmmm, voltage steps! I think we should not use TimWave for this. Analog 
+signals should have it's own class, but if we want to use TimWave with event, 
+we could design a TimEventMultiLevel class that does exactly what you want.
+
+&gt;<i> &gt; Please think carefully about the design options because it will
+</I>&gt;<i> &gt; influence Sigschege a lot. I&#8217;m pretty sure that the &#8220;string state&#8221; and
+</I>&gt;<i> &gt; visualization scheme will work, but I fear that it will limit our
+</I>&gt;<i> &gt; freedom in the future.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; My design idea would give us much more freedom. These design patterns
+</I>&gt;<i> &gt; are used a lot in many applications and frameworks, and I think we
+</I>&gt;<i> &gt; should do the same.
+</I>&gt;<i>
+</I>&gt;<i> I don't have a complete understanding of these patterns yet, but isn't it a
+</I>&gt;<i> bit of overhead to exchange a complete object, instead of just setting one
+</I>&gt;<i> variable from &quot;draw it at the top&quot; to &quot;draw it in the middle&quot;?
+</I>
+At the moment, the overhead is the destruction of one class and the creation 
+of another class (it's a simple implementation). If we use the Flyweight 
+design pattern as well, it would become a simple pointer change since we can 
+reuse objects. So the overhead would be the same as setting one variable from 
+&quot;draw it at the top&quot; to &quot;draw it in the middle&quot;. 
+
+The benefit would be that we separate the implementation. Otherwise we need a 
+huge switch or if  statements. A plug-in interface would be very difficult in 
+this case.
+
+
+&gt;<i> Cheers,
+</I>&gt;<i> Ulf
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+Cheers,
+Ingo
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000082.html">[Sigschege-devel] First simple GUI
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#83">[ date ]</a>
+              <a href="thread.html#83">[ thread ]</a>
+              <a href="subject.html#83">[ subject ]</a>
+              <a href="author.html#83">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] New target for Sigschege
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-June/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200906292356.29949.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000030.html">
+   <LINK REL="Next"  HREF="000034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] New target for Sigschege</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20New%20target%20for%20Sigschege&In-Reply-To=%3C200906292356.29949.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] New target for Sigschege">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Mon Jun 29 23:56:29 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000030.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+        <LI>Next message: <A HREF="000034.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#31">[ date ]</a>
+              <a href="thread.html#31">[ thread ]</a>
+              <a href="subject.html#31">[ subject ]</a>
+              <a href="author.html#31">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hey guys,
+
+funny that you show up just now that I decided to finish my carreer as game programmer and continue to develop Sigschege...
+
+Well, at least I made 3 small contributions to Nexuiz. :)
+
+OK, my answers:
+
+1. be careful, SVN is out of date, because I have some uncommitted modifications.
+
+2. Ingo, can you send me the error message please?
+
+3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from *incorrectly* displaying the timing diagram, but it's started. :P
+
+repeat:
+3. GUI: a WxWidgets GUI for Sigschege exists. It does *nothing* except from *incorrectly* displaying the timing diagram, but it's started. :P
+
+4. As a preparation for the GUI I started defining a native file format and implemented saving/loading. It is based on XML.
+
+5. As for the GUI, I don't think it should be based on Python. Even maintaining the Python interface sucks, because the object-oriented
+C++ hierarchy has to be mirrored into an object-oriented Python-hierarchy. Just look at the current code. And then realize what's even missing now:
+after loading a timing diagram it must be mirrored into the Python objects....
+
+6. As for the toolkit, current code is wxWidgets, but I'd also be fine with qt4. The problem is that all the toolkits bring their own stuff, like string class 
+(even unicode ones), and the question is how to handle that. (from what point on making it dependent from toolkit? convert to/from string? or wstring?)
+
+
+In July I might have some short work and probably want to use a part of it to work on Sigschege. (Might also be shifted to September)
+
+Cheers,
+Ulf
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000030.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+	<LI>Next message: <A HREF="000034.html">[Sigschege-devel] New target for Sigschege
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#31">[ date ]</a>
+              <a href="thread.html#31">[ thread ]</a>
+              <a href="subject.html#31">[ subject ]</a>
+              <a href="author.html#31">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

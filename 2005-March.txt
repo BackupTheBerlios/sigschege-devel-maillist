@@ -1,0 +1,46 @@
+From sigschege-devel-admin at lists.berlios.de  Tue Mar  8 00:04:49 2005
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Tue, 8 Mar 2005 00:04:49 +0100
+Subject: [Sigschege-devel] A picture...
+Message-ID: <20050307230449.GB4083@localhost>
+
+
+Hi,
+
+see attached picture. The example script to create this is already in the
+subversion repository.
+
+The clock is generated with a python loop of course...
+
+:-)
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: Simple.png
+Type: image/png
+Size: 2809 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/sigschege-devel/attachments/20050308/241abcf5/attachment.png>
+
+From sigschege-devel-admin at lists.berlios.de  Sun Mar 27 00:57:03 2005
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sun, 27 Mar 2005 00:57:03 +0100
+Subject: [Sigschege-devel] Web Page
+Message-ID: <200503270057.04089.ingo.hinrichs@web.de>
+
+Hi all,
+ I added our webpage to subversion.
+
+To check out use
+  svn co svn+ssh://svn.berlios.de/svnroot/repos/sigschege/web 
+
+Note:
+ This directory contains also a quanta plus project file.
+
+ have fun,
+   Ingo
+
+

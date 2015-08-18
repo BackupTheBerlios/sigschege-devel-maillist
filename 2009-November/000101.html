@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] design decisions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20design%20decisions&In-Reply-To=%3C200911182211.42338.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000100.html">
+   <LINK REL="Next"  HREF="000102.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] design decisions</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20design%20decisions&In-Reply-To=%3C200911182211.42338.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] design decisions">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov 18 12:11:42 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000100.html">[Sigschege-devel] design decisions
+</A></li>
+        <LI>Next message: <A HREF="000102.html">[Sigschege-devel] design decisions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#101">[ date ]</a>
+              <a href="thread.html#101">[ thread ]</a>
+              <a href="subject.html#101">[ subject ]</a>
+              <a href="author.html#101">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 16 Nov 2009 09:40:40 pm Development discussions wrote:
+&gt;<i> On Mon, 16 Nov 2009 08:59:33 am Development discussions wrote:
+</I>&gt;<i> &gt; Hi Ingo,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; and more... :)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I guess we need a common base class for all elements of a timing diagram,
+</I>&gt;<i> &gt; or even sort of a class hierarchy.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; That means, at least Signal, Timescale, etc must be derived from a common
+</I>&gt;<i> &gt; class, or, in other words, all elements that are contained in the
+</I>&gt;<i> &gt; QGraphicsLinearLayout.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am just implementing the SSGWriter now, and i would need that for clean
+</I>&gt;<i> &gt; polymorphism. Otherwise I have to use RTTI (which is not really
+</I>&gt;<i> &gt; recommended). And I even didn't get it working yet:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; In a timing diagram with 3 signals and 1 timescaleI get 4 times the
+</I>&gt;<i> &gt; &quot;else&quot; branch in this example:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   for (index = 0; index &lt; m_layout-&gt;count(); ++index) {
+</I>&gt;<i> &gt;     if (typeid(m_layout-&gt;itemAt(index))==typeid(TimSignal*)) {
+</I>&gt;<i> &gt;       writeStartElement(&quot;signal&quot;);
+</I>&gt;<i> &gt;       writeEndElement();
+</I>&gt;<i> &gt;     } else {
+</I>&gt;<i> &gt;       cout &lt;&lt; &quot;TYPEID: &quot; &lt;&lt; typeid(m_layout-&gt;itemAt(index)).name() &lt;&lt;
+</I>&gt;<i> &gt; endl; }
+</I>&gt;<i> &gt;   }
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; and it prints &quot;TYPEID: P19QGraphicsLayoutItem&quot;. I would have expected it
+</I>&gt;<i> &gt; to return the true type, Signal or TimeScale.  :/
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; It would be cleaner anyway with a common base class and a virtual
+</I>&gt;<i> &gt; function &quot;writeXML()&quot;. ;)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; cu,
+</I>&gt;<i> &gt; Ulf
+</I>&gt;<i>
+</I>&gt;<i> Hi Ulf
+</I>&gt;<i>
+</I>&gt;<i> I noticed the need for a base class already as I planned the implementation
+</I>&gt;<i> of &#8220;delete event&#8221; function. I planned to refactor the class hierarchy
+</I>&gt;<i> during the implementation of &#8220;delete events&#8221;.
+</I>&gt;<i>
+</I>&gt;<i> If you need them now, go ahead and create a base class for all our timing
+</I>&gt;<i> signal items like TimSignal, TimTimescale, TimEvent and so on..
+</I>&gt;<i>
+</I>&gt;<i> I will be busy with implementation of &#8220;add Event&#8221;. We have now summer and
+</I>&gt;<i> the weather is fine (at least most of the time :-), so we can have a lot of
+</I>&gt;<i> barbies
+</I>&gt;<i>
+</I>&gt;<i> :-) Means less time for coding :-(
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i> Ingo
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Sigschege-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">Sigschege-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">https://lists.berlios.de/mailman/listinfo/sigschege-devel</A>
+</I>
+Hi Ulf,
+
+now I need the base class. If you have already something, it would be good if 
+you could check it in. Otherwise, give me a sign, so that I can create a base 
+class on my own.
+
+Cheers
+Ingo
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000100.html">[Sigschege-devel] design decisions
+</A></li>
+	<LI>Next message: <A HREF="000102.html">[Sigschege-devel] design decisions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#101">[ date ]</a>
+              <a href="thread.html#101">[ thread ]</a>
+              <a href="subject.html#101">[ subject ]</a>
+              <a href="author.html#101">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

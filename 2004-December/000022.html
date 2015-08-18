@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] Re: RFC: Sigschege Feature List
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Re%3A%20RFC%3A%20Sigschege%20Feature%20List&In-Reply-To=%3C20041215213858.GA1758%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000021.html">
+   <LINK REL="Next"  HREF="000023.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] Re: RFC: Sigschege Feature List</H1>
+    <B>sigschege-devel-admin at lists.berlios.de</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Re%3A%20RFC%3A%20Sigschege%20Feature%20List&In-Reply-To=%3C20041215213858.GA1758%40localhost%3E"
+       TITLE="[Sigschege-devel] Re: RFC: Sigschege Feature List">sigschege-devel-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Dec 15 22:38:58 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000021.html">[Sigschege-devel] RFC: Sigschege Feature List
+</A></li>
+        <LI>Next message: <A HREF="000023.html">[Sigschege-devel] EventList &lt;-&gt; Signal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+I just added my ideas. I also defined the version for which some features are
+scheduled. 
+
+Notation:
+
+??? = What do you mean?
+?.? = Unsure about version
+
+Note that I scheduled GUI support for EasyVec for version 1.0. This has 2
+reasons:
+
+- Since GUI support is an essential part of EasyVec, it should be contained in a
+1.0 version
+- It allows to go into developing GUI support for Sigschege faster
+
+Basically I think we will also have 0.4 - 0.9 versions, which will have more
+features and already be in a quite usable state.
+
+But it's too complicated to anticipate all changes, since there will be a lot of
+&quot;polishing&quot; and adding subfunctionality. 
+
+In my opinion the loading/saving functionality should be implemented until 0.5,
+which should be the first really usable version.
+
+I also added &quot;Python Interface defined&quot;, which basically means until then we can
+change the functions, methods, their arguments... afterwards we should become
+conservative, as people won't like an ever changing interface.
+
+
+Ciao,
+Ulf
+
+PS: just thought of an example to make some of my weird thoughts clearer: In 0.2
+the text attached to a pointer (event1-&gt;event2) will just be on its right in the
+middle. Later, in 0.4 there will be enhancements, eg. a way to define the
+position manually or an automatic way to find a good place. This would be added
+subfunctionality and probably also a change in the interface, which might break
+old python scripts.
+
+
+On Mon, Dec 06, 2004 at 09:54:15PM +0100, <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">sigschege-devel-admin at berlios.de</A> wrote:
+&gt;<i> Hi, 
+</I>&gt;<i>  I think it's time for a feature list, that can be put on our project page. I 
+</I>&gt;<i> started a list for a 1.0 version, but need much more input to finish it. So, 
+</I>&gt;<i> give me your feedback and add new features or correct this list. 
+</I>&gt;<i> 
+</I>&gt;<i> But remember, it's for a 1.0 version so keep enough headroom for a 2.0 ;-)
+</I>&gt;<i> 
+</I>
+&gt;<i> Feature List for 1.0:
+</I>&gt;<i> Diagram:
+</I>&gt;<i>  - Lists (Lists of Text Labels, Signals, Time Scales and other Lists) 0.1
+</I>&gt;<i>  - Text Labels  0.1
+</I>&gt;<i>  - Time Scales 0.1
+</I>&gt;<i>  - Signals 0.1
+</I>&gt;<i>  - Arrow lines (I assume you mean markers)  0.3
+</I>&gt;<i>  - Arrow heads (I assume you mean pointers) 0.2
+</I>&gt;<i>  - Comment Boxes 0.3
+</I>&gt;<i>  - Line Styles support  0.2
+</I>&gt;<i>  - Color support  0.3
+</I>&gt;<i>
+</I>&gt;<i> Timing:
+</I>&gt;<i>  - Events   0.1
+</I>   - Event slope  0.1
+&gt;<i>  - Event uncertainty    ?Important/Useful?
+</I>&gt;<i>  - Signal States 0.1
+</I>&gt;<i>    - '0'
+</I>&gt;<i>    - '1'
+</I>&gt;<i>    - 'x'
+</I>&gt;<i>    - 'u'
+</I>&gt;<i>    - 'z'
+</I>&gt;<i>    - bus, eg. 0x00 
+</I>     No bus, instead:
+     - generic named data, name can also be 0x0f, supersedes busses 0.1
+   - Copying signals 0.6 (eg. signal2=signal1+delay)
+&gt;<i>
+</I>&gt;<i> Input:
+</I>&gt;<i>  - python interpreter batch 0.1
+</I>   - python interpreter interactive ?.?   (depends on saving/loading facility)
+   - loading timing diagrams (XML, see also saving under output) ?.?
+   - Python Interface defined 0.5
+
+
+&gt;<i>
+</I>&gt;<i> Output:
+</I>&gt;<i>  - fig-file export 0.1
+</I>   - eps export 0.1
+   - png export 0.3
+&gt;<i>  - transfig support ???
+</I>   - saving timing diagrams (XML) ?.?
+&gt;<i>
+</I>&gt;<i> Future Features:
+</I>
+  - GUI  2.0
+
+ EasyVec:
+
+ - polylines: 0.1
+ - boxes: 0.1
+ - text: 0.1
+ - compounds: 1.0
+ - GUI support: 1.0
+
+-- 
+Jabber-ID: <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">ro_kenn at amessage.de</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000021.html">[Sigschege-devel] RFC: Sigschege Feature List
+</A></li>
+	<LI>Next message: <A HREF="000023.html">[Sigschege-devel] EventList &lt;-&gt; Signal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22">[ date ]</a>
+              <a href="thread.html#22">[ thread ]</a>
+              <a href="subject.html#22">[ subject ]</a>
+              <a href="author.html#22">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,681 @@
+From sigschege-devel at lists.berlios.de  Sun Nov  1 19:43:56 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 1 Nov 2009 19:43:56 +0100
+Subject: [Sigschege-devel] status
+In-Reply-To: <200910291759.34807.ingo.hinrichs@web.de>
+References: <200910251226.24757.ulf.klaperski@web.de>
+	<200910272121.46035.ulf.klaperski@web.de>
+	<200910291759.34807.ingo.hinrichs@web.de>
+Message-ID: <200911011943.56394.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+Am Thursday 29 October 2009 07:59:34 schrieb Development discussions:
+> On Wed, 28 Oct 2009 07:21:45 am Development discussions wrote:
+> >
+> > Autosave would be easy to handle, but undo won't. There could be several
+> > approaches:
+> >
+> > a: use current solution with autosave support added, screw undo detection
+> >
+> > b: regard as modified if undo stack is non-empty or a undo-stack-exceeded
+> > flag is set This has the disadvantage that it requires the undo stack to be
+> > deleted on save.
+> >
+> > c: create an internal xml file and calculate a checksum
+> > Could consume too much cpu time...
+> >
+> > d: ?
+> We call QUndoStack::setClean() every time when we save the document. Then we 
+> can use QundoStack::cleanChanged() slot to set the ismodified flag.
+> 
+> Problem solved :-)
+
+Not really, that means we would loose the undo on save...
+
+> I will start to implement addEvent etc. I don't think that this will conflict 
+> much with your changed.
+> 
+
+Don't forget to commit often, so we get few conflicts.
+
+
+I just wonder what to do best if the current diagram has to be discarded.
+I think it's best to continue using the m_scene and add a clear() function to it.
+Or should I remove the scene and create a new one?
+
+
+
+cya,
+Ulf
+
+
+From sigschege-devel at lists.berlios.de  Wed Nov  4 23:03:49 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 4 Nov 2009 23:03:49 +0100
+Subject: [Sigschege-devel] test.ssg
+Message-ID: <200911042303.49434.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+as an attachment... at least you have something to "Open" now. :P
+
+Have fun,
+Ulf
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: test.ssg
+Type: application/xml
+Size: 161 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/sigschege-devel/attachments/20091104/0ec550cc/attachment.wsdl>
+
+From sigschege-devel at lists.berlios.de  Thu Nov  5 11:31:29 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 5 Nov 2009 21:31:29 +1100
+Subject: [Sigschege-devel] status
+In-Reply-To: <200911011943.56394.ulf.klaperski@web.de>
+References: <200910251226.24757.ulf.klaperski@web.de>
+	<200910291759.34807.ingo.hinrichs@web.de>
+	<200911011943.56394.ulf.klaperski@web.de>
+Message-ID: <200911052131.29768.ingo.hinrichs@web.de>
+
+On Mon, 2 Nov 2009 05:43:56 am Development discussions wrote:
+> Hi Ingo,
+>
+> Am Thursday 29 October 2009 07:59:34 schrieb Development discussions:
+> > On Wed, 28 Oct 2009 07:21:45 am Development discussions wrote:
+> > > Autosave would be easy to handle, but undo won't. There could be
+> > > several approaches:
+> > >
+> > > a: use current solution with autosave support added, screw undo
+> > > detection
+> > >
+> > > b: regard as modified if undo stack is non-empty or a
+> > > undo-stack-exceeded flag is set This has the disadvantage that it
+> > > requires the undo stack to be deleted on save.
+> > >
+> > > c: create an internal xml file and calculate a checksum
+> > > Could consume too much cpu time...
+> > >
+> > > d: ?
+> >
+> > We call QUndoStack::setClean() every time when we save the document. Then
+> > we can use QundoStack::cleanChanged() slot to set the ismodified flag.
+> >
+> > Problem solved :-)
+>
+> Not really, that means we would loose the undo on save...
+
+The docu says that it will be marked as clean, not that anything will be 
+deleted. I think I will try it out :-)
+
+>
+> > I will start to implement addEvent etc. I don't think that this will
+> > conflict much with your changed.
+>
+> Don't forget to commit often, so we get few conflicts.
+
+This means that the conflicts are smaller :-)
+
+> I just wonder what to do best if the current diagram has to be discarded.
+> I think it's best to continue using the m_scene and add a clear() function
+> to it. Or should I remove the scene and create a new one?
+>
+We should have a clean() SLOT or function. If we delete m_scene and create a 
+new one, we have to reconnect all signals/slots.
+>
+> cya,
+> Ulf
+
+Cheers
+Ingo
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Thu Nov  5 11:37:14 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Thu, 5 Nov 2009 21:37:14 +1100
+Subject: [Sigschege-devel] test.ssg
+In-Reply-To: <200911042303.49434.ulf.klaperski@web.de>
+References: <200911042303.49434.ulf.klaperski@web.de>
+Message-ID: <200911052137.14541.ingo.hinrichs@web.de>
+
+On Thu, 5 Nov 2009 09:03:49 am Development discussions wrote:
+> Hi Ingo,
+>
+> as an attachment... at least you have something to "Open" now. :P
+>
+> Have fun,
+> Ulf
+
+Cool!!!
+Will try :-)
+
+Cheers
+Ingo
+
+
+From sigschege-devel at lists.berlios.de  Fri Nov  6 00:16:42 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Fri, 6 Nov 2009 00:16:42 +0100
+Subject: [Sigschege-devel] License
+Message-ID: <200911060016.42229.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+I suggest that we change the license of Sigschege to "GPL v3" without any "or later".
+
+Rationale: I think that GPL v3 makes sense and is legally safer (better adapted to international laws, patents, etc).
+
+Furthermore: I doubt that the "or any later version" is legally safe, since you  surely can't agree to something
+that you don't know yet.
+
+If you agree, consider it as decided.
+
+Cheers,
+Ulf
+
+PS: I start adding TimScale now. Once you added events or other stuff I will enhance the XML reader accordingly,
+I will also add an XML writer soon.
+
+
+
+From sigschege-devel at lists.berlios.de  Sat Nov  7 06:29:26 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sat, 7 Nov 2009 16:29:26 +1100
+Subject: [Sigschege-devel] License
+In-Reply-To: <200911060016.42229.ulf.klaperski@web.de>
+References: <200911060016.42229.ulf.klaperski@web.de>
+Message-ID: <200911071629.26883.ingo.hinrichs@web.de>
+
+On Fri, 6 Nov 2009 10:16:42 am Development discussions wrote:
+> Hi Ingo,
+>
+> I suggest that we change the license of Sigschege to "GPL v3" without any
+> "or later".
+>
+> Rationale: I think that GPL v3 makes sense and is legally safer (better
+> adapted to international laws, patents, etc).
+
+?Legally safer? - I don't think so. GPL2+ is older and already proven in 
+several cases. GPL3+ is completely new and was not really challenged (so far I 
+know).
+
+> Furthermore: I doubt that the "or any later version" is legally safe, since
+> you  surely can't agree to something that you don't know yet.
+
+I thinks this is not really a problem. Many lawyers looked at both GPL 
+versions, I think that the ?or any later version? is valid. In case of the 
+GPL2+ and GPL3+ is this statement important. Without this little statement, 
+GPL3 code can not use (link against) any GPL2 (without the +) code. Both 
+versions are incompatible. With this statement, GPL2+ code can be used (or 
+linked) by GPL3+.
+
+>
+> If you agree, consider it as decided.
+
+Actually, I disagree! I think that GPL3+ or GPL3 does not bring any benefit for 
+us. It will only restrict the reuse and use of Sigschege and its components. 
+As soon as Sigschege uses GPL3, it is impossible to use the code in GPL2+ 
+project. It will also cost us many potential users because many companies do 
+no allow the usage of GPL3+ applications. 
+
+I know this, because I am working in one of them. I would not be able to use a 
+GLP3+ Sigschege and I don't want to develop an application that I can not use 
+when I would need it.
+
+> Cheers,
+> Ulf
+>
+> PS: I start adding TimScale now. Once you added events or other stuff I
+> will enhance the XML reader accordingly, I will also add an XML writer
+> soon.
+>
+
+Cheers
+Ingo
+
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sat Nov  7 13:09:21 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sat, 7 Nov 2009 13:09:21 +0100
+Subject: [Sigschege-devel] License
+In-Reply-To: <200911071629.26883.ingo.hinrichs@web.de>
+References: <200911060016.42229.ulf.klaperski@web.de>
+	<200911071629.26883.ingo.hinrichs@web.de>
+Message-ID: <200911071309.21403.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+ok, then we leave it at v2.
+
+Am Saturday 07 November 2009 06:29:26 schrieb Development discussions:
+> On Fri, 6 Nov 2009 10:16:42 am Development discussions wrote:
+> I thinks this is not really a problem. Many lawyers looked at both GPL 
+> versions, I think that the ?or any later version? is valid. In case of the 
+> GPL2+ and GPL3+ is this statement important. Without this little statement, 
+> GPL3 code can not use (link against) any GPL2 (without the +) code. Both 
+> versions are incompatible. With this statement, GPL2+ code can be used (or 
+> linked) by GPL3+.
+> 
+
+Actually, it's a complicated matter. You'll find reading material at http://www.ifross.de/ifross_html/Druckfassung/Ziffer%209.pdf.
+I wonder if it would be better to use "GPL v2 or v3" then or leave it at "or any later". Search for "Lizenzhoheit" in that document.
+
+Cheers,
+Ulf
+
+PS: is your german email address still valid?
+
+
+From sigschege-devel at lists.berlios.de  Sun Nov  8 11:38:30 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 8 Nov 2009 21:38:30 +1100
+Subject: [Sigschege-devel] License
+In-Reply-To: <200911071309.21403.ulf.klaperski@web.de>
+References: <200911060016.42229.ulf.klaperski@web.de>
+	<200911071629.26883.ingo.hinrichs@web.de>
+	<200911071309.21403.ulf.klaperski@web.de>
+Message-ID: <200911082138.30513.ingo.hinrichs@web.de>
+
+On Sat, 7 Nov 2009 11:09:21 pm Development discussions wrote:
+> Hi Ingo,
+>
+> ok, then we leave it at v2.
+>
+> Am Saturday 07 November 2009 06:29:26 schrieb Development discussions:
+> > On Fri, 6 Nov 2009 10:16:42 am Development discussions wrote:
+> > I thinks this is not really a problem. Many lawyers looked at both GPL
+> > versions, I think that the ?or any later version? is valid. In case of
+> > the GPL2+ and GPL3+ is this statement important. Without this little
+> > statement, GPL3 code can not use (link against) any GPL2 (without the +)
+> > code. Both versions are incompatible. With this statement, GPL2+ code can
+> > be used (or linked) by GPL3+.
+>
+> Actually, it's a complicated matter. You'll find reading material at
+> http://www.ifross.de/ifross_html/Druckfassung/Ziffer%209.pdf. I wonder if
+> it would be better to use "GPL v2 or v3" then or leave it at "or any
+> later". Search for "Lizenzhoheit" in that document.
+>
+
+Then I vote for GPL version 2, since GPL3 means, I can not use Sigschege!
+
+> Cheers,
+> Ulf
+>
+> PS: is your german email address still valid?
+
+Yep! Is stil valid.
+
+Cheers
+Ingo
+
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Nov  8 12:27:42 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 8 Nov 2009 12:27:42 +0100
+Subject: [Sigschege-devel] License
+In-Reply-To: <200911082138.30513.ingo.hinrichs@web.de>
+References: <200911060016.42229.ulf.klaperski@web.de>
+	<200911071309.21403.ulf.klaperski@web.de>
+	<200911082138.30513.ingo.hinrichs@web.de>
+Message-ID: <200911081227.42827.ulf.klaperski@web.de>
+
+Am Sunday 08 November 2009 11:38:30 schrieb Development discussions:
+> On Sat, 7 Nov 2009 11:09:21 pm Development discussions wrote:
+> > Actually, it's a complicated matter. You'll find reading material at
+> > http://www.ifross.de/ifross_html/Druckfassung/Ziffer%209.pdf. I wonder if
+> > it would be better to use "GPL v2 or v3" then or leave it at "or any
+> > later". Search for "Lizenzhoheit" in that document.
+> >
+> 
+> Then I vote for GPL version 2, since GPL3 means, I can not use Sigschege!
+> 
+
+You got me wrong here, I didn't suggest to use one of them, but to allow both.
+More like in "v2 or later but only up to v3". :P
+
+As the referenced document explains it's quite difficult anyway...
+
+I see 3 options:
+
+* v2 only
+disadvantages: see document
+advantages: very clear situation, used by other projects already
+* v2  or v3
+disadvantages: we're the only project who uses it
+advantages: clear situation
+* v2 or later
+disadvantages: what does v4 look like? especially after Microsoft took over the FSF?
+advantages: used by other projects already, allows license upgrade even if one copyright holder can't be reached
+
+All of these variants allow linking with any other GPL code and would enable you to use it according to your wishes.
+
+Cheers,
+Ulf
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Nov 15 00:23:04 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 15 Nov 2009 00:23:04 +0100
+Subject: [Sigschege-devel] design decisions
+Message-ID: <200911150023.04658.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+2 small things:
+
+* Since "isClean" aka "!isModified" is implemented via UndoStack now, we will have to implement all modifications
+   (eg. setLabelWidth) as UndoAction
+
+* Parallel to Signal there will at least be TimeScale and TimeLabel (a fullwidth label), maybe also TimeSeparator and more.
+   Should they somehow be unified, so they get their common TimCmdAdd* class? In any case the "Remove Signal" menu
+   item must be replaced by a general "Cut/Delete" mechanism, which wouldn't even care if a Signal, a TimeScale or some
+   overlay is gonna be removed.
+
+I will commit soon, with TimeScale only in the menu for now, and then I will hunt 2 bugs. ;)
+
+("Undo" buttons disappear if "New" is selected, "Cancel" is ignored if the file is modified)
+
+Cheers,
+Ulf 
+
+
+From sigschege-devel at lists.berlios.de  Sun Nov 15 09:50:59 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 15 Nov 2009 19:50:59 +1100
+Subject: [Sigschege-devel] design decisions
+In-Reply-To: <200911150023.04658.ulf.klaperski@web.de>
+References: <200911150023.04658.ulf.klaperski@web.de>
+Message-ID: <200911151951.00001.ingo.hinrichs@web.de>
+
+i Ulf,
+
+On Sun, 15 Nov 2009 10:23:04 am Development discussions wrote:
+> Hi Ingo,
+>
+> 2 small things:
+>
+> * Since "isClean" aka "!isModified" is implemented via UndoStack now, we
+> will have to implement all modifications (eg. setLabelWidth) as UndoAction
+That is correct! All command have to be a subclass of QUndoCommand.
+
+>
+> * Parallel to Signal there will at least be TimeScale and TimeLabel (a
+> fullwidth label), maybe also TimeSeparator and more. Should they somehow be
+> unified, so they get their common TimCmdAdd* class? In any case the "Remove
+> Signal" menu item must be replaced by a general "Cut/Delete" mechanism,
+> which wouldn't even care if a Signal, a TimeScale or some overlay is gonna
+> be removed.
+>
+> I will commit soon, with TimeScale only in the menu for now, and then I
+> will hunt 2 bugs. ;)
+>
+> ("Undo" buttons disappear if "New" is selected, "Cancel" is ignored if the
+> file is modified)
+
+Thats because you are deleting the TimingScene (and the QUndoStack). I think 
+it would be better to have a TimingScene::clear() function to remove all 
+signals etc. Otherwise, we have to recreate all dependent object and reconnect 
+all slots.
+
+>
+> Cheers,
+> Ulf
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+
+
+From sigschege-devel at lists.berlios.de  Sun Nov 15 22:59:33 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Sun, 15 Nov 2009 22:59:33 +0100
+Subject: [Sigschege-devel] design decisions
+In-Reply-To: <200911151951.00001.ingo.hinrichs@web.de>
+References: <200911150023.04658.ulf.klaperski@web.de>
+	<200911151951.00001.ingo.hinrichs@web.de>
+Message-ID: <200911152259.33533.ulf.klaperski@web.de>
+
+Hi Ingo,
+
+and more... :)
+
+I guess we need a common base class for all elements of a timing diagram, or even sort of a class hierarchy.
+
+That means, at least Signal, Timescale, etc must be derived from a common class, or, in other words, all elements
+that are contained in the QGraphicsLinearLayout. 
+
+I am just implementing the SSGWriter now, and i would need that for clean polymorphism. Otherwise I have to use
+RTTI (which is not really recommended). And I even didn't get it working yet:
+
+In a timing diagram with 3 signals and 1 timescaleI get 4 times the "else" branch in this example:
+
+  for (index = 0; index < m_layout->count(); ++index) {
+    if (typeid(m_layout->itemAt(index))==typeid(TimSignal*)) {
+      writeStartElement("signal");
+      writeEndElement();
+    } else {
+      cout << "TYPEID: " << typeid(m_layout->itemAt(index)).name() << endl;
+    }
+  }
+
+and it prints "TYPEID: P19QGraphicsLayoutItem". I would have expected it to return the true type, Signal or TimeScale.  :/
+
+It would be cleaner anyway with a common base class and a virtual function "writeXML()". ;)
+
+cu,
+Ulf
+
+
+
+From sigschege-devel at lists.berlios.de  Mon Nov 16 11:40:40 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Mon, 16 Nov 2009 21:40:40 +1100
+Subject: [Sigschege-devel] design decisions
+In-Reply-To: <200911152259.33533.ulf.klaperski@web.de>
+References: <200911150023.04658.ulf.klaperski@web.de>
+	<200911151951.00001.ingo.hinrichs@web.de>
+	<200911152259.33533.ulf.klaperski@web.de>
+Message-ID: <200911162140.40792.ingo.hinrichs@web.de>
+
+On Mon, 16 Nov 2009 08:59:33 am Development discussions wrote:
+> Hi Ingo,
+>
+> and more... :)
+>
+> I guess we need a common base class for all elements of a timing diagram,
+> or even sort of a class hierarchy.
+>
+> That means, at least Signal, Timescale, etc must be derived from a common
+> class, or, in other words, all elements that are contained in the
+> QGraphicsLinearLayout.
+>
+> I am just implementing the SSGWriter now, and i would need that for clean
+> polymorphism. Otherwise I have to use RTTI (which is not really
+> recommended). And I even didn't get it working yet:
+>
+> In a timing diagram with 3 signals and 1 timescaleI get 4 times the "else"
+> branch in this example:
+>
+>   for (index = 0; index < m_layout->count(); ++index) {
+>     if (typeid(m_layout->itemAt(index))==typeid(TimSignal*)) {
+>       writeStartElement("signal");
+>       writeEndElement();
+>     } else {
+>       cout << "TYPEID: " << typeid(m_layout->itemAt(index)).name() << endl;
+>     }
+>   }
+>
+> and it prints "TYPEID: P19QGraphicsLayoutItem". I would have expected it to
+> return the true type, Signal or TimeScale.  :/
+>
+> It would be cleaner anyway with a common base class and a virtual function
+> "writeXML()". ;)
+>
+> cu,
+> Ulf
+>
+
+Hi Ulf
+
+I noticed the need for a base class already as I planned the implementation of 
+?delete event? function. I planned to refactor the class hierarchy during the 
+implementation of ?delete events?.
+
+If you need them now, go ahead and create a base class for all our timing 
+signal items like TimSignal, TimTimescale, TimEvent and so on..
+
+I will be busy with implementation of ?add Event?. We have now summer and the 
+weather is fine (at least most of the time :-), so we can have a lot of barbies 
+:-) Means less time for coding :-(
+
+Cheers
+Ingo
+
+
+From sigschege-devel at lists.berlios.de  Wed Nov 18 12:11:42 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 18 Nov 2009 22:11:42 +1100
+Subject: [Sigschege-devel] design decisions
+In-Reply-To: <200911162140.40792.ingo.hinrichs@web.de>
+References: <200911150023.04658.ulf.klaperski@web.de>
+	<200911152259.33533.ulf.klaperski@web.de>
+	<200911162140.40792.ingo.hinrichs@web.de>
+Message-ID: <200911182211.42338.ingo.hinrichs@web.de>
+
+On Mon, 16 Nov 2009 09:40:40 pm Development discussions wrote:
+> On Mon, 16 Nov 2009 08:59:33 am Development discussions wrote:
+> > Hi Ingo,
+> >
+> > and more... :)
+> >
+> > I guess we need a common base class for all elements of a timing diagram,
+> > or even sort of a class hierarchy.
+> >
+> > That means, at least Signal, Timescale, etc must be derived from a common
+> > class, or, in other words, all elements that are contained in the
+> > QGraphicsLinearLayout.
+> >
+> > I am just implementing the SSGWriter now, and i would need that for clean
+> > polymorphism. Otherwise I have to use RTTI (which is not really
+> > recommended). And I even didn't get it working yet:
+> >
+> > In a timing diagram with 3 signals and 1 timescaleI get 4 times the
+> > "else" branch in this example:
+> >
+> >   for (index = 0; index < m_layout->count(); ++index) {
+> >     if (typeid(m_layout->itemAt(index))==typeid(TimSignal*)) {
+> >       writeStartElement("signal");
+> >       writeEndElement();
+> >     } else {
+> >       cout << "TYPEID: " << typeid(m_layout->itemAt(index)).name() <<
+> > endl; }
+> >   }
+> >
+> > and it prints "TYPEID: P19QGraphicsLayoutItem". I would have expected it
+> > to return the true type, Signal or TimeScale.  :/
+> >
+> > It would be cleaner anyway with a common base class and a virtual
+> > function "writeXML()". ;)
+> >
+> > cu,
+> > Ulf
+>
+> Hi Ulf
+>
+> I noticed the need for a base class already as I planned the implementation
+> of ?delete event? function. I planned to refactor the class hierarchy
+> during the implementation of ?delete events?.
+>
+> If you need them now, go ahead and create a base class for all our timing
+> signal items like TimSignal, TimTimescale, TimEvent and so on..
+>
+> I will be busy with implementation of ?add Event?. We have now summer and
+> the weather is fine (at least most of the time :-), so we can have a lot of
+> barbies
+>
+> :-) Means less time for coding :-(
+>
+> Cheers
+> Ingo
+> _______________________________________________
+> Sigschege-devel mailing list
+> Sigschege-devel at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/sigschege-devel
+
+Hi Ulf,
+
+now I need the base class. If you have already something, it would be good if 
+you could check it in. Otherwise, give me a sign, so that I can create a base 
+class on my own.
+
+Cheers
+Ingo
+
+
+From sigschege-devel at lists.berlios.de  Wed Nov 18 23:26:53 2009
+From: sigschege-devel at lists.berlios.de (Development discussions)
+Date: Wed, 18 Nov 2009 23:26:53 +0100
+Subject: [Sigschege-devel] design decisions
+In-Reply-To: <200911182211.42338.ingo.hinrichs@web.de>
+References: <200911150023.04658.ulf.klaperski@web.de>
+	<200911162140.40792.ingo.hinrichs@web.de>
+	<200911182211.42338.ingo.hinrichs@web.de>
+Message-ID: <200911182326.53390.ulf.klaperski@web.de>
+
+
+Hi Ingo,
+
+I just implemented it, it's still a bit sketchy but works.
+
+I was a bit undecided between 2 approaches:
+
+A make it an additional base class of signal/scale/etc
+
+B derive it from Graphics/Graphicslayout and us as only base class of sign...
+
+I chose B), because this allows common functionality of those elements to be reused, 
+eg. setText() is only needed _once_.
+On the other hand that makes access to the base classes potentially more difficult.
+
+Feel free to change it as you like. ;)
+
+BTW: you can try to save a document now, it only changes slightly when you reload it :D
+
+Cheers,
+Ulf
+
+
+Am Wednesday 18 November 2009 12:11:42 schrieb Development discussions:
+
+> now I need the base class. If you have already something, it would be good if 
+> you could check it in. Otherwise, give me a sign, so that I can create a base 
+> class on my own.
+
+
+

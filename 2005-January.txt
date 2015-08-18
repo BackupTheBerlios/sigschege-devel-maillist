@@ -1,0 +1,131 @@
+From sigschege-devel-admin at lists.berlios.de  Thu Jan 27 23:39:59 2005
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Thu, 27 Jan 2005 23:39:59 +0100
+Subject: [Sigschege-devel] Release Flow
+Message-ID: <20050127223959.GA11647@localhost>
+
+
+Hi,
+
+just enjoy our release flow to come...:
+
+ulf at mordor:~/devel/exp> mk_rel.py sigschege 0.0.3
+Info: Project has automake...creating configure script
+Info: trunk dir is file:///home/ulf/devel/exp/sigschege-repos/trunk
+Info: tags dir is file:///home/ulf/devel/exp/sigschege-repos/tags
+Info: existing releases are  ['0.0.0', '0.0.1', '0.0.2']
+CMD: svn cp -m "tagging for release" file:///home/ulf/devel/exp/sigschege-repos/trunk file:///home/ulf/devel/exp/sigschege-repos/tags/release-0.0.3
+CMD: svn export file:///home/ulf/devel/exp/sigschege-repos/tags/release-0.0.3 sigschege-0.0.3
+ulf at mordor:~/devel/exp> ll sigschege-0.0.3.tar.gz 
+-rw-r--r--    1 ulf      ulf          391K 2005-01-27 23:32 sigschege-0.0.3.tar.gz
+
+I attach the script. Please don't use it on the real sigschege repository. I
+created a dummy repository with "svnadmin load" and checked it out for playing.
+
+(BTW: The first argument sigschege is the checked out directory.
+
+Problem: It tries to create the configure stuff with "aclocal && automake
+--add-missing && autoconf". But that doesn't do what I really want for a release...
+
+Missing: Test if everything is checked in, releasing from branches, sanity checks
+
+
+Cheers,
+Ulf
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+-------------- next part --------------
+#! /usr/bin/python
+
+import re
+import commands
+import getopt
+import sys
+import os
+
+def usage(exit_status):
+    print "Usage: mk_rel.py [-n] <svn_dir> <release>"
+    print "       -n = do nothing, just analyze and report"
+    print 'The release must be like "0.1". The release- prefix for tagging will be added automatically'
+    sys.exit(exit_status)
+
+(opt_l, args) = getopt.getopt(sys.argv[1:], "nh")
+
+opts={}
+for tpl in opt_l:
+    opts[tpl[0]] = tpl[1]
+
+if len(args)!=2:
+    print "Error: 2 arguments expected"
+    usage(1)
+
+svn_dir = args[0]
+new_release = args[1]
+
+cd_svn = "cd " + svn_dir + "; "
+
+has_automake = os.path.exists(svn_dir+"/Makefile.am")
+
+if has_automake:
+    print "Info: Project has automake...creating configure script"
+else:
+    print "Info: Project does not have automake."
+
+
+svn_output = commands.getoutput(cd_svn+"svn info")
+
+url_re = re.compile(r'URL:\s+([+a-z]+://[a-z/.-]+)')
+svn_lines = svn_output.split("\n")
+
+success=0
+for svn_line in svn_lines:
+    url_match = url_re.match(svn_line)
+    if url_match != None:
+	trunk_dir = url_match.group(1)
+	print "Info: trunk dir is " + trunk_dir
+	success=1
+
+if success==0:
+    print "Error: Subversion repository not found"
+    sys.exit(1)
+
+tags_dir = re.sub(r'trunk/?$', "tags", trunk_dir)
+
+print "Info: tags dir is " + tags_dir
+
+
+svn_output = commands.getoutput(cd_svn+"svn ls " + tags_dir)
+svn_lines = svn_output.split("\n")
+release_re = re.compile(r'release-([0-9a-z.]+)/')
+releases=[]
+for svn_line in svn_lines:
+    rel_match = release_re.match(svn_line)
+    if rel_match!=None:
+	releases.append(rel_match.group(1))
+
+print "Info: existing releases are ",
+print releases
+
+if new_release in releases:
+    print "Info: Release " + new_release + " already exists - using existing release"
+else:
+    tag_cmd='svn cp -m "tagging for release" ' + trunk_dir + " " + tags_dir + "/release-" + new_release
+    print "CMD: " + tag_cmd
+    if not "-n" in opts:
+	(exitstatus, outtext) = commands.getstatusoutput(tag_cmd)
+	if exitstatus!=0:
+	    print "Error: Could not tag database, message:" + outtext
+	    exit(1)
+
+export_dir= svn_dir + "-" + new_release
+
+export_cmd="svn export " + tags_dir + "/release-" + new_release + " " + export_dir
+print "CMD: " + export_cmd
+
+if not "-n" in opts:
+    svn_output = commands.getoutput(export_cmd)
+    if has_automake==1:
+	commands.getoutput("cd " + export_dir + "; aclocal && automake --add-missing && autoconf")
+    commands.getoutput("tar czf " + export_dir + ".tar.gz " + export_dir)
+

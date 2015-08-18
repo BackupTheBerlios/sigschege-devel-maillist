@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] GUI start
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20GUI%20start&In-Reply-To=%3C200907240017.15358.ulf.klaperski%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000065.html">
+   <LINK REL="Next"  HREF="000070.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] GUI start</H1>
+    <B>Development discussions</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20GUI%20start&In-Reply-To=%3C200907240017.15358.ulf.klaperski%40web.de%3E"
+       TITLE="[Sigschege-devel] GUI start">sigschege-devel at lists.berlios.de
+       </A><BR>
+    <I>Fri Jul 24 00:17:15 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000065.html">[Sigschege-devel] GUI start
+</A></li>
+        <LI>Next message: <A HREF="000070.html">[Sigschege-devel] GUI start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Ingo,
+
+well, I made my bad experiences with STL already...
+
+I had hard-to-debug segmentation faults.
+
+I had a hard time trying to implement more advanced iterators (backward, insert) and sometimes failed (without understanding why).
+
+I didn't find any *good* documentation about the STL. (is there somewhere maybe?)
+
+I don't really care if we use STL, Qt or Boost, I just want to have an easy and consistent code
+ (so that we can concentrate on the real problems).
+
+So that we can go on now and rethink the whole object structure of YaVec+Sigschege...
+
+BTW:
+<A HREF="file:///usr/share/qt4/doc/html/qtsvg.html">file:///usr/share/qt4/doc/html/qtsvg.html</A>
+
+I didn't look into it, but this might even be similar to YaVec.
+
+Cheers,
+Ulf
+
+Am Thursday 23 July 2009 11:10:32 schrieb Development discussions:
+&gt;<i> Hi Ulf,
+</I>&gt;<i> 
+</I>&gt;<i> I don't know if they are really easy. STL works fine and is standard. QT uses a 
+</I>&gt;<i> different iterator approach (Java style) which has its advantages and 
+</I>&gt;<i> disadvantages.
+</I>&gt;<i> 
+</I>&gt;<i> Copy on write (COW) in STL depends on the specific STL implementation. Most 
+</I>&gt;<i> implementation do not use COW because it is very difficult to implement it 
+</I>&gt;<i> thread safe. For this reason, all QT container/string classes  (that I 
+</I>&gt;<i> checked) are not thread safe. So, &#8220;superior&#8221;, depends on the use case. If you 
+</I>&gt;<i> need to modify a string, it does not matter if you copy it early or late. And 
+</I>&gt;<i> if you don't want to change it, pass a pointer or reference arround.
+</I>&gt;<i> 
+</I>&gt;<i> You should have a look at the Technology Report 1 (TR1). The next version of 
+</I>&gt;<i> STL will contain a std::for_each and many more good stuff. If you want to use 
+</I>&gt;<i> for_each (and much more) now, you can use boost. Boost is a really useful 
+</I>&gt;<i> library. Have a look :-)
+</I>&gt;<i> 
+</I>&gt;<i> It seems that Alex and you are a fan of QT. So if you guys want, we can 
+</I>&gt;<i> refactor everything to QT.
+</I>&gt;<i> 
+</I>&gt;<i> Cheers
+</I>&gt;<i> Ingo
+</I>&gt;<i> 
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000065.html">[Sigschege-devel] GUI start
+</A></li>
+	<LI>Next message: <A HREF="000070.html">[Sigschege-devel] GUI start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

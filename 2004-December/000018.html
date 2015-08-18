@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Sigschege-devel] Subversion Id expansion
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/sigschege-devel/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Subversion%20Id%20expansion&In-Reply-To=%3C200412041407.14941.ingo.hinrichs%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000015.html">
+   <LINK REL="Next"  HREF="000016.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Sigschege-devel] Subversion Id expansion</H1>
+    <B>sigschege-devel-admin at lists.berlios.de</B> 
+    <A HREF="mailto:sigschege-devel%40lists.berlios.de?Subject=Re%3A%20%5BSigschege-devel%5D%20Subversion%20Id%20expansion&In-Reply-To=%3C200412041407.14941.ingo.hinrichs%40web.de%3E"
+       TITLE="[Sigschege-devel] Subversion Id expansion">sigschege-devel-admin at lists.berlios.de
+       </A><BR>
+    <I>Sat Dec  4 14:07:14 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000015.html">[Sigschege-devel] Subversion Id expansion
+</A></li>
+        <LI>Next message: <A HREF="000016.html">[Sigschege-devel] EasyVec license
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am Mittwoch 01 Dezember 2004 00:23 schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/sigschege-devel">sigschege-devel-admin at berlios.de</A>:
+&gt;<i> Hi there,
+</I>&gt;<i>
+</I>&gt;<i> in your ~/.subversion/config, please do the following modifications:
+</I>&gt;<i>
+</I>&gt;<i> Uncomment:
+</I>&gt;<i>
+</I>&gt;<i> [miscellany]
+</I>&gt;<i>
+</I>&gt;<i> enable-auto-props = yes
+</I>&gt;<i>
+</I>&gt;<i> [auto-props]
+</I>&gt;<i>
+</I>&gt;<i> Add:
+</I>&gt;<i>
+</I>&gt;<i> *.h = svn:keywords=Id
+</I>&gt;<i> *.cpp = svn:keywords=Id
+</I>&gt;<i> *.t = svn:keywords=Id
+</I>&gt;<i> Makefile = svn:keywords=Id
+</I>&gt;<i> README = svn:keywords=Id
+</I>&gt;<i> INSTALL = svn:keywords=Id
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> This allows subversion to automatically configure the &quot;$Id:$&quot; expansion
+</I>&gt;<i> whenever a new file is added. Maybe a line &quot;* = svn:keywords=Id&quot; would also
+</I>&gt;<i> be good, as long as we don't add binary files...
+</I>&gt;<i>
+</I>&gt;<i> Ciao,
+</I>&gt;<i> Ulf
+</I>
+Thanks !!
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000015.html">[Sigschege-devel] Subversion Id expansion
+</A></li>
+	<LI>Next message: <A HREF="000016.html">[Sigschege-devel] EasyVec license
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#18">[ date ]</a>
+              <a href="thread.html#18">[ thread ]</a>
+              <a href="subject.html#18">[ subject ]</a>
+              <a href="author.html#18">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/sigschege-devel">More information about the Sigschege-devel
+mailing list</a><br>
+</body></html>

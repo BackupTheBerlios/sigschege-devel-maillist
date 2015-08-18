@@ -1,0 +1,51 @@
+From sigschege-devel-admin at lists.berlios.de  Sun Oct 17 00:50:52 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sun, 17 Oct 2004 00:50:52 +0200
+Subject: [Sigschege-devel] repository status...
+Message-ID: <20041016225052.GA2921@localhost>
+
+Gentlemen,
+
+please note that some of my commits in the near future are not compileable. I
+will try to make this clear in the assorted commit message.
+
+It seems, subversion doesn't like modifying and renaming a file in one
+step. Since I don't know the consequences of that behaviour, I just do it in
+subsequent commits...
+
+
+Ciao,
+Ulf
+
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
+From sigschege-devel-admin at lists.berlios.de  Sun Oct 17 01:26:39 2004
+From: sigschege-devel-admin at lists.berlios.de (sigschege-devel-admin at lists.berlios.de)
+Date: Sun, 17 Oct 2004 01:26:39 +0200
+Subject: [Sigschege-devel] Subversion...
+Message-ID: <20041016232639.GA5192@localhost>
+
+Hi,
+
+please note that Berlios now supports Subversion 1.1.
+
+It's surely worth updating, especially because of:
+
+- Client follows renames (new client feature)
+- Speed optimizations: (requires both new client and server)
+
+I'll do it now. If you don't hear me scream during the next days it should be
+safe... 
+
+
+Ciao,
+Ulf
+
+
+-- 
+Jabber-ID: ro_kenn at amessage.de
+
+
